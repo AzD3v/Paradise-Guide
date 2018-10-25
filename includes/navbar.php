@@ -12,10 +12,13 @@
         <ul class="navbar-nav mr-auto"></ul>
 
             <!-- Search form -->
-            <form class="form-inline login_form">
-                <input class="form-control mr-sm-2" placeholder="Faça a sua pesquisa..." type="text">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
+            <div id="sb-search" class="sb-search " >
+                <form>
+                    <input class="sb-search-input " onkeyup="buttonUp();" placeholder="Enter your search term..." onblur="monkey();" type="search" value="" name="search" id="search">
+                    <input class="sb-search-submit" type="submit"  value="">
+                    <span class="sb-icon-search"><i class="fa fa-search"></i></span>
+                </form>
+            </div>
 
         </ul>
 

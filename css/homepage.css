@@ -1,158 +1,138 @@
 /* General */
 body,
-html {
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-a:hover {
-    text-decoration: none;
-}
+html {height: 100%; overflow: hidden; font-family: 'Source Sans Pro', sans-serif;}
+a:hover {text-decoration: none;}
 
 /* Navbar */
-nav.navbar.navbar-expand-lg.navbar-light.bg-light {
-    padding: 25px;
-    background: rgba(236, 240, 241, 0.8) !important;
-    transition: all 300ms ease-in-out;
+nav.navbar.navbar-expand-lg.navbar-light.bg-light {padding: 25px; background: rgba(236, 240, 241, 0.8) !important; transition: all 300ms ease-in-out;}
+nav.navbar.navbar-expand-lg.navbar-light.bg-light:hover {background: rgba(236, 240, 241) !important;}
+button.navbar-toggler {background-color: #fff;}
+button.navbar-toggler span.navbar-toggler-icon {color: #6FAD44 !important;}
+
+.form-inline.login_form>button {background: #6FAD44;border: 0;transition: all 300ms ease-in-out;} 
+.form-inline.login_form>button:hover {background: #4E7D3B;}
+.form-inline.login_form>.form-control.mr-sm-2 {height: 6%;}
+.form-inline.login_form>input, .form-inline.login_form>button {font-size: 20px;}
+
+/* Search form */
+.sb-search {
+    position: relative;
+    margin-top: 10px;
+    width: 0%;
+    min-width: 60px;
+    height: 60px;
+    float: right;
+    overflow: hidden;
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    transition: width 0.3s;
+    -webkit-backface-visibility: hidden;
 }
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-light:hover {
-    background: rgba(236, 240, 241) !important;
-}
-
-.form-inline.login_form>button {
-    background: #6FAD44;
-    border: 0;
-    transition: all 300ms ease-in-out;
-} 
-
-.form-inline.login_form>button:hover {
-    background: #4E7D3B;
-}
-
-.form-inline.login_form>.form-control.mr-sm-2 {
-    height: 6%;
-}
-
-.form-inline.login_form>input, .form-inline.login_form>button {
+.sb-search-input {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    border: none;
+    outline: none;
+    background: #fff;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    z-index: 10;
+    padding: 20px 65px 20px 20px;
+    font-family: inherit;
     font-size: 20px;
+    color: #2c3e50;
 }
 
-button.navbar-toggler {
-    background-color: #fff;
+input[type="search"].sb-search-input {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
 }
-button.navbar-toggler span.navbar-toggler-icon {
-    color: #6FAD44!important;
+
+.sb-search-input::-webkit-input-placeholder {
+    color: #efb480;
+}
+
+.sb-search-input:-moz-placeholder {
+    color: #efb480;
+}
+
+.sb-search-input::-moz-placeholder {
+    color: #efb480;
+}
+
+.sb-search-input:-ms-input-placeholder {
+    color: #efb480;
+}
+
+.sb-icon-search,
+.sb-search-submit {
+    width: 60px;
+    height: 60px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sb-search-submit {
+    background: #fff;
+    /* IE needs this */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    /* IE 8 */
+    filter: alpha(opacity=0);
+    /* IE 5-7 */
+    opacity: 0;
+    color: transparent;
+    color: red;
+    border: none;
+    outline: none;
+    z-index: -1;
+}
+
+.sb-icon-search {
+    color: #fff;
+    background: #e67e22;
+    z-index: 90;
+    font-size: 22px;
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.sb-icon-search:before {
+    content: "";
+}
+
+.sb-search.sb-search-open,
+.no-js .sb-search {
+    width: 100%;
+}
+
+.sb-search.sb-search-open .sb-icon-search,
+.no-js .sb-search .sb-icon-search {
+    background: #da6d0d;
+    color: #fff;
+    z-index: 11;
+}
+
+.sb-search.sb-search-open .sb-search-submit,
+.no-js .sb-search .sb-search-submit {
+    /*    z-index: 90;*/
 }
 
 /* Wallpaper */
-.homepage-bg {
-    background-image: url("../img/bg1.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+.homepage-bg {background-image: url("../img/bg1.jpg"); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;}
 
 /* Login e registo */
-.login_register {
-    width: 750px;
-    padding: 3% 0 0;
-    margin: auto;
-}
-
-.login_register_form {
-    position: relative;
-    z-index: 1;
-    background: #fff;
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 50px;
-    text-align: center;
-    background: rgba(236, 240, 241, 0.8) !important;
-    transition: all 300ms ease-in-out;
-}
-
-.register_form {display: none;}
-.login_register_form h3 {
-    font-size: 27px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    color: #4E7D3B;
-}
-
-.login_register_form:hover {
-    background: rgba(236, 240, 241) !important;    
-}
-
-.login_register_form form input {
-    width: 100%;
-    margin: 0 10px 40px;
-    box-sizing: border-box;
-    font-size: 20px;
-}
-
-.form-block1 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.form-block2 {
-    display: flex;
-    justify-content: center;
-}
-
-.form-block3 {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.login_form button {
-    margin-top: 5px;
-    font-size: 20px;
-    text-transform: uppercase;
-    background-color: #6FAD44;
-    transition: all 300ms ease-in-out;
-    border: 0;
-    border-radius: 0;
-}
-
-.login_form button:hover {
-    background: #4E7D3B;
-}
-
-.register_form button:hover {
-    background: #4E7D3B;
-}
-
-.register_form button {
-    margin-top: 5px;
-    font-size: 20px;
-    text-transform: uppercase;
-    background-color: #6FAD44;
-    transition: all 300ms ease-in-out;
-    border: 0;
-    border-radius: 0;
-}
-
-.register button:hover {
-    background: #4E7D3B;
-}
-
-p {
-    margin-top: 25px;
-    font-size: 18px;
-    color: #6FAD44;
-    text-transform: uppercase;
-}
-
-p a {
-    color: #6FAD44;
-    font-weight: bold;
-}
-
-p a:hover {
-    color: #4E7D3B;
-}
