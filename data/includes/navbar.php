@@ -15,7 +15,6 @@
             
             <!-- Login and register buttons -->
             <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal">Login</button>
-            
             <button class="btn btn-primary" data-toggle="modal" data-target="#register-modal">Registo</button>
             
         </ul>

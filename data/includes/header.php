@@ -1,6 +1,3 @@
-<!-- Incluir ficheiro de configuração da base de dados -->
-<?php include_once("db_config.php"); ?>
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
