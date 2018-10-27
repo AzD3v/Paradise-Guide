@@ -12,14 +12,11 @@
         <ul class="navbar-nav mr-auto"></ul>
 
             <!-- Search form -->
-            <div id="sb-search" class="sb-search " >
-                <form>
-                    <input class="sb-search-input " onkeyup="buttonUp();" placeholder="Enter your search term..." onblur="monkey();" type="search" value="" name="search" id="search">
-                    <input class="sb-search-submit" type="submit"  value="">
-                    <span class="sb-icon-search"><i class="fa fa-search"></i></span>
-                </form>
-            </div>
-
+            
+            <!-- Login and register buttons -->
+            <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal" data-backdrop="static" data-keyboard="false">Login</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#register-modal" data-backdrop="static" data-keyboard="false">Registo</button>
+            
         </ul>
 
     </div>
