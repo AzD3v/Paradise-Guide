@@ -1,3 +1,34 @@
+<!-- Incluir a configuração da base de dados -->
+<?php include_once("data/db_config.php"); ?>
+
+<!-- Session start --> 
+<?php session_start(); ?>
+
+<?php 
+
+    if(isset($_POST["login_submit"])) {
+        
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        $sql = "SELECT COUNT(id_user) FROM users WHERE username = :username ";
+        $sql .= "AND password = :password";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(["username" => $username, "password" => $password]);
+
+        $count = $stmt->fetchColumn();
+
+        if ($count == "1") {
+            $_SESSION['username'] = $username;
+        } else {
+            echo 'No';
+        }
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>

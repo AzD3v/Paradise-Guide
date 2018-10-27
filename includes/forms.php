@@ -1,5 +1,5 @@
 <!-- Modal de login -->
-<div class="modal fade" id="login-modal">
+<div class="modal fade" id="login-modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             
@@ -17,29 +17,29 @@
                         <div class="input-group">
                             <ion-icon name="contact"></ion-icon>
                             <input type="text" name="username" placeholder="Digite aqui o seu nome de utilizador" 
-                            class="form-control" required>
+                            class="form-control" id="username" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password">Palavra-passe</label>
                         <div class="input-group">
                             <ion-icon name="key"></ion-icon>
-                            <input type="password" name="password" placeholder="Digite aqui a sua palavra-passe" class="form-control" required>
+                            <input type="password" name="password" placeholder="Digite aqui a sua palavra-passe" 
+                            class="form-control" id="password" required>
                         </div>
                     </div>
+                     <!-- Footer of the modal -->
+                    <div class="modal-footer">
+                        <button type="submit" name="login_submit" class="btn btn-primary btn-block" id="login_submit" onClick="stayOpen()">Iniciar sessão!</button>
+                    </div>
                 </form>
-            </div>
-
-            <!-- Footer of the modal -->
-            <div class="modal-footer">
-                <button type="submit" name="login_submit" class="btn btn-primary btn-block">Iniciar sessão!</button>
-            </div>
+            </div>  
         </div>
     </div>
 </div>
 
 <!-- Modal de registo -->
-<div class="modal fade" id="register-modal">
+<div class="modal fade" id="register-modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             

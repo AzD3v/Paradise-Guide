@@ -8,10 +8,10 @@
 
         <!-- Navbar -->
         <?php include("includes/navbar.php"); ?>
-        
+
         <!-- Login and register forms -->
         <?php include("includes/forms.php"); ?>
-
+    
     </div>        
 
     <!-- Footer -->

@@ -14,8 +14,8 @@
             <!-- Search form -->
             
             <!-- Login and register buttons -->
-            <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal">Login</button>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#register-modal">Registo</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal" data-backdrop="static" data-keyboard="false">Login</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#register-modal" data-backdrop="static" data-keyboard="false">Registo</button>
             
         </ul>
 
