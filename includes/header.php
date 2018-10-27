@@ -22,7 +22,7 @@
         if ($count == "1") {
             $_SESSION['username'] = $username;
         } else {
-            echo 'No';
+            
         }
 
     }
