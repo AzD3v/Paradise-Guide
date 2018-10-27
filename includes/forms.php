@@ -1,4 +1,5 @@
-<div class="modals">
+<div class="modal-wrapper">
+
     <!-- Modal de login -->
     <div class="modal-dialog">
         <div class="modal-content" id="login-modal">
@@ -10,7 +11,8 @@
 
             <!-- Body of the modal --> 
             <div class="modal-body">
-                <form action="" method="post" role="form" id="login-form"> 
+                <?php echo $message; ?>
+                <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="username">Nome de utilizador</label>
                         <div class="input-group">
@@ -47,7 +49,7 @@
 
             <!-- Body of the modal --> 
             <div class="modal-body">
-                <form action="" method="post" role="form"> 
+                <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="new_user_username">Nome de utilizador</label>
                         <div class="input-group">
@@ -86,4 +88,5 @@
             </div>
         </div>
     </div>
+    
 </div>
