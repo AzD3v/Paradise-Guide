@@ -1,17 +1,18 @@
-<!-- Modal de login -->
-<div class="modal fade" id="login-modal" role="dialog">
+<div class="modal-wrapper">
+
+    <!-- Modal de login -->
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="login-modal">
             
             <!-- Hedader of the modal --> 
             <div class="modal-header">
                 <h3>Prossiga para a sua conta pessoal</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Body of the modal --> 
             <div class="modal-body">
-                <form action="" method="post" role="form"> 
+                <?php echo $message; ?>
+                <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="username">Nome de utilizador</label>
                         <div class="input-group">
@@ -28,30 +29,27 @@
                             class="form-control" id="password" required>
                         </div>
                     </div>
-                     <!-- Footer of the modal -->
+                        <!-- Footer of the modal -->
                     <div class="modal-footer">
-                        <button type="submit" name="login_submit" class="btn btn-primary btn-block" id="login_submit" onClick="stayOpen()">Iniciar sessão!</button>
+                        <button type="submit" name="login_submit" class="btn btn-primary btn-block">Iniciar sessão!</button>
                     </div>
                 </form>
             </div>  
         </div>
     </div>
-</div>
 
-<!-- Modal de registo -->
-<div class="modal fade" id="register-modal" role="dialog">
-    <div class="modal-dialog">
+    <!-- Modal de registo -->
+    <div class="modal-dialog" id="register-modal">
         <div class="modal-content">
             
             <!-- Hedader of the modal --> 
             <div class="modal-header">
                 <h3>Torna-se já num novo membro</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Body of the modal --> 
             <div class="modal-body">
-                <form action="" method="post" role="form"> 
+                <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="new_user_username">Nome de utilizador</label>
                         <div class="input-group">
@@ -90,4 +88,5 @@
             </div>
         </div>
     </div>
+    
 </div>

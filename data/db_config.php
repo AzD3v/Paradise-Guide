@@ -9,7 +9,11 @@
     // Definir DSN (Data Source Name) 
     $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
 
-    // Criar uma instância PDO 
-    $pdo = new PDO($dsn, DB_USER, DB_PASS);
+    // Testar a conexão à base de dados 
+    try{
+        $pdo = new PDO($dsn, DB_USER, DB_PASS);
+    } catch (PDOException $e){
+        die("A conexão à base de dados falhou! " . $e);
+    }
 
 ?>
