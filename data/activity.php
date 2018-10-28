@@ -12,6 +12,8 @@
         public $descricaoAtividade;
         public $zonaAtividade;
         public $imagemAtividade;
+        public $precoAtividade;
+        public $duracaoAtividade;
         
         # Getters 
         public function getIdAtividade() {
@@ -37,7 +39,15 @@
         public function getImagemAtividade() {
             return $this->imagemAtividade;
         }
+        
+        public function getPrecoAtividade() {
+            return $this->precoAtividade;
+        }
 
+        public function getDuracaoAtividade() {
+            return $this->duracaoAtividade;
+        }
+        
         # Setters 
         public function setNomeAtividade($nomeAtividade) {
             $this->nomeAtividade = $nomeAtividade;
@@ -55,10 +65,18 @@
             $this->imagemAtividade = $imagemAtividade;
         }
 
+        public function setPrecoAtividade($precoAtividade) {
+            $this->precoAtividade = $precoAtividade;
+        }
+
+        public function setDuracaoAtividade($duracaoAtividade) {
+            $this->duracaoAtividade = $duracaoAtividade;
+        }
+
         // Método que retorna todas as atividades
         public static function find_all_activities()
         {
-            return self::find_this_query("SELECT * FROM nome_atividades");
+            return self::find_this_query("SELECT * FROM atividades");
         }
 
         // "Helper method" que retorna qualquer query que passe por ele
