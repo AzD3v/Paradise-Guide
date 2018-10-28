@@ -1,5 +1,5 @@
-<!-- Incluir a configuração da base de dados -->
-<?php include_once("data/db_config.php"); ?>
+<!-- Incluir a classe Database -->
+<?php include_once("data/database.php"); ?>
 
 <!-- Definir a messagem de erro como vazia inicialmente -->
 <?php $message = ""; ?>

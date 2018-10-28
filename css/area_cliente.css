@@ -1,5 +1,6 @@
 /* Navbar */
 nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {background: #27ae60!important;font-size: 20px;height: 80px;}
+a.nav-link {transition: all 100ms ease-in-out;}
 
 .btn:focus,
 .btn:active,
