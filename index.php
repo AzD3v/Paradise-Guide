@@ -1,21 +1,22 @@
-<!-- Header -->
-<?php include("includes/header.php"); ?>
+<!-- Header do índex     -->
+<?php include_once("includes/index_header.php"); ?>
 
 <body>
 
-    <!-- Homepage body -->
+    <!-- Body/background do índex -->
     <div class="homepage-bg">
 
-        <!-- Navbar -->
-        <?php include("includes/navbar.php"); ?>
+        <!-- Navbar do índex -->
+        <?php include_once("includes/index_navbar.php"); ?>
 
-        <!-- Login and register forms -->
-        <?php include("includes/forms.php"); ?>
+        <!-- Login/register forms do índex -->
+        <?php include_once("includes/index_forms.php"); ?>
     
     </div>        
 
-    <!-- Footer -->
-    <?php include("includes/footer.php"); ?>
-
 </body>
+
+    <!-- Footer do índex -->
+    <?php include_once("includes/index_footer.php"); ?>
+
 </html>

@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-area
+<!-- Header da área de cliente -->
+<?php include_once("includes/area_cliente_header.php"); ?>
+
+<body class="body_area_cliente">
+
+    <!-- Navbar da área de cliente -->
+    <?php include_once("includes/area_cliente_navbar.php"); ?>
+
+    <!-- Footer do índex -->
+    <?php include_once("includes/area_cliente_footer.php"); ?>
 
 </body>
 </html>
