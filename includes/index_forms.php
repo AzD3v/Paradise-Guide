@@ -29,7 +29,7 @@
                             class="form-control" id="password" required>
                         </div>
                     </div>
-                        <!-- Footer of the modal -->
+                    <!-- Footer of the modal -->
                     <div class="modal-footer">
                         <button type="submit" name="login_submit" class="btn btn-primary btn-block">Iniciar sessão!</button>
                     </div>
@@ -79,14 +79,13 @@
                             <input type="password" name="new_user_password_rewrite" placeholder="Reescreva aqui a sua palavra-passe" class="form-control" required>
                         </div>
                     </div>
-                </form>
-            </div>
-
-            <!-- Footer of the modal -->
-            <div class="modal-footer">
-                <button type="submit" name="register_submit" class="btn btn-primary btn-block">Registar-se!</button>
-            </div>
+                    <!-- Footer of the modal -->
+                    <div class="modal-footer">
+                        <button type="submit" name="register_submit" class="btn btn-primary btn-block">Registar-se!</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    
+            
 </div>

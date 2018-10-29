@@ -7,7 +7,11 @@
 <!-- Session start --> 
 <?php session_start(); ?>
 
-<?php 
+<?php  
+
+    /* Se um utilizador se encontra com o login efetuado, 
+    é redirecionado para a sua área de cliente */
+    if (isset($_SESSION["username"])) {header("Location:area_cliente.php");}
 
     # Verificação do formulário de login
     if(isset($_POST["login_submit"])) {
@@ -33,7 +37,7 @@
             $count = $stmt->fetchColumn();
 
             if ($count == "1") {
-                $_SESSION['username'] = $username;
+                $_SESSION["username"] = $username;
                 header("Location:area_cliente.php");
             } else {
                 $message = "<div class='alert alert-danger' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";

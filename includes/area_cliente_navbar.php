@@ -1,6 +1,6 @@
 <!-- Navbar --> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="area_cliente.php">Bem-vindo</a>
+    <a class="navbar-brand" href="area_cliente.php">LOGO AQUI</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
