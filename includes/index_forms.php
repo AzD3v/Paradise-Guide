@@ -11,7 +11,7 @@
 
             <!-- Body of the modal --> 
             <div class="modal-body">
-                <?php echo $message; ?>
+                <?php echo $error_message_login; ?>
                 <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="username">Nome de utilizador</label>
@@ -49,6 +49,7 @@
 
             <!-- Body of the modal --> 
             <div class="modal-body">
+            <?php echo $message_error_register; ?>
                 <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="new_user_username">Nome de utilizador</label>
