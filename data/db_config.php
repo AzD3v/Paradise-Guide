@@ -1,4 +1,4 @@
-<?php
+ <?php 
 
     // Variáveis de conexão à base de dados
     define("DB_HOST", "localhost");

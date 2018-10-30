@@ -11,7 +11,7 @@
 
             <!-- Body of the modal --> 
             <div class="modal-body">
-                <?php echo $message; ?>
+                <?php echo $error_message_login; ?>
                 <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="username">Nome de utilizador</label>
@@ -29,7 +29,7 @@
                             class="form-control" id="password" required>
                         </div>
                     </div>
-                        <!-- Footer of the modal -->
+                    <!-- Footer of the modal -->
                     <div class="modal-footer">
                         <button type="submit" name="login_submit" class="btn btn-primary btn-block">Iniciar sessão!</button>
                     </div>
@@ -49,6 +49,7 @@
 
             <!-- Body of the modal --> 
             <div class="modal-body">
+            <?php echo $message_error_register; ?>
                 <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="new_user_username">Nome de utilizador</label>
@@ -62,7 +63,7 @@
                         <label for="new_user_email">Endereço de email</label>
                         <div class="input-group">
                             <ion-icon name="mail"></ion-icon>
-                            <input type="password" name="new_user_email" placeholder="Escolha o seu email de preferência" class="form-control input-email" required>
+                            <input type="email" name="new_user_email" placeholder="Escolha o seu email de preferência" class="form-control input-email" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -79,14 +80,13 @@
                             <input type="password" name="new_user_password_rewrite" placeholder="Reescreva aqui a sua palavra-passe" class="form-control" required>
                         </div>
                     </div>
+                    <!-- Footer of the modal -->
+                    <div class="modal-footer">
+                        <button type="submit" name="register_submit" class="btn btn-primary btn-block">Registar-se!</button>
+                    </div>
                 </form>
-            </div>
-
-            <!-- Footer of the modal -->
-            <div class="modal-footer">
-                <button type="submit" name="register_submit" class="btn btn-primary btn-block">Registar-se!</button>
             </div>
         </div>
     </div>
-    
+            
 </div>
