@@ -11,7 +11,7 @@
 
     /* Se um utilizador se encontra com o login efetuado, 
     é redirecionado para a sua área de cliente */
-    if (isset($_SESSION["username"])) {header("Location:area_cliente.php");}
+    if (isset($_SESSION["client"])) {header("Location:area_cliente.php");}
 
     # Verificação do formulário de login
     if(isset($_POST["login_submit"])) {
@@ -37,7 +37,7 @@
             $count = $stmt->fetchColumn();
 
             if ($count == "1") {
-                $_SESSION["username"] = $username;
+                $_SESSION["client"] = $username;
                 header("Location:area_cliente.php");
             } else {
                 $message = "<div class='alert alert-danger' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
@@ -65,47 +65,47 @@
             $password = trim($password);
             $password_rewrite = trim($password_rewrite);
 
-            # Validações dos campos (número de caracteres) 
-            if (strlen($username) < 5) {
-                $message = "<div class='alertalert-warning' role='alert'>O nome de utilizador necessita ter pelo menos 5 caracteres!</div>";
-            } else if (strlen($password) < 8) {
-                $message = "<div class='alertalert-warning' role='alert'>A palavra-passe escolhida necessita ter pelo menos 8 caracteres!</div>";
-            }
+            // # Validações dos campos (número de caracteres) 
+            // if (strlen($username) < 5) {
+            //     $message = "<div class='alertalert-warning' role='alert'>O nome de utilizador necessita ter pelo menos 5 caracteres!</div>";
+            // } else if (strlen($password) < 8) {
+            //     $message = "<div class='alertalert-warning' role='alert'>A palavra-passe escolhida necessita ter pelo menos 8 caracteres!</div>";
+            // }
 
             # Comparação das passwords introduzidas 
-            if ($password !== $password_rewrite) {
-                $message = "<div class='alertalert-warning' role='alert'>As palavras-passe não coincidem!</div>";
-            }
+            // if ($password !== $password_rewrite) {
+            //     $message = "<div class='alertalert-warning' role='alert'>As palavras-passe não coincidem!</div>";
+            // }
 
             # Verificar se o nome de utilizador já se encontra registado
-            $sql = "SELECT COUNT(username) AS username_num FROM users WHERE username = :username";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(":username", $username);
-            $stmt->execute();
+            // $sql = "SELECT COUNT(username) AS username_num FROM users WHERE username = :username";
+            // $stmt = $pdo->prepare($sql);
+            // $stmt->bindValue(":username", $username);
+            // $stmt->execute();
             
             # "Fetch" à base de dados de modo a retornar cada username
-            $usernames = $stmt->fetch(PDO::FETCH_ASSOC);  
+            // $usernames = $stmt->fetch(PDO::FETCH_ASSOC);  
             
             # Se o username já existir na base de dados, é mostrada uma mensagem de erro 
-            if ($usernames["username_num"] > 0) {
-                $message = "Esse nome de utilizador já se encontra registado!";
-                die();
-            } 
+            // if ($usernames["username_num"] > 0) {
+            //     $message = "Esse nome de utilizador já se encontra registado!";
+            //     die();
+            // } 
 
             # Verificar se o email já se encontra registado
-            $sql = "SELECT COUNT(email) AS email_num FROM users WHERE email = :email";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(":username", $username);
-            $stmt->execute();
+            // $sql = "SELECT COUNT(email) AS email_num FROM users WHERE email = :email";
+            // $stmt = $pdo->prepare($sql);
+            // $stmt->bindValue(":email", $email);
+            // $stmt->execute();
             
             # "Fetch" à base de dados de modo a retornar cada email
-            $emails = $stmt->fetch(PDO::FETCH_ASSOC);  
+            // $emails = $stmt->fetch(PDO::FETCH_ASSOC);  
             
             # Se o username já existir na base de dados, é mostrada uma mensagem de erro 
-            if ($emails["num"] > 0) {
-                $message = "Esse email já se encontra registado!";
-                die();
-            }
+            // if ($emails["email_num"] > 0) {
+            //     $message = "Esse email já se encontra registado!";
+            //     die();
+            // }
 
             # Encriptação da palavra-passe 
             $password_hash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
@@ -114,13 +114,24 @@
             $sql = "INSERT INTO users(username, email, password) ";
             $sql .= "VALUES(:username, :email, :password)";
             $stmt = $pdo->prepare($sql);
-
-            $result = $stmt->execute(["username" => $username, "email" => $email, "password" => $password_hash]);
             
+            # Atribuição dos valores 
+            $stmt->bindValue(":username", $username);
+            $stmt->bindValue(":email", $email);
+            $stmt->bindValue(":password", $password_hash);
+            
+            # Executar o statement
+            $result = $stmt->execute();
+
             # Verificar se o processo de registro foi bem-sucedido 
             if($result) {
+                
+                # Se o login foi bem sucedido, atribuir uma variável de sessão ao user 
                 $_SESSION['username'] = $username;
+
+                # Encaminhar o user para a sua área de cliente
                 header("Location:area_cliente.php");
+                
             }
 
         }

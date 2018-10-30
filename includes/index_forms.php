@@ -62,7 +62,7 @@
                         <label for="new_user_email">Endereço de email</label>
                         <div class="input-group">
                             <ion-icon name="mail"></ion-icon>
-                            <input type="password" name="new_user_email" placeholder="Escolha o seu email de preferência" class="form-control input-email" required>
+                            <input type="email" name="new_user_email" placeholder="Escolha o seu email de preferência" class="form-control input-email" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,8 +83,8 @@
                     <div class="modal-footer">
                         <button type="submit" name="register_submit" class="btn btn-primary btn-block">Registar-se!</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
             

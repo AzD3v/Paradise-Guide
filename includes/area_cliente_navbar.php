@@ -21,6 +21,7 @@
             <input class="form-control mr-sm-2 pesquisa_area_cliente" type="text" name="pesquisa_area_cliente" placeholder="Pesquise qualquer atividade...">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar!</button>
         </form>
+        <a href="includes/cliente_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão</button></a>
     </div>
 </nav>
 <!-- Final da navbar -->

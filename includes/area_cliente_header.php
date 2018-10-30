@@ -10,6 +10,8 @@
 <!-- Session start --> 
 <?php session_start(); ?>
 
+<!-- Restringir a página para apenas um user registado conseguir aceder à mesma --> 
+<?php if (!isset($_SESSION["client"])) {header("Location:index.php");} ?>
 
 <!DOCTYPE html>
 <html lang="pt">
