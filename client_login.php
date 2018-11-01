@@ -14,6 +14,10 @@
             $username = trim($username);
             $password_attempt = trim($password_attempt);
 
+            # Proteção contra XSS (Cross-Site Scripting)
+            $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+            $password_attempt = htmlspecialchars($password_attempt, ENT_QUOTES, 'UTF-8');
+
             // Desencriptar a palavra-passe
             # Query que retorna os dados do utilizador pretendido 
             $user_checked = "SELECT id_user, username, password FROM users "; 
@@ -26,7 +30,8 @@
             
             # Verificar se o username existe - true ou false 
             if ($user === false) {
-                $error_message_login = "<div class='alert alert-danger' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
+                $error_message_login = "<div class='alert alert-danger' role='alert'>O seu 
+                nome de utilizador ou palavra-passe estão incorretos!</div>";
             } else {
                
                 /* No caso do utilizador de facto existir, comparar a password dada no 

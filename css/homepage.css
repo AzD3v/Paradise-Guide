@@ -1,6 +1,6 @@
 /* General */
 body,
-html {height: 100%; overflow: hidden; font-family: 'Source Sans Pro', sans-serif;}
+html {height: 100%; font-family: 'Source Sans Pro', sans-serif;}
 
 :root {
     --primary-color: #2ecc71;
@@ -36,7 +36,7 @@ button.navbar-toggler span.navbar-toggler-icon {color: #6FAD44 !important;}
 
 
 /* Wallpaper */
-.homepage-bg {background-image: url("../img/bg1.jpg"); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;}
+.homepage-bg {background-image: url("../img/bg1.jpg"); height: 117%; background-position: center; background-repeat: no-repeat; background-size: cover;}
 
 /* Login e registo */
 .modal-wrapper {
@@ -57,11 +57,10 @@ button.close:hover {color: #ebebeb!important;}
 #register-modal {
     opacity: 0.9;
     transition: all 300ms ease-in-out;
-   
 }
 .modal-content {
-    width: 500px;
-    margin-top: -15px;
+    width: 550px;
+    margin-top: 15px;
 }
 .input-group {display: flex;flex-direction: row;}
 input[name="username"], input[name="password"] {font-size: 18px;}

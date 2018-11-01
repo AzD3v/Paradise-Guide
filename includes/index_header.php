@@ -3,7 +3,7 @@
 
 <!-- Definir as messagens de erro de login e registro como vazias inicialmente -->
 <?php $error_message_login = ""; ?>
-<?php $message_error_register = ""; ?>
+<?php $message_error_register  = ""; ?>
 
 <!-- Session start --> 
 <?php session_start(); ?>
