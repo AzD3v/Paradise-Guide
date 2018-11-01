@@ -1,22 +1,16 @@
 <!-- Incluir a classe Database -->
-<?php include_once("data/database.php"); ?>
+<?php include_once("../data/database.php"); ?>
 
-<!-- Definir as messagens de erro de login e registro como vazias inicialmente -->
+<!-- Definir as messagens de erro de login como vazia inicialmente -->
 <?php $error_message_login = ""; ?>
-<?php $message_error_register  = ""; ?>
 
 <!-- Session start --> 
 <?php session_start(); ?>
 
-<!-- Incluir o login do cliente --> 
-<?php include("client_login.php"); ?>
-
-<!-- Incluir o processo de registo do cliente -->
-<?php include("client_registration.php"); ?>
-
 <?php 
 
-    # Se um utilizador se encontra com o login efetuado, é redirecionado para a sua área de cliente 
+    /* Um cliente não poderá ter acesso à área admnistrativa (é redirecionado para a 
+    área de cliente) */
     if (isset($_SESSION["client"])) {header("Location:area_cliente.php");}
 
 ?>
@@ -35,7 +29,7 @@
 
     <!-- Custom CSS stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <!-- Ionic icons -->
     <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
@@ -44,6 +38,6 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
     <!-- Page title -->
-    <title>Paradise Guide | Bem-vindo</title>
+    <title>Paradise Guide | Área de Gestão</title>
     
 </head>
