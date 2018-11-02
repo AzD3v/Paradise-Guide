@@ -20,9 +20,9 @@
 
             // Desencriptar a palavra-passe
             # Query que retorna os dados do utilizador pretendido 
-            $user_checked = "SELECT id_user, username, password FROM users "; 
-            $user_checked .= "WHERE username = :username";
-            $check_user_stmt = $pdo->prepare($user_checked);
+            $check_user_sql = "SELECT id_user, username, password FROM users "; 
+            $check_user_sql .= "WHERE username = :username";
+            $check_user_stmt = $pdo->prepare($check_user_sql);
             $check_user_stmt ->execute([":username" => $username]);
             
             # Fetch efetuado para mais tarde verificar se o username existe na base de dados
@@ -30,8 +30,7 @@
             
             # Verificar se o username existe - true ou false 
             if ($user === false) {
-                $error_message_login = "<div class='alert alert-danger' role='alert'>O seu 
-                nome de utilizador ou palavra-passe estão incorretos!</div>";
+                $error_message_login = "<div class='alert alert-danger text-center' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
             } else {
                
                 /* No caso do utilizador de facto existir, comparar a password dada no 
@@ -44,7 +43,7 @@
                     $_SESSION["client"] = $username;
                     header("Location:area_cliente.php");
                 } else {
-                    $error_message_login = "<div class='alert alert-danger' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
+                    $error_message_login = "<div class='alert alert-danger text-center' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
                 }
 
             }

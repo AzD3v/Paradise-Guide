@@ -19,24 +19,27 @@
             $admin_password = htmlspecialchars($admin_password, ENT_QUOTES, 'UTF-8');
 
             # Query que retorna os dados do utilizador pretendido 
-            $admin_checked = "SELECT id_user_admin, username_admin, password_admin FROM "; 
-            $admin_checked .= "admin_users WHERE admin_username = :admin_username"; 
-            $check_admin_stmt = $pdo->prepare($admin_checked);
-            $check_admin_stmt->execute([":admin_username" => $admin_username]);
+            $check_user_sql = "SELECT COUNT(id_user_admin) FROM admin_users WHERE "; 
+            $check_user_sql .= "admin_username = :admin_username "; 
+            $check_user_sql .= "AND admin_password = :admin_password"; 
+
+            # Preparar e executar a query
+            $check_admin_stmt = $pdo->prepare($check_user_sql);
+            $check_admin_stmt->execute([":admin_username" => $admin_username, 
+            ":admin_password" => $admin_password]);
             
             # Fetch efetuado para mais tarde verificar se o username existe na base de dados
-            $row = $check_admin_stmt->fetch(PDO::FETCH_ASSOC);
+            $count = $check_admin_stmt->fetchColumn();
             
             # Verificar que o admin existe
-            if ($check_admin_stmt->rowCount() > 0) {
+            if ($count == "1") {
                 /* Se o admin de facto existe, o login é efetuado com sucesso e o user é 
                 reencaminhado para a área de gestão */
                 $_SESSION["admin"] = $admin_username;
                 header("Location:area_gestao.php");
             } else {
-    
-                $error_message_login = "<div class='alert alert-danger' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
-
+                # Caso não haja sucesso no login, é mostrada uma mensagem de erro
+                $error_message_login = "<div class='alert alert-danger text-center' role='alert'>O seu nome de utilizador ou palavra-passe estão incorretos!</div>";
             }
 
         }
