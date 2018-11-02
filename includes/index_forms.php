@@ -1,17 +1,21 @@
 <div class="modal-wrapper">
 
-    <!-- Modal de login -->
+    <!-- Formulário de login -->
     <div class="modal-dialog">
         <div class="modal-content" id="login-modal">
             
-            <!-- Hedader of the modal --> 
+            <!-- Hedader --> 
             <div class="modal-header">
                 <h3>Prossiga para a sua conta pessoal</h3>
             </div>
 
-            <!-- Body of the modal --> 
+            <!-- Body --> 
             <div class="modal-body">
+
+                <!-- Mensagem de erro caso o login não seja bem sucedido -->
                 <?php echo $error_message_login; ?>
+                
+                <!-- Formulário de login -->
                 <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="username">Nome de utilizador</label>
@@ -29,7 +33,8 @@
                             class="form-control" id="password" required>
                         </div>
                     </div>
-                    <!-- Footer of the modal -->
+
+                    <!-- Footer -->
                     <div class="modal-footer">
                         <button type="submit" name="login_submit" class="btn btn-primary btn-block">Iniciar sessão!</button>
                     </div>
@@ -38,18 +43,22 @@
         </div>
     </div>
 
-    <!-- Modal de registo -->
+    <!-- Formulário de registo -->
     <div class="modal-dialog" id="register-modal">
         <div class="modal-content">
             
-            <!-- Hedader of the modal --> 
+            <!-- Hedader --> 
             <div class="modal-header">
                 <h3>Torna-se já num novo membro</h3>
             </div>
 
-            <!-- Body of the modal --> 
+            <!-- Body --> 
             <div class="modal-body">
+
+            <!-- Mensagem de erro caso o registo não seja bem sucedido -->
             <?php echo $message_error_register; ?>
+
+                <!-- Formulário de registo -->
                 <form action="" method="post" autocomplete="off" role="form"> 
                     <div class="form-group">
                         <label for="new_user_username">Nome de utilizador</label>
@@ -80,7 +89,8 @@
                             <input type="password" name="new_user_password_rewrite" placeholder="Reescreva aqui a sua palavra-passe" class="form-control" required>
                         </div>
                     </div>
-                    <!-- Footer of the modal -->
+
+                    <!-- Footer -->
                     <div class="modal-footer">
                         <button type="submit" name="register_submit" class="btn btn-primary btn-block">Registar-se!</button>
                     </div>
