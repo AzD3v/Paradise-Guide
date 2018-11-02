@@ -11,8 +11,13 @@ body {
 }
 
 /* Navbar */
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {background: #27ae60!important;font-size: 20px;height: 80px;}
-a.nav-link {transition: all 100ms ease-in-out; font-size: 18px; text-transform: uppercase;}
+.logo_area_cliente {
+    height: 80px;
+    margin-right: 50px;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {height: 100px; background: #27ae60!important; font-size: 25px;}
+a.nav-link {transition: all 100ms ease-in-out; font-size: 18px; text-transform: uppercase; margin-right: 30px;}
 a {outline: 0;}
 
 .btn:focus,
