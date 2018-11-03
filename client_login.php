@@ -23,7 +23,7 @@
             $check_user_sql = "SELECT id_user, username, password FROM users "; 
             $check_user_sql .= "WHERE username = :username";
             $check_user_stmt = $pdo->prepare($check_user_sql);
-            $check_user_stmt ->execute([":username" => $username]);
+            $check_user_stmt->execute([":username" => $username]);
             
             # Fetch efetuado para mais tarde verificar se o username existe na base de dados
             $user = $check_user_stmt->fetch(PDO::FETCH_ASSOC);

@@ -10,6 +10,6 @@
     session_destroy();
     
     # Redirecionar o cliente para o índex
-    header('location:../index.php');
+    header('location:../../index.php');
 
 ?>

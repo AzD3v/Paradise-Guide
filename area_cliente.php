@@ -1,17 +1,17 @@
 <!-- Header da área de cliente -->
-<?php include_once("includes/area_cliente_header.php"); ?>
+<?php include_once("includes/includes_area_cliente/area_cliente_header.php"); ?>
 
 <?php 
 
     # Aceder a todos os dados de cada atividade
-    $activities = Activity::find_all_activities();    
-
+    $activities = Activity::find_all_activities();       
+    
 ?>
 
 <body class="body_area_cliente">
 
     <!-- Navbar da área de cliente -->
-    <?php include_once("includes/area_cliente_navbar.php"); ?>
+    <?php include_once("includes/includes_area_cliente/area_cliente_navbar.php"); ?>
 
     <!-- Listagem de todas as atividades disponíveis --> 
     <div id="all_activities">
@@ -45,7 +45,7 @@
     </div>
 
     <!-- Footer do índex -->
-    <?php include_once("includes/area_cliente_footer.php"); ?>
+    <?php include_once("includes/includes_area_cliente/area_cliente_footer.php"); ?>
 
 </body>
 </html>

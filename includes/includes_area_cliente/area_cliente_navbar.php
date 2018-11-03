@@ -22,7 +22,7 @@
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar!</button>
         </form> -->
         
-        <a href="includes/cliente_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão</button></a>
+        <a href="includes/includes_area_cliente/cliente_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão</button></a>
     </div>
 </nav>
 <!-- Final da navbar -->

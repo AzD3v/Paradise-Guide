@@ -94,7 +94,7 @@
                 
                 # Se o registo foi bem sucedido, atribuir uma variável de sessão ao user 
                 $_SESSION["client"] = $username;
-
+                
                 # Encaminhar o user para a sua área de cliente
                 header("Location:area_cliente.php");
 
