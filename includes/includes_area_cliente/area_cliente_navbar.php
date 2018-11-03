@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active" id="area_cliente_tab">
-                <a class="nav-link" href="#">Área de cliente</a>
+                <a class="nav-link">Área de cliente</a>
             </li>
             <li class="nav-item" id="minhas_atividades_tab">
-                <a class="nav-link" href="#">Minhas atividades</a>
+                <a class="nav-link">Minhas atividades</a>
             </li>
             <li class="nav-item" id="todas_atividades_tab">
-                <a class="nav-link" href="#">Todas as atividades</a>
+                <a class="nav-link">Todas as atividades</a>
             </li>
         </ul>
         <!-- <form class="form-inline my-2 my-lg-0">

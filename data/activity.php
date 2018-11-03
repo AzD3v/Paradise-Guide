@@ -79,14 +79,23 @@
             return self::find_this_query("SELECT * FROM atividades");
         }
 
+        // Método que encontra o ID de uma atividade pelo nome da mesma
+        public static function find_id_by_username($nomeAtividade)
+        {
+            $the_result_array = self::find_this_query("SELECT * FROM atividades WHERE Nomeatividade = '$nomeAtividade' LIMIT 1");
+
+            return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+        }
+
         // "Helper method" que retorna qualquer query que passe por ele
         public static function find_this_query($sql)
         {
 
-            // Using the Database class
+            // Incluir a class Database
             global $database;
 
-            // Getting the result from the method
+            // Obter o resultado do método
             $result_set = $database->query($sql);
             $the_object_array = [];
 
@@ -107,7 +116,7 @@
             // Instanciar a classe Activity
             $the_object = new self;
 
-            // Iterar sobre os dados obtidos e atribuição de propriedades dinamica
+            // Iterar sobre os dados obtidos e atribuição de propriedades dinâmica
             foreach ($the_record as $the_attribute => $value) {
 
                 if($the_object->has_the_attribute($the_attribute)) {
