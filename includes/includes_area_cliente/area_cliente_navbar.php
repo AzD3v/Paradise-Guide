@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" id="minhas_atividades_tab">
-                <a class="nav-link">Minhas atividades</a>
+                <a class="nav-link"><button class="btn-primary" id="minhas_atividades_tab_button">Minhas atividades</button></a>
             </li>
             <li class="nav-item" id="todas_atividades_tab">
-                <a class="nav-link">Todas as atividades</a>
+                <a class="nav-link"><button class="btn-primary" id="todas_atividades_tab_button">Todas as atividades</button></a>
             </li>
         </ul>
         <!-- <form class="form-inline my-2 my-lg-0">

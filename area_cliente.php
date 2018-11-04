@@ -122,7 +122,7 @@
                                     echo "<tr>";
                                     echo utf8_encode("<td>{$activity->nomeAtividade}</td>");
                                     echo utf8_encode("<td>{$activity->descricaoAtividade}</td>");
-                                    echo "<td>{$activity->duracaoAtividade}€</td>" ;
+                                    echo "<td>{$activity->duracaoAtividade}</td>" ;
                                     echo utf8_encode("<td>{$activity->zonaAtividade}</td>");
                                     echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
                                     echo "<td>{$activity->precoAtividade}€</td>" ;
@@ -133,6 +133,7 @@
                             }
 
                         }
+
 
                     }
 
