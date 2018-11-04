@@ -79,62 +79,70 @@
 
     <!-- Atividades escolhidas pelo utilizador -->
     <div id="user_activities">
+
+        <h1>Pode consultar aqui todas as suas atividades reservadas</h1>
         
         <!-- Tabela com todas as atividades escolhidas pelo utilizador --> 
-        <table class="table table-hover table-bordered table-striped">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped">
 
-            <thead>
-                <tr>
-                    <th>Nome da atividade</th>
-                    <th>Descrição da atividade</th>
-                    <th>Zona da atividade</th>
-                    <th>Imagem associada</th>
-                    <th>Preço a pagar pela atividade</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Nome da atividade</th>
+                        <th>Descrição da atividade</th>
+                        <th>Duração média</th>
+                        <th>Zona</th>
+                        <th>Imagem</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                
-                <?php 
+                <tbody>
+                    
+                    <?php 
 
-                # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
-                $reserves = Reserve::find_all_reserves();
+                    # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
+                    $reserves = Reserve::find_all_reserves();
 
-                /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas 
-                e atividades do utilizador em questão */
-                foreach ($reserves as $reserve) {
-                    $idAtividadeReserva = $reserve->idAtividade;
-                    $estadoReserva = $reserve->estadoReserva;
-                    $userReserva = $reserve->idUser;
+                    /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas 
+                    e atividades do utilizador em questão */
+                    foreach ($reserves as $reserve) {
+                        $idAtividadeReserva = $reserve->idAtividade;
+                        $estadoReserva = $reserve->estadoReserva;
+                        $userReserva = $reserve->idUser;
 
-                    if ($userReserva === $idUser) {
+                        if ($userReserva === $idUser) {
 
-                        foreach($activities as $activity) {
-                            
-                            $idAtividade = $activity->idAtividade;
-                            
-                            if($idAtividadeReserva === $idAtividade) {
+                            foreach($activities as $activity) {
                                 
-                                echo "<tr>";
-                                echo utf8_encode("<td>{$activity->nomeAtividade}</td>");
-                                echo utf8_encode("<td>{$activity->descricaoAtividade}</td>");echo utf8_encode("<td>{$activity->zonaAtividade}</td>");
-                                echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
-                                echo utf8_encode("<td>{$activity->precoAtividade}</td>");
-                                echo "</tr>";
+                                $idAtividade = $activity->idAtividade;
                                 
+                                if ($idAtividadeReserva === $idAtividade) {
+                                    
+                                    echo "<tr>";
+                                    echo utf8_encode("<td>{$activity->nomeAtividade}</td>");
+                                    echo utf8_encode("<td>{$activity->descricaoAtividade}</td>");
+                                    echo "<td>{$activity->duracaoAtividade}€</td>" ;
+                                    echo utf8_encode("<td>{$activity->zonaAtividade}</td>");
+                                    echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
+                                    echo "<td>{$activity->precoAtividade}€</td>" ;
+                                    echo "</tr>";
+
+                                }
+
                             }
 
                         }
 
                     }
 
-                }
+                    ?>
 
-                ?>
+                </tbody>
+            
+            </table>
 
-            </tbody>
-        
-        </table>
+        </div>
 
     </div> 
 

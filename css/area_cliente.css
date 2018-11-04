@@ -49,13 +49,56 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
 /* Atividades */
 .body_area_cliente {background: #2ecc71;}
 #all_activities {display: none;}
-#all_activities h1 {font-size: 26px;color: #fff;text-transform: uppercase;margin: 20px;text-align: center;}
+#all_activities h1 {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 20px;
+    text-align: center;
+}
 #all_activities .list-group {padding: 20px 30px;}
-
 .d-flex h5 {font-size: 23px; font-weight: bold;}
 .list-group p {font-size: 20px;}
 .list-group .subtitulo_listagem {font-weight: bold;}
-.list-group button {background: var(--primaryGreen);color: #fff;float: right;font-size: 20px;text-transform: uppercase;transition: all 300ms ease-in-out;border: 0;}
+.list-group button {
+    background: var(--primaryGreen);
+    color: #fff;
+    float: right;
+    font-size: 20px;
+    text-transform: uppercase;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
 .list-group button:hover {background: var(--secondaryGreen);}
 
 /* Reserva */ 
+#user_activities h1 {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 20px;
+    text-align: center;
+}
+
+thead {
+    border: 3px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    background: var(--secondaryGreen);
+    text-align: center;
+}
+
+tbody {
+    color: #fff;
+    font-size: 18px;
+    background: var(--primaryGreen);
+}
+
+.table-bordered th {
+    border: 3px solid #fff;
+}
+
+.table-bordered td {
+    border: 2px solid #fff;
+}
