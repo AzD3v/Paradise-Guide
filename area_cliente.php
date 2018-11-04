@@ -13,12 +13,14 @@
     $idUser = $user_id->idUser;
 
     # Obter o ID da atividade em questão
-    if (isset($_GET["action"])) {$idAtividade = $_GET["id"];
+    if (isset($_GET["action"])) {
+        
+        $idAtividade = $_GET["id"];
 
         # Obter o número do cartão de crédito
         if (isset($_POST["reserve_btn"])) {$cartaoCredito = $_POST["credit_card"];}
 
-            # Proceder à reserva
+            # Proceder à reserva de uma dada atividade
             $sql = "INSERT INTO reservas (idAtividade, idUser, cartaoCredito, estadoReserva) ";
             $sql .= "VALUES(:idAtividade, :idUser, :cartaoCredito, :estadoReserva)";
             
@@ -47,26 +49,65 @@
         foreach($activities as $activity) {
         
         ?>
-
-            <div class="list-group">
-                <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
+            <!-- Grupo que contém os detalhes de cada atividade -->
+            <div class="list-group">
+            <div class="list-group-item list-group-item-action flex-column align-items-start active">
+            
+            <!-- Título da atividade -->
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-3"><?php echo $activity->nomeAtividade; ?></h5>
-                <!-- <small>3 days ago</small> -->
             </div>
+            
+            <!-- Descrição da atividade --> 
+            <p class="mb-3"><?php echo utf8_encode($activity->descricaoAtividade); ?></p>
 
-                <p class="mb-3"><?php echo utf8_encode($activity->descricaoAtividade); ?></p>
-                <p class="mb-2"><span class="subtitulo_listagem">Zona da atividade:</span> <?php echo utf8_encode($activity->zonaAtividade); ?></p>
-                <p class="mb-2"><span class="subtitulo_listagem">Preço da atividade:</span> <?php // echo utf8_encode($activity->zonaAtividade); ?></p>
-                <p class="mb-2"><span class="subtitulo_listagem">Duração média da atividade:</span> <?php // echo utf8_encode($activity->zonaAtividade); ?></p>  
+            <!-- Zona da atividade --> 
+            <p class="mb-2"><span class="subtitulo_listagem">Zona:</span> <?php echo utf8_encode($activity->zonaAtividade); ?></p>
+
+            <!-- Duração média da atividade -->
+            <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo ($activity->duracaoAtividade); ?></p>  
+
+            <!-- Preço da atividade -->
+            <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?>€</p>
+
+            <p>IMAGEM DE DESTAQUE À DIREITA</p>
                 
-                <!-- Formulário de reserva -->
-                <form action="area_cliente.php?action=reserve&id=<?php echo $activity->idAtividade; ?>" method="post" id="reserve_form">
-                    <label for="credit_card">Digite aqui o número do seu cartão de crédito</label>
-                    <input type="text" name="credit_card">
-                    <input type="hidden" name="nome_atividade" value="<?php echo $activity->nomeAtividade; ?>">
-                    <button type="submit" name="reserve_btn" id="reserve_button" class="btn">Reservar!</button>
+                <!-- Separador --> 
+                <hr class="hr_style">
+
+                <!-- Formulário de reserva - através de cartão de crédito -->
+                <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
+
+                <form action="area_cliente.php?action=reserve&id=<?php echo $activity->idAtividade; ?>" method="post" id="reserve_form" role="form">
+     
+                        <!-- Número do cartão de crédito -->
+                        <div class="form-group">
+                            <label class="w3-text-black">Número do cartão de crédito</label>
+                            <input type="text" name="credit_card" id="cn" class="form-control" placeholder="#### #### #### ####" required>
+                        </div>
+
+                        <!-- Data de expiração do cartão de crédito -->
+                        <div class="form-group">
+                            <label class="w3-text-black">Data de expiração</label>
+                            <input type="text" name="expiration_date" id="exp" placeholder="MM / AA" class="form-control" required>
+                        </div>
+
+                        <!-- Nome presente no cartão de crédito -->
+                        <div class="form-group">
+                        <label class="w3-text-black">Nome presente no cartão</label>
+                        <input type="text" name="card_name" id="card_name" placeholder="Digite aqui o nome presente no cartão" class="form-control" required>
+                        
+                        <!-- Inputs type "hidden" -->
+                        <input type="hidden" name="nome_atividade" value="<?php echo $activity->nomeAtividade; ?>">
+                     </div>
+
+                    <!-- Botão de reserva -->
+                    <div style="text-align: center">
+                        <button type="submit" name="reserve_btn" id="reserve_button" 
+                        class="btn">Reservar atividade!</button>
+                    </div>
+
                 </form>
 
             </div>
@@ -90,10 +131,11 @@
                     <tr>
                         <th>Nome da atividade</th>
                         <th>Descrição da atividade</th>
-                        <th>Duração média</th>
                         <th>Zona</th>
+                        <th>Duração média</th>
                         <th>Imagem</th>
                         <th>Preço</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
 
@@ -122,10 +164,11 @@
                                     echo "<tr>";
                                     echo utf8_encode("<td>{$activity->nomeAtividade}</td>");
                                     echo utf8_encode("<td>{$activity->descricaoAtividade}</td>");
-                                    echo "<td>{$activity->duracaoAtividade}</td>" ;
                                     echo utf8_encode("<td>{$activity->zonaAtividade}</td>");
+                                    echo "<td>{$activity->duracaoAtividade}</td>" ;
                                     echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
                                     echo "<td>{$activity->precoAtividade}€</td>" ;
+                                    echo "<td>{$reserve->estadoReserva}</td>" ;
                                     echo "</tr>";
 
                                 }
