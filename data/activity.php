@@ -15,39 +15,6 @@
         public $precoAtividade;
         public $duracaoAtividade;
         
-        # Getters 
-        public function getIdAtividade() {
-            return $this->idAtividade;
-        }
-
-        public function getIdCat() {
-            return $this->idCategoria;
-        }
-
-        public function getNomeAtividade() {
-            return $this->nomeAtividade;
-        }
-
-        public function getDescricaoAtividade() {
-            return $this->descricaoAtividade;
-        }
-
-        public function getZonaAtividade() {
-            return $this->zonaAtividade;
-        }
-
-        public function getImagemAtividade() {
-            return $this->imagemAtividade;
-        }
-        
-        public function getPrecoAtividade() {
-            return $this->precoAtividade;
-        }
-
-        public function getDuracaoAtividade() {
-            return $this->duracaoAtividade;
-        }
-        
         # Setters 
         public function setNomeAtividade($nomeAtividade) {
             $this->nomeAtividade = $nomeAtividade;
@@ -79,6 +46,14 @@
             return self::find_this_query("SELECT * FROM atividades");
         }
 
+        public static function find_user_activities($idUser)
+        {
+            $the_result_array = self::find_this_query("SELECT * FROM reservas WHERE idUser = $idUser");
+
+            return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+        }
+
         // Método que encontra o ID de uma atividade pelo nome da mesma
         public static function find_id_by_username($nomeAtividade)
         {
@@ -92,7 +67,7 @@
         public static function find_this_query($sql)
         {
 
-            // Incluir a class Database
+            // Incluir a classe Database
             global $database;
 
             // Obter o resultado do método

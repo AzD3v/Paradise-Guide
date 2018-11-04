@@ -10,6 +10,9 @@
 <!-- Incluir a classe Activity -->
 <?php include_once("data/activity.php"); ?>
 
+<!-- Incluir a classe Reserve -->
+<?php include_once("data/reserve.php"); ?>
+
 <!-- Session start --> 
 <?php session_start(); ?>
 

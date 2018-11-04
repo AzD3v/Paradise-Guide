@@ -27,7 +27,7 @@
 
             # Refrescar a página 
             header("Location:area_cliente.php");
-
+            
         }
 
 ?>
@@ -77,8 +77,64 @@
 
     </div>
 
-    <!-- Listagem das atividades escolhidas pelo utilizador -->
+    <!-- Atividades escolhidas pelo utilizador -->
     <div id="user_activities">
+        
+        <!-- Tabela com todas as atividades escolhidas pelo utilizador --> 
+        <table class="table table-hover table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>Nome da atividade</th>
+                    <th>Descrição da atividade</th>
+                    <th>Zona da atividade</th>
+                    <th>Imagem associada</th>
+                    <th>Preço a pagar pela atividade</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                <?php 
+
+                # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
+                $reserves = Reserve::find_all_reserves();
+
+                /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas 
+                e atividades do utilizador em questão */
+                foreach ($reserves as $reserve) {
+                    $idAtividadeReserva = $reserve->idAtividade;
+                    $estadoReserva = $reserve->estadoReserva;
+                    $userReserva = $reserve->idUser;
+
+                    if ($userReserva === $idUser) {
+
+                        foreach($activities as $activity) {
+                            
+                            $idAtividade = $activity->idAtividade;
+                            
+                            if($idAtividadeReserva === $idAtividade) {
+                                
+                                echo "<tr>";
+                                echo utf8_encode("<td>{$activity->nomeAtividade}</td>");
+                                echo utf8_encode("<td>{$activity->descricaoAtividade}</td>");echo utf8_encode("<td>{$activity->zonaAtividade}</td>");
+                                echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
+                                echo utf8_encode("<td>{$activity->precoAtividade}</td>");
+                                echo "</tr>";
+                                
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                ?>
+
+            </tbody>
+        
+        </table>
 
     </div> 
 
