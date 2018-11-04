@@ -20,7 +20,7 @@
 
             // Desencriptar a palavra-passe
             # Query que retorna os dados do utilizador pretendido 
-            $check_user_sql = "SELECT id_user, username, password FROM users "; 
+            $check_user_sql = "SELECT idUser, username, password FROM users "; 
             $check_user_sql .= "WHERE username = :username";
             $check_user_stmt = $pdo->prepare($check_user_sql);
             $check_user_stmt->execute([":username" => $username]);

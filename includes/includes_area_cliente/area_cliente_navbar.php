@@ -7,9 +7,6 @@
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active" id="area_cliente_tab">
-                <a class="nav-link">Área de cliente</a>
-            </li>
             <li class="nav-item" id="minhas_atividades_tab">
                 <a class="nav-link">Minhas atividades</a>
             </li>
