@@ -5,6 +5,7 @@
     
     # Definir mensagem de sucesso e de erro - vazias inicialmente
     $message_error_or_success = "";
+    $message_after_delete = "";
 
 ?>
 
@@ -69,6 +70,25 @@
         }
          
     }
+    
+    # Cancelamento de uma dada atividade 
+    if (isset($_POST["cancelar_atividade"])) {
+
+        # Obter o ID da atividade que se deseja eliminar
+        $idAtividade = $_POST["idAtividade"];
+
+         # Proteção contra XSS (Cross-Site Scripting)
+        $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
+
+        # Query que eliminará a atividade da base de dados 
+        $sql = "DELETE FROM reservas WHERE idAtividade = :idAtividade";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([":idAtividade" => $idAtividade]); 
+
+        # Mensagem que aparecerá após uma atividade ser eliminada 
+        $message_after_delete = "<div class='alert alert-danger text-center' role='alert'>Lamentamos o seu cancelamento da atividade! Esperemos que encontre uma do seu agrado na nossa vasta lista!</div>";
+
+    }
 
 ?>
 
@@ -81,6 +101,9 @@
     <div id="all_activities">
 
         <h1>Aqui se encontram todas as atividades disponíveis</h1>
+
+        <!-- Display da mensagem pós-eliminação de uma atividade --> 
+        <?php echo $message_after_delete; ?>
 
         <?php
 
@@ -135,7 +158,7 @@
                         <!-- Número do cartão de crédito -->
                         <div class="form-group">
                             <label>Número do cartão de crédito</label>
-                            <input type="text" name="credit_card" id="cn" class="form-control" placeholder="" required>
+                            <input type="text" name="credit_card" class="cn form-control" placeholder="" required>
                         </div>
 
                         <!-- Data de expiração do cartão de crédito -->
@@ -188,6 +211,7 @@
                         <th>Imagem</th>
                         <th>Preço</th>
                         <th>Estado</th>
+                        <th>Desmarcar atividade</th>
                     </tr>
                 </thead>
 
@@ -221,6 +245,27 @@
                                     echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
                                     echo "<td>{$activity->precoAtividade}€</td>" ;
                                     echo "<td>{$reserve->estadoReserva}</td>" ;
+                                    
+                                    ?>
+
+                                    <!-- Opção de cancelar a reserva --> 
+                                    <form method="post">
+
+                                        <!-- Campo hidden que contém o ID da atividade que se
+                                        deseja eliminar -->
+                                        <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+                                    
+                                    <?php 
+
+                                        # Botão que cancela uma dada atividade
+                                        echo "<td><button type='submit' name='cancelar_atividade' class='btn-danger btn-block'>Cancelar</button></td>" ;
+                                    
+                                    ?>
+
+                                    </form>
+
+                                    <?php 
+                                    
                                     echo "</tr>";
 
                                 }
@@ -228,7 +273,6 @@
                             }
 
                         }
-
 
                     }
 
