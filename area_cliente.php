@@ -62,7 +62,7 @@
                 $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"]);
 
                 # Refrescar a página 
-                // header("Location:area_cliente.php");
+                header("Refresh:3;url=area_cliente.php");
 
             }
             
@@ -117,7 +117,7 @@
                 <!-- Formulário de reserva - através de cartão de crédito -->
                 <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
 
-                <form action="area_cliente.php?action=reserve&id=<?php echo $activity->idAtividade; ?>" method="post" id="reserve_form" role="form">
+                <form action="area_cliente.php?action=reserve&id=<?php echo $activity->idAtividade; ?>" method="post" autocomplete="off" id="reserve_form" role="form">
 
                         <!-- Transmissão da mensagem de erro ou de sucesso consoante a validação 
                         do cartão de crédito -->
