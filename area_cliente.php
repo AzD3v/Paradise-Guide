@@ -4,7 +4,8 @@
 <?php 
     
     # Definir mensagem de sucesso e de erro - vazias inicialmente
-    $message_error_or_success = "";
+    $message_error = "";
+    $message_success = "";
     $message_after_delete = "";
 
 ?>
@@ -45,10 +46,10 @@
 
             # Validações do número de cartão de crédito (número de caracteres)
             if (strlen($cartaoCredito) !== 16) {
-                $message_error_or_success = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
+                $message_error = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
                 $result = false;
             } else {
-                $message_error_or_success = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na lista de atividades.</div>";
+                $message_success = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na lista de atividades.</div>";
             }
 
             /* Caso a validação do número de cartão de crédito obtenha sucesso
@@ -61,9 +62,8 @@
                 
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"]);
-
-                # Refrescar a página 
-                header("Refresh:3;url=area_cliente.php");
+                
+                AVISAR O USER QUE JA RESERVOU 
 
             }
             
@@ -75,15 +75,15 @@
     if (isset($_POST["cancelar_atividade"])) {
 
         # Obter o ID da atividade que se deseja eliminar
-        $idAtividade = $_POST["idAtividade"];
+        $idReserva = $_POST["idReserva"];
 
          # Proteção contra XSS (Cross-Site Scripting)
-        $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
+        $idReserva = htmlspecialchars($idReserva, ENT_QUOTES, 'UTF-8');
 
         # Query que eliminará a atividade da base de dados 
-        $sql = "DELETE FROM reservas WHERE idAtividade = :idAtividade";
+        $sql = "DELETE FROM reservas WHERE idReserva = :idReserva";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([":idAtividade" => $idAtividade]); 
+        $stmt->execute([":idReserva" => $idReserva]); 
 
         # Mensagem que aparecerá após uma atividade ser eliminada 
         $message_after_delete = "<div class='alert alert-danger text-center' role='alert'>Lamentamos o seu cancelamento da atividade! Esperemos que encontre uma do seu agrado na nossa vasta lista!</div>";
@@ -101,6 +101,9 @@
     <div id="all_activities">
 
         <h1>Aqui se encontram todas as atividades disponíveis</h1>
+
+        <!-- Display da mensagem de sucesso após uma reserva ser efetuada --> 
+        <?php echo $message_success; ?>
 
         <!-- Display da mensagem pós-eliminação de uma atividade --> 
         <?php echo $message_after_delete; ?>
@@ -142,18 +145,18 @@
 
                 <form action="area_cliente.php?action=reserve&id=<?php echo $activity->idAtividade; ?>" method="post" autocomplete="off" id="reserve_form" role="form">
 
-                        <!-- Transmissão da mensagem de erro ou de sucesso consoante a validação 
+                        <!-- Transmissão da mensagem de erro consoante a validação 
                         do cartão de crédito -->
                         <?php 
                             
                             if(!empty($_GET["action"])) {
 
                                 if($_GET["id"] === $activity->idAtividade) { 
-                                    echo $message_error_or_success;
+                                    echo $message_error;
                                 }
                             
                             }
-                        ?>
+                        ?> 
 
                         <!-- Número do cartão de crédito -->
                         <div class="form-group">
@@ -225,6 +228,7 @@
                     /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas 
                     e atividades do utilizador em questão */
                     foreach ($reserves as $reserve) {
+                        $idReserva = $reserve->idReserva;
                         $idAtividadeReserva = $reserve->idAtividade;
                         $estadoReserva = $reserve->estadoReserva;
                         $userReserva = $reserve->idUser;
@@ -253,7 +257,7 @@
 
                                         <!-- Campo hidden que contém o ID da atividade que se
                                         deseja eliminar -->
-                                        <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+                                        <input type="hidden" name="idReserva" value="<?php echo $idReserva; ?>">
                                     
                                     <?php 
 
