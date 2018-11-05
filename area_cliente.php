@@ -12,25 +12,33 @@
     $user_id = User::find_id_by_username($username);
     $idUser = $user_id->idUser;
 
-    # Obter o ID da atividade em questão
-    if (isset($_GET["action"])) {
+    # Obter o número do cartão de crédito
+    if (isset($_POST["reserve_btn"])) {
         
-        $idAtividade = $_GET["id"];
+        $cartaoCredito = $_POST["credit_card"];
 
-        # Obter o número do cartão de crédito
-        if (isset($_POST["reserve_btn"])) {$cartaoCredito = $_POST["credit_card"];}
-
-            # Proceder à reserva de uma dada atividade
-            $sql = "INSERT INTO reservas (idAtividade, idUser, cartaoCredito, estadoReserva) ";
-            $sql .= "VALUES(:idAtividade, :idUser, :cartaoCredito, :estadoReserva)";
-            
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"]);
-
-            # Refrescar a página 
-            header("Location:area_cliente.php");
-            
+        # Obter o ID da atividade em questão
+        if (isset($_GET["action"])) {
+            $idAtividade = $_GET["id"];
         }
+
+        # Proceder à reserva de uma dada atividade
+        $sql = "INSERT INTO reservas (idAtividade, idUser, cartaoCredito, estadoReserva) ";
+        $sql .= "VALUES(:idAtividade, :idUser, :cartaoCredito, :estadoReserva)";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"]);
+
+        if ($stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"])) {
+            echo "worked";
+        } else {
+            echo "fail";
+        }
+
+        # Refrescar a página 
+        // header("Location:area_cliente.php");
+        
+    }
 
 ?>
 
