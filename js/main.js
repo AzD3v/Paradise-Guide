@@ -1,28 +1,26 @@
 $(document).ready(function() {
 
-    // Esconder as áreas por predefinição
+    // Esconder por predefinição todas as atividades e o formulário de reserva
     $('#all_activities').hide();
 
-    // Área de cliente - tabuladores (hightlight) e mostrar apenas o conteúdo pretendido
-    $('#area_cliente_tab').click(function () {
-        $('#area_cliente_tab').addClass('active');
-        $('#minhas_atividades_tab').removeClass('active');
-        $('#todas_atividades_tab').removeClass('active');
-        $('#all_activities').hide();
-    });
+    // Tabela que possui as atividades reservadas é o elemento que surge por predefinição
+    $('#user_activities').fadeIn('slow');
 
+    // Área de cliente - tabuladores (hightlight) e mostrar apenas o conteúdo pretendido
     $('#minhas_atividades_tab').click(function () {
-        $('#minhas_atividades_tab').addClass('active');
-        $('#area_cliente_tab').removeClass('active');
-        $('#todas_atividades_tab').removeClass('active');
+        $('#user_activities').fadeIn('slow');
         $('#all_activities').hide();
     });
 
     $('#todas_atividades_tab').click(function () {
-        $('#todas_atividades_tab').addClass('active');
-        $('#area_cliente_tab').removeClass('active');
-        $('#minhas_atividades_tab').removeClass('active');
         $('#all_activities').fadeIn('slow');
+        $('#user_activities').hide();
+    });
+
+    // Formulário de reserva - "Ajuda" no que toca a inserir número do cartão de crédito
+    $('#cn').on('input', function () {
+        this.value = this.value.replace(/ /g, "");
+        this.value = this.value.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
     });
 
 });
