@@ -27,18 +27,18 @@
             # Encriptação da palavra-passe 
             $password_hash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
 
-            # Variável do resultado das validões definida como verdadeira inicialmente 
+            # Variável do resultado das validações definida como verdadeira inicialmente 
             $result = true;
                
             # Validações dos campos (número de caracteres e correspondência das palavras-passe) 
             if(strlen($username) < 5 && strlen($password) < 8) {
-                $message_error_register = "<div class='alert alert-warning text-center' role='alert'> O nome de utilizador necessita ter pelo menos 5 caracteres e a palavra-passe necessita de ter pelo ter menos 8 caracteres!</div>";
+                $message_error_register = "<div class='alert alert-warning text-center' role='alert'>O nome de utilizador necessita ter pelo menos 5 caracteres e a palavra-passe necessita de ter pelo ter menos 8 caracteres!</div>";
                 $result = false;
             } else if (strlen($password) < 8) {
-                $message_error_register = "<div class='alert alert-warning text-center' role='alert'> A palavra-passe escolhida necessita ter pelo menos 8 caracteres!</div>";
+                $message_error_register = "<div class='alert alert-warning text-center' role='alert'>A palavra-passe escolhida necessita ter pelo menos 8 caracteres!</div>";
                 $result = false;
             } else if (strlen($username) < 5) {
-                $message_error_register = "<div class='alert alert-warning text-center' role='alert'> O nome de utilizador necessita ter pelo menos 5 caracteres!</div>";
+                $message_error_register = "<div class='alert alert-warning text-center' role='alert'>O nome de utilizador necessita ter pelo menos 5 caracteres!</div>";
                 $result = false;
             } else {
                 /* Comparação das palavras-passe introduzidas (condição a ser verificada após
@@ -69,17 +69,17 @@
             /* Se o username e email já existirem na base de dados, é mostrada 
             uma mensagem de erro */ 
             if ($usernames["username_num"] > 0 && $emails["email_num"] > 0) {
-                $message_error_register = "<div class='alert alert-warning text-center' role='alert'> Esse utilizador nome de utilizador e email já se encontram registados!</div>";
+                $message_error_register = "<div class='alert alert-warning text-center' role='alert'>Esse utilizador nome de utilizador e email já se encontram registados!</div>";
                 $result = false; 
             }  else if ($usernames["username_num"]) {
-                $message_error_register = "<div class='alert alert-warning text-center' role='alert'> Esse nome de utilizador já se encontra registado!</div>";
+                $message_error_register = "<div class='alert alert-warning text-center' role='alert'>Esse nome de utilizador já se encontra registado!</div>";
                 return false;  
             } else if ($emails["email_num"] > 0) {
-                $message_error_register = "<div class='alert alert-warning text-center' role='alert'> Esse endereço de email já se encontra registado!</div>";
+                $message_error_register = "<div class='alert alert-warning text-center' role='alert'>Esse endereço de email já se encontra registado!</div>";
                 $result = false;
             }
 
-            /* Caso sejam passadas com sucesso as validações do processo de registo, 
+            /* Caso sejam validações do processo de registo obtenham sucesso, 
             a variável de resultado retorna "true" */
             if ($result) {
                 
