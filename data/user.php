@@ -1,22 +1,11 @@
 <!-- Incluir a configuração/conexão à base de dados --> 
-<<<<<<< HEAD
-<?php include_once("database.php"); ?>
-=======
 <?php include_once("db_config.php"); ?>
->>>>>>> reservation_feature
 
 <?php 
 
     class User {
 
         # Atributos da classe User
-<<<<<<< HEAD
-        private $idUser;
-        private $username;
-        private $email;
-        private $password; 
-        
-=======
         public $idUser;
         public $username;
         public $email;
@@ -105,7 +94,6 @@
 
         }
 
->>>>>>> reservation_feature
     }
 
 ?>

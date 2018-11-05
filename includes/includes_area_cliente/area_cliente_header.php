@@ -10,19 +10,14 @@
 <!-- Incluir a classe Activity -->
 <?php include_once("data/activity.php"); ?>
 
-<<<<<<< HEAD:includes/includes_area_cliente/area_cliente_header.php
-=======
 <!-- Incluir a classe Reserve -->
 <?php include_once("data/reserve.php"); ?>
 
->>>>>>> reservation_feature:includes/includes_area_cliente/area_cliente_header.php
 <!-- Session start --> 
 <?php session_start(); ?>
 
 <!-- Restringir a página para apenas um user registado conseguir aceder à mesma --> 
 <?php if (!isset($_SESSION["client"])) {header("Location:index.php");} ?>
-
-<?php echo $_SESSION['client']; ?>
 
 <!DOCTYPE html>
 <html lang="pt">
