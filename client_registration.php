@@ -12,7 +12,7 @@
         # Verificar que os campos não se encontram vazios
         if (!empty($username) && !empty($email) && !empty($password) && !empty($password_rewrite)) { 
 
-            # Eliminar os espaços dos campos de username e password
+            # Eliminar o espaço em branco dos campos de username, email e password
             $username = trim($username);
             $email = trim($email);
             $password = trim($password);
@@ -27,7 +27,7 @@
             # Encriptação da palavra-passe 
             $password_hash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
 
-            # Variável do resultado da query de registo é definido como verdadeiro inicialmente 
+            # Variável do resultado das validões definida como verdadeira inicialmente 
             $result = true;
                
             # Validações dos campos (número de caracteres e correspondência das palavras-passe) 
@@ -89,7 +89,7 @@
                 $stmt = $pdo->prepare($sql);
             
                 # Executar o statement
-                $result = $stmt->execute([":username" => $username, ":email" => $email, 
+                $stmt->execute([":username" => $username, ":email" => $email, 
                 ":password" => $password_hash]);            
                 
                 # Se o registo foi bem sucedido, atribuir uma variável de sessão ao user 

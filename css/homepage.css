@@ -35,18 +35,28 @@ a:hover {text-decoration: none;}
     outline: 0;
 }
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-light {height: 125px; background: rgba(236, 240, 241, 0.7) !important; transition: all 300ms ease-in-out;}
-nav.navbar.navbar-expand-lg.navbar-light.bg-light:hover {background: rgba(236, 240, 241) !important;}
+nav.navbar.navbar-expand-lg.navbar-light.bg-light {
+    height: 125px;
+    background: rgba(236, 240, 241, 0.7) !important;
+    transition: all 300ms ease-in-out;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light:hover {
+    background: rgba(236, 240, 241) !important;
+}
+
 button.navbar-toggler {background-color: #fff;}
 button.navbar-toggler span.navbar-toggler-icon {color: #6FAD44 !important;}
-
-.form-inline.login_form>button {background: #6FAD44;border: 0;transition: all 300ms ease-in-out;} 
+.form-inline.login_form>button {
+    background: #6FAD44;
+    border: 0;
+    transition: all 300ms ease-in-out;
+}
 .form-inline.login_form>button:hover {background: #4E7D3B;}
 .form-inline.login_form>.form-control.mr-sm-2 {height: 6%;}
 .form-inline.login_form>input, .form-inline.login_form>button {font-size: 20px;}
 
 /* Search form */
-
 
 /* Wallpaper */
 .homepage-bg {background-image: url("../img/bg1.jpg"); height: 117%; background-position: center; background-repeat: no-repeat; background-size: cover;}
@@ -54,35 +64,34 @@ button.navbar-toggler span.navbar-toggler-icon {color: #6FAD44 !important;}
 /* Login e registo */
 .modal-wrapper {display: flex;}
 
-button.btn.btn-primary {background: var(--primary-color);font-size: 16px;font-weight: bold;text-transform: uppercase;padding: 15px 20px;border: none;border-radius: 0;margin-left: 15px;transition: all 300ms ease-in-out;}
+button.btn.btn-primary {
+    background: var(--primary-color);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 0;
+    margin-left: 15px;
+    transition: all 300ms ease-in-out;
+}
 button.btn.btn-primary:hover {background: var(--primary-color-hover);}
 button.btn.btn-primary:active {border: none;}
 .modal-header {background: var(--primary-color); height: 60px;}
 .modal-header h3 {margin: 0 0 -15px 13%;}
 button.close {color: #fff!important;}
 button.close:hover {color: #ebebeb!important;}
-#login-modal {
-    opacity: 0.9;
-    transition: all 300ms ease-in-out;
-}
-#register-modal {
-    opacity: 0.9;
-    transition: all 300ms ease-in-out;
-}
-.modal-content {
-    width: 550px;
-    margin-top: 15px;
-}
+
+#login-modal {opacity: 0.9;transition: all 300ms ease-in-out;}
+#register-modal {opacity: 0.9;transition: all 300ms ease-in-out;}
+.modal-content {width: 550px;margin-top: 15px;}
 .input-group {display: flex;flex-direction: row;}
 input[name="username"], input[name="password"] {font-size: 18px;}
 ion-icon.hydrated {font-size: 40px;color: #27ae60; margin-right: 5px;}
 .form-group label {font-size: 18px;margin-bottom: 10px;}
 .modal-header h3 {margin-left: 17%; color: #fff;font-weight: bold;font-size: 20px;text-transform: uppercase;}
 .modal-footer button {font-size: 30px; margin-right: 13px;}
-
-#login-modal:hover, #register-modal:hover {
-    opacity: 1;
-}
+#login-modal:hover, #register-modal:hover {opacity: 1;}
 
 input[name="new_user_username"],
 input[name="new_user_email"],

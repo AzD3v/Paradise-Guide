@@ -1,51 +1,27 @@
 <!-- Incluir a configuração/conexão à base de dados --> 
-<<<<<<< HEAD
-<?php include_once("database.php"); ?>
-=======
 <?php include_once("db_config.php"); ?>
->>>>>>> reservation_feature
 
 <?php 
 
-    class User {
+    class Reserve {
 
-        # Atributos da classe User
-<<<<<<< HEAD
-        private $idUser;
-        private $username;
-        private $email;
-        private $password; 
-        
-=======
+        # Atributos da classe Reserve
+        public $idReserva;
+        public $idAtividade;
         public $idUser;
-        public $username;
-        public $email;
-        private $password;
-        
-        # Getters 
-        public function getIdUser() {
-            return $this->idUser;
-        }
-
-        public function getUsername() {
-            return $this->username;
-        }
-
-        public function getEmail() {
-            return $this->email;
-        }
-
-
-        // Método que retorna todos os utilizadores
-        public static function find_all_users()
+        private $cartaoCredito;
+        public $estadoReserva;
+       
+        // Método que retorna todas as reservas
+        public static function find_all_reserves()
         {
-            return self::find_this_query("SELECT * FROM users");
+            return self::find_this_query("SELECT * FROM reservas");
         }
 
-        // Método que encontra o ID de um utilizador pelo username
-        public static function find_id_by_username($username)
+        // Método que retorna as reservas de um utilizador pelo seu ID
+        public static function find_user_reserves($idUser)
         {
-            $the_result_array = self::find_this_query("SELECT * FROM users WHERE username = '$username' LIMIT 1");
+            $the_result_array = self::find_this_query("SELECT * FROM reservas WHERE idUser = $idUser");
 
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
@@ -72,11 +48,11 @@
 
         }
 
-        // "Helper method" que instancia a classe User automaticamente
+        // "Helper method" que instancia a classe Reserve automaticamente
         public static function auto_instantiate($the_record)
         {
 
-            // Instanciar a classe User
+            // Instanciar a classe Reserve
             $the_object = new self;
 
             // Iterar sobre os dados obtidos e atribuição de propriedades dinâmica
@@ -105,7 +81,6 @@
 
         }
 
->>>>>>> reservation_feature
     }
 
 ?>

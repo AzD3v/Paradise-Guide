@@ -6,54 +6,137 @@
     --secondaryGreen: #27AE60;
 }
 
-body {
-    overflow: auto;
-}
+body {overflow: auto;}
 
 /* Navbar */
 .logo_area_cliente {
     height: 80px;
-    margin-right: 50px;
+    margin-right: 30px;
 }
 
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {height: 100px; background: #27ae60!important; font-size: 25px;}
-a.nav-link {transition: all 100ms ease-in-out; font-size: 18px; text-transform: uppercase; margin-right: 30px;}
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {
+    height: 100px;
+    background: #27ae60 !important;
+    font-size: 25px;
+}
+
+a.nav-link {
+    transition: all 100ms ease-in-out;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-right: -10px;
+}
+
+a.nav-link:hover {cursor: pointer;}
 a {outline: 0;}
 
-.btn:focus,
-.btn:active,
-.btn:visited,
-.btn:active,
-.btn::after {
-    background: var(--primary-color-hover) !important;
+button:focus,
+button:active,
+button:visited,
+button:active,
+button::after {
+    background: var(--primaryBlue) !important;
     outline: none !important;
     border: 0 !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button {background: var(--primaryBlue);font-size: 18px;text-transform: uppercase; font-weight: bold;  border: 0;transition: all 300ms ease-in-out;}
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button:hover {background: var(--secondaryBlue);}
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button {
+    background: var(--primaryBlue);
+    font-size: 18px;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 0;
+    transition: all 300ms ease-in-out;
+    margin-left: 15px;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button:hover {
+    background: var(--secondaryBlue);
+    cursor: pointer;
+}
+
 input.form-control.mr-sm-2.pesquisa_area_cliente {width: 300px;}
 input[name="pesquisa_area_cliente"] {font-size: 18px;}
-.logout_button {
-    margin: 0 20px 0 40px !important;
-    background: #eb4d4b !important;
-}
-.logout_button:hover {
-    background: #c0392b !important;
-    
-}
+.logout_button {margin: 0 20px 0 40px !important; background: #eb4d4b !important;}
+.logout_button:hover {background: #c0392b !important;}
 
 /* Atividades */
 .body_area_cliente {background: #2ecc71;}
-
 #all_activities {display: none;}
-#all_activities h1 {font-size: 26px;color: #fff;text-transform: uppercase;margin: 20px;text-align: center;}
+#all_activities h1 {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 20px;
+    text-align: center;
+}
 #all_activities .list-group {padding: 20px 30px;}
-
-.d-flex h5 {font-size: 23px; font-weight: bold;}
-.list-group p {font-size: 20px;}
+.d-flex h5 {font-size: 25px; font-weight: bold;}
+.list-group p {font-size: 21px; margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
-.list-group button {background: var(--primaryGreen);color: #fff;float: right;font-size: 20px;text-transform: uppercase;transition: all 300ms ease-in-out;border: 0;}
+
+.list-group button {
+    background: var(--primaryGreen);
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 10px 0 20px 0;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
+
 .list-group button:hover {background: var(--secondaryGreen);}
+
+.hr_style {
+    margin: 30px 0 5px 0;
+    height: 30px;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+.hr_style:before {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+/* Formulário de reserva */
+.list-group-item .form-group {display: flex; flex-direction: column;}
+.list-group-item h3 {font-size: 22px; font-weight: bold; margin-bottom: 20px;}
+.list-group-item label {font-weight: bold;}
+#cn {width: 165px;}
+#exp {width: 80px;}
+#card_name {width: 285px;}
+
+/* Reserva */ 
+#user_activities h1 {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 20px;
+    text-align: center;
+}
+
+thead {
+    border: 3px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    background: var(--secondaryGreen);
+    text-align: center;
+}
+
+tbody {color: #fff;font-size: 18px;background: var(--primaryGreen);}
+.table-bordered th {border: 3px solid #fff;}
+.table-bordered td {border: 2px solid #fff;}
