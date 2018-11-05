@@ -15,7 +15,7 @@ $(document).ready(function() {
     });    
 
     // Formulário de reserva - "Ajuda" no que toca a inserir número do cartão de crédito
-    $('#cn').on('input', function () {
+    $('.cn').on('input', function () {
         this.value = this.value.replace(/ /g, "");
         this.value = this.value.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
     });
