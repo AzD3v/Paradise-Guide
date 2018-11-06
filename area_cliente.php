@@ -64,7 +64,7 @@
             
             # Caso exista uma duplicação de reservas, a reserva não é submetida
             if($repeated_reserves) {
-                $repeat_reserve_message = "<div class='alert alert-warning text-center' role='alert'>Já reservou esta atividade! Poderá verificar a reserva <a href='#' onclick='return false;' class='check_reserves'>aqui</a>.</div>";
+                $repeat_reserve_message = "<div class='alert alert-warning text-center' role='alert'>Já reservou esta atividade! Poderá verificar a reserva <a href='' onclick='return false;' class='check_reserves'>aqui</a>.</div>";
                 $result = false;
             } 
 
@@ -80,7 +80,7 @@
             a variável de resultado retorna "true" */
             if ($result) {
                 
-                $success_message = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na sua <a href='#' onclick='return false;' class='check_reserves' id='check_success'>lista de atividades</a>.</div>";
+                $success_message = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na sua <a href='' onclick='return false;' class='check_reserves' id='check_success'>lista de atividades</a>.</div>";
 
                 # Proceder à reserva de uma dada atividade
                 $sql = "INSERT INTO reservas (idAtividade, idUser, cartaoCredito, estadoReserva) ";
