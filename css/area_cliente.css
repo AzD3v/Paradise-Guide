@@ -62,6 +62,12 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
 .logout_button {margin: 0 20px 0 40px !important; background: #eb4d4b !important;}
 .logout_button:hover {background: #c0392b !important;}
 
+/* Mensagens de erro e sucesso */ 
+#check_success {color: #27AE60;}
+#check_success:hover {color: rgb(1, 148, 62);}
+.check_reserves {color: var(--secondaryBlue);}
+.check_reserves:hover {color: var(--primaryBlue);}
+
 /* Atividades */
 .body_area_cliente {background: #2ecc71;}
 #all_activities h1 {

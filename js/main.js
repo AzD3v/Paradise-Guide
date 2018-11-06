@@ -20,4 +20,10 @@ $(document).ready(function() {
         this.value = this.value.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
     });
 
+    // Mensagens de sucesso ou erro após tentativa de reserva 
+    $('.check_reserves').click(function () {
+        $('#all_activities').fadeOut('slow');
+        $('#user_activities').fadeIn('slow');
+    })
+
 });
