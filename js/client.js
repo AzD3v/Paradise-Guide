@@ -24,6 +24,6 @@ $(document).ready(function() {
     $('.check_reserves').click(function () {
         $('#all_activities').fadeOut('slow');
         $('#user_activities').fadeIn('slow');
-    })
+    });
 
 });
