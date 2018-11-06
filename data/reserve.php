@@ -18,10 +18,10 @@
             return self::find_this_query("SELECT * FROM reservas");
         }
 
-        // Método que retorna as reservas de um utilizador pelo seu ID
+        // Método que retorna as atividades de um dado utilizador
         public static function find_user_reserves($idUser)
         {
-            $the_result_array = self::find_this_query("SELECT * FROM reservas WHERE idUser = $idUser");
+            $the_result_array = self::find_this_query("SELECT idUser, idAtividade FROM reservas WHERE idUser = $idUser");
 
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
