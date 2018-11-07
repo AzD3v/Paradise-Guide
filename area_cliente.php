@@ -3,7 +3,7 @@
 
 <?php 
     
-    # Definir mensagem de sucesso e de erro - vazias inicialmente
+    # Definir mensagens de sucesso e de erro - vazias inicialmente
     $error_message = "";
     $success_message = "";
     $repeat_reserve_message = "";
