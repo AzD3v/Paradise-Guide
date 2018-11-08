@@ -1,82 +1,77 @@
-<!-- Área de navegação administrativa -->
-<div class="wrapper">
-    
-    <!-- Barra de navegação lateral -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Área Administrativa</h3>
-        </div>
+<div class="admin">
 
-        <ul class="list-unstyled components">
-            
-            <p>Bem-vindo "user"</p>
-            
-            <li class="active">
-                
-                <!-- Área de gestão de atividades -->
-                <a href="#activitiesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Gestão de atividades</a>
-                <ul class="collapse list-unstyled" id="activitiesSubmenu">
-                    <li>
-                        <a href="#">Vizualizar todas as atividades</a>
-                    </li>
-                    <li>
-                        <a href="#">Criar uma nova atividade</a>
-                    </li>
-                    <li>
-                        <a href="#">Editar atividades</a>
-                    </li>
-                </ul>
-            </li>
+  <!-- Admin sidebar -->
+  <div class="admin-sidebar bg-faded">
+    <div class="navbar navbar-light">
 
-            <li>
-                
-                <!-- Área de gestão de reservas --> 
-                <a href="#reservesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Gestão de reservas</a>  
-                <ul class="collapse list-unstyled" id="reservesSubmenu">
+      <!-- Toggler to menu de navegação -->
+      <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#sidebar-navigation" aria-controls="sidebar-navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <ion-icon class="menu_icons" name="menu"></ion-icon>Menu administrativo
+      </button>
+      
+      <div class="collapse navbar-toggleable-md py-2" role="navigation" id="sidebar-navigation">
+ 
+        <hr>
 
-                     <li>
-                        <a href="#">Vizualizar todas as reservas</a>
-                    </li>
-                    <li>
-                        <a href="#">Editar estados das reservas</a>
-                    </li>
+        <!-- Gestão de atividades -->
+        <ul class="nav navbar-nav">
+          
+          <!-- Opção de vizualizar todas as atividades -->
+          <li>
+            <a href="#easy" class="nav-link active">
+              <ion-icon name="eye" class="menu_icons"></ion-icon>
+              Vizualizar todas as atividades
+            </a>
+          </li>
+          <li>
 
-                </ul>
+            <!-- Opção de criar uma nova atividade -->
+            <a href="#code" class="nav-link">
+            <ion-icon name="add-circle" class="menu_icons"></ion-icon>
+            Criar uma nova atividade
+            </a>
+          </li>
 
-            </li>
-            
+          <!-- Opção de editar atividades -->
+          <li>    
+            <a href="#isee" class="nav-link">
+              <ion-icon name="build" class="menu_icons"></ion-icon>                
+              Editar atividades
+            </a>
+          </li>
+         
         </ul>
 
-    </nav>
+        <hr>
 
-    <div class="content">
+        <ul class="nav navbar-nav">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            
-            <a class="navbar-brand" href="#">Navbar</a>
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                </ul>
-            </div>
-            </nav>
+        <!-- Opção de vizualizar todas as reservas -->
+        <li>
+            <a href="#easy" class="nav-link">
+              <ion-icon name="eye" class="menu_icons"></ion-icon>
+              Vizualizar todas as reservas
+            </a>
+        </li>
 
+        <!-- Opção de editar estado das reservas -->
+        <li>
+            <a href="#easy" class="nav-link">
+              <ion-icon name="build" class="menu_icons"></ion-icon>                
+              Editar estado das reservas
+            </a>
+        </li>
+
+        </ul>
+
+        <hr>
+        
+      </div>
     </div>
-
-</div>
+  </div>
+   
+  <!-- Listagem de todas as atividades do administrador -->
+  <div id="all_activities_admin">
+      <h1>Listagem de todas as suas atividades</h1>
+      
+  </div>
