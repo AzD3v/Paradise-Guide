@@ -40,7 +40,25 @@
 
             # Proteção contra XSS (Cross-Site Scripting)
             $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
-            
+
+            # Validações do número de cartão de crédito (número de caracteres)
+            if (strlen($cartaoCredito) !== 16) {
+                $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
+                $result = false;
+            } 
+
+            # Encriptação do cartão de crédito
+            $bytes = openssl_random_pseudo_bytes(8, $cstrong);
+            $key = bin2hex($bytes);
+            $plaintext = $cartaoCredito;
+            $cipher = "aes-128-gcm";
+
+            if (in_array($cipher, openssl_get_cipher_methods())) {
+                $ivlen = openssl_cipher_iv_length($cipher);
+                $iv = openssl_random_pseudo_bytes($ivlen);
+                $cipherCartaoCredito = openssl_encrypt($plaintext, $cipher, $key, $options=0, $iv, $tag);
+            }
+
             # Variável do resultado das validações definida como verdadeira inicialmente 
             $result = true;
 
@@ -68,12 +86,6 @@
                 $result = false;
             } 
 
-            # Validações do número de cartão de crédito (número de caracteres)
-            if (strlen($cartaoCredito) !== 16) {
-                $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
-                $result = false;
-            } 
-
         }   
 
             /* Caso a validação do número de cartão de crédito obtenha sucesso
@@ -87,7 +99,7 @@
                 $sql .= "VALUES(:idAtividade, :idUser, :cartaoCredito, :estadoReserva)";
                 
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"]);
+                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cipherCartaoCredito, ":estadoReserva" => "Marcada"]);
                 
             }
             
