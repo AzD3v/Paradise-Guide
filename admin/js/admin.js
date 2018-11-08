@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    // "Toggler" do menu administrativo
+    // $('#menu_button').click(function (){
+
+
+    // });
+
     // Esconder por predefinição todas as áreas excepto a de listagem completa de atividades
     $('#new_activity').hide();
     $('#edit_activities').hide();
@@ -111,6 +117,6 @@ $(document).ready(function () {
 
     });
 
-   
+    
 
 });
