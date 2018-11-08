@@ -18,7 +18,7 @@
           
           <!-- Opção de vizualizar todas as atividades -->
           <li>
-            <a href="#easy" class="nav-link active">
+            <a href="" onclick="return false;" class="nav-link active" id="all_activities_admin_tab">
               <ion-icon name="eye" class="menu_icons"></ion-icon>
               Vizualizar todas as atividades
             </a>
@@ -26,15 +26,15 @@
           <li>
 
             <!-- Opção de criar uma nova atividade -->
-            <a href="#code" class="nav-link">
+            <a href="" onclick="return false;" class="nav-link" id="new_activity_admin_tab">
             <ion-icon name="add-circle" class="menu_icons"></ion-icon>
-            Criar uma nova atividade
+              Criar uma nova atividade
             </a>
           </li>
 
           <!-- Opção de editar atividades -->
           <li>    
-            <a href="#isee" class="nav-link">
+            <a href="" onclick="return false;" class="nav-link" id="edit_activities_admin_tab">
               <ion-icon name="build" class="menu_icons"></ion-icon>                
               Editar atividades
             </a>
@@ -46,21 +46,21 @@
 
         <ul class="nav navbar-nav">
 
-        <!-- Opção de vizualizar todas as reservas -->
-        <li>
-            <a href="#easy" class="nav-link">
-              <ion-icon name="eye" class="menu_icons"></ion-icon>
-              Vizualizar todas as reservas
-            </a>
-        </li>
+            <!-- Opção de vizualizar todas as reservas -->
+            <li>
+                <a href="" onclick="return false;" class="nav-link" id="all_reserves_admin_tab">
+                <ion-icon name="eye" class="menu_icons"></ion-icon>
+                Vizualizar todas as reservas
+                </a>
+            </li>
 
-        <!-- Opção de editar estado das reservas -->
-        <li>
-            <a href="#easy" class="nav-link">
-              <ion-icon name="build" class="menu_icons"></ion-icon>                
-              Editar estado das reservas
-            </a>
-        </li>
+            <!-- Opção de editar estado das reservas -->
+            <li>
+                <a href="" onclick="return false;" class="nav-link" id="edit_reserves_admin_tab">
+                <ion-icon name="build" class="menu_icons"></ion-icon>                
+                Editar estado das reservas
+                </a>
+            </li>
 
         </ul>
 
@@ -69,9 +69,36 @@
       </div>
     </div>
   </div>
-   
+  
+  <div class="admin_wrapper">
+  
   <!-- Listagem de todas as atividades do administrador -->
-  <div id="all_activities_admin">
-      <h1>Listagem de todas as suas atividades</h1>
-      
+    <div id="all_activities_admin">
+        <h1>Listagem de todas as suas atividades</h1>
+        
+    </div>
+
+    <!-- Criar uma nova atividade -->
+    <div id="new_activity">
+        <h1>Área de criação de atividades</h1>
+        
+    </div>
+
+    <!-- Editar atividades -->
+    <div id="edit_activities">
+        <h1>Área de edição de atividades</h1>
+        
+    </div>
+
+    <!-- Listagem de todas as reservas do administrador -->
+    <div id="all_reserves_admin">
+        <h1>Listagem de todas as reservas efetuadas</h1>
+        
+    </div>
+
+    <!-- Editar reservas -->
+    <div id="edit_reserves">
+        <h1>Área de edição de reservas</h1>
+    </div>
+
   </div>
