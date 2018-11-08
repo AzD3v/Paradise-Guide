@@ -63,10 +63,12 @@ a::after {
     color: #cacaca !important;
     transition: all 300ms ease-in-out;
 }
+
 .navbar li .active {
     color: #fff !important;
     font-size: 20px;
 }
+
 /* Atividades e reservas */
 h1 {
     font-size: 26px;
@@ -93,5 +95,10 @@ h1 {
         width: 375px;
         overflow: auto;
         margin-right: -20px;
+    }
+
+    .admin_wrapper {
+        margin-top: 20px;
+        width: 80%;
     }
 }

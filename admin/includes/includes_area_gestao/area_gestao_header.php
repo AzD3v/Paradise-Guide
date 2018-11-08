@@ -18,7 +18,6 @@
 
 <!-- Restringir a página para apenas um admin conseguir aceder à mesma --> 
 <?php if (isset($_SESSION["client"])) {header("Location:../index.php");} ?>
-<?php if (!isset($_SESSION["admin"])) {header("Location:admin/area_gestao.php");} ?>
 
 <!DOCTYPE html>
 <html lang="pt">

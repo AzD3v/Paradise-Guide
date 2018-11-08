@@ -1,15 +1,17 @@
+<!-- Navegação administrativa -->
 <div class="admin">
 
   <!-- Admin sidebar -->
   <div class="admin-sidebar bg-faded">
+    
     <div class="navbar navbar-light">
 
       <!-- Toggler to menu de navegação -->
-      <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#sidebar-navigation" aria-controls="sidebar-navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#sidebar-navigation" aria-controls="sidebar-navigation" aria-expanded="false" aria-label="Toggle navigation" id="menu_button">
           <ion-icon class="menu_icons" name="menu"></ion-icon>Menu administrativo
       </button>
       
-      <div class="collapse navbar-toggleable-md py-2" role="navigation" id="sidebar-navigation">
+      <div class="collapse show navbar-toggleable-md py-2" role="navigation" id="sidebar-navigation">
  
         <hr>
 
@@ -35,9 +37,7 @@
           <!-- Opção de editar atividades -->
           <li>    
             <a href="" onclick="return false;" class="nav-link" id="edit_activities_admin_tab">
-              <ion-icon name="build" class="menu_icons"></ion-icon>                
-              Editar atividades
-            </a>
+              <ion-icon name="build" class="menu_icons"></ion-icon>Editar atividades</a>
           </li>
          
         </ul>
@@ -49,16 +49,13 @@
             <!-- Opção de vizualizar todas as reservas -->
             <li>
                 <a href="" onclick="return false;" class="nav-link" id="all_reserves_admin_tab">
-                <ion-icon name="eye" class="menu_icons"></ion-icon>
-                Vizualizar todas as reservas
-                </a>
+                <ion-icon name="eye" class="menu_icons"></ion-icon>Vizualizar todas as reservas</a>
             </li>
 
             <!-- Opção de editar estado das reservas -->
             <li>
                 <a href="" onclick="return false;" class="nav-link" id="edit_reserves_admin_tab">
-                <ion-icon name="build" class="menu_icons"></ion-icon>                
-                Editar estado das reservas
+                <ion-icon name="build" class="menu_icons"></ion-icon>Editar estado das reservas
                 </a>
             </li>
 
@@ -66,39 +63,8 @@
 
         <hr>
         
-      </div>
-    </div>
-  </div>
-  
-  <div class="admin_wrapper">
-  
-  <!-- Listagem de todas as atividades do administrador -->
-    <div id="all_activities_admin">
-        <h1>Listagem de todas as suas atividades</h1>
-        
-    </div>
-
-    <!-- Criar uma nova atividade -->
-    <div id="new_activity">
-        <h1>Área de criação de atividades</h1>
-        
-    </div>
-
-    <!-- Editar atividades -->
-    <div id="edit_activities">
-        <h1>Área de edição de atividades</h1>
-        
-    </div>
-
-    <!-- Listagem de todas as reservas do administrador -->
-    <div id="all_reserves_admin">
-        <h1>Listagem de todas as reservas efetuadas</h1>
-        
-    </div>
-
-    <!-- Editar reservas -->
-    <div id="edit_reserves">
-        <h1>Área de edição de reservas</h1>
     </div>
 
   </div>
+
+</div>
