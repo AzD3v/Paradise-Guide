@@ -3,7 +3,7 @@
 
 <?php 
     
-    # Definir mensagem de sucesso e de erro - vazias inicialmente
+    # Definir mensagens de sucesso e de erro - vazias inicialmente
     $error_message = "";
     $success_message = "";
     $repeat_reserve_message = "";
@@ -40,7 +40,19 @@
 
             # Proteção contra XSS (Cross-Site Scripting)
             $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
-            
+
+            # Encriptação do cartão de crédito
+            $bytes = openssl_random_pseudo_bytes(8, $cstrong);
+            $key = bin2hex($bytes);
+            $plaintext = $cartaoCredito;
+            $cipher = "aes-128-gcm";
+
+            if (in_array($cipher, openssl_get_cipher_methods())) {
+                $ivlen = openssl_cipher_iv_length($cipher);
+                $iv = openssl_random_pseudo_bytes($ivlen);
+                $cipherCartaoCredito = openssl_encrypt($plaintext, $cipher, $key, $options=0, $iv, $tag);
+            }
+
             # Variável do resultado das validações definida como verdadeira inicialmente 
             $result = true;
 
@@ -64,30 +76,30 @@
             
             # Caso exista uma duplicação de reservas, a reserva não é submetida
             if($repeated_reserves) {
-                $repeat_reserve_message = "<div class='alert alert-warning text-center' role='alert'>Já reservou esta atividade! Poderá verificar a reserva <a href='#' onclick='return false;' class='check_reserves'>aqui</a>.</div>";
-                $result = false;
-            } 
-
-            # Validações do número de cartão de crédito (número de caracteres)
-            if (strlen($cartaoCredito) !== 16) {
-                $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
+                $repeat_reserve_message = "<div class='alert alert-warning text-center' role='alert'>Já reservou esta atividade! Poderá verificar a reserva <a href='' onclick='return false;' class='check_reserves'>aqui</a>.</div>";
                 $result = false;
             } 
 
         }   
 
+            # Validação do número de cartão de crédito (número de caracteres) - sem encriptação
+            if (strlen($cartaoCredito) !== 16) {
+                $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
+                $result = false;
+            } 
+
             /* Caso a validação do número de cartão de crédito obtenha sucesso
             a variável de resultado retorna "true" */
             if ($result) {
                 
-                $success_message = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na sua <a href='#' onclick='return false;' class='check_reserves' id='check_success'>lista de atividades</a>.</div>";
+                $success_message = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na sua <a href='' onclick='return false;' class='check_reserves' id='check_success'>lista de atividades</a>.</div>";
 
                 # Proceder à reserva de uma dada atividade
                 $sql = "INSERT INTO reservas (idAtividade, idUser, cartaoCredito, estadoReserva) ";
                 $sql .= "VALUES(:idAtividade, :idUser, :cartaoCredito, :estadoReserva)";
                 
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cartaoCredito, ":estadoReserva" => "Marcada"]);
+                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cipherCartaoCredito, ":estadoReserva" => "Marcada"]);
                 
             }
             
@@ -176,9 +188,9 @@
                         <?php 
                                     
                             if (!empty($_POST["idAtividade"])) {
-                            if($_POST["idAtividade"] === $activity->idAtividade) { 
-                                echo $error_message;
-                            }
+                                if($_POST["idAtividade"] === $activity->idAtividade) { 
+                                    echo $error_message;
+                                }
                             }
                                     
                         ?>
@@ -220,7 +232,17 @@
         <?php } ?>
 
     </div>
+   
+                        
+    <?php 
 
+        # Display das atividades reservadas pelo utilizador se estas existirem
+        $user_reserves = Reserve::find_user_reserves($idUser);
+        
+        if (!empty($user_reserves)) {
+        
+    ?>
+                            
     <!-- Atividades escolhidas pelo utilizador -->
     <div id="user_activities">
 
@@ -314,6 +336,16 @@
         </div>
 
     </div> 
+
+    <?php } else { ?>
+
+        <div id="user_activities">
+            
+            <h1 class="alert alert-info text-center">Não possui atividades reservadas! Consulte a nossa <a class="check_all_activities" href="" onclick="return false;">vasta lista</a> e escolha uma que lhe agrade ou mais!</h1>
+            
+        </div>
+    
+    <?php } ?>
 
     <!-- Footer do índex -->
     <?php include_once("includes/includes_area_cliente/area_cliente_footer.php"); ?>

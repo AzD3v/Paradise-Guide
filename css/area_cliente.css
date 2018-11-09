@@ -65,11 +65,20 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
 /* Mensagens de erro e sucesso */ 
 #check_success {color: #27AE60;}
 #check_success:hover {color: rgb(1, 148, 62);}
-.check_reserves {color: var(--secondaryBlue);}
+.check_reserves {
+    color: var(--secondaryBlue);
+    transition: all 300ms ease-in-out;
+}
 .check_reserves:hover {color: var(--primaryBlue);}
+.check_all_activities {
+    color: var(--secondaryBlue);
+    transition: all 300ms ease-in-out;
+}
+.check_all_activities {color: var(--primaryBlue);}
 
 /* Atividades */
 .body_area_cliente {background: #2ecc71;}
+
 #all_activities h1 {
     font-size: 26px;
     color: #fff;
@@ -81,6 +90,13 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
 .d-flex h5 {font-size: 25px; font-weight: bold;}
 .list-group p {font-size: 21px; margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
+
+div#user_activities h1.alert.alert-info {
+    color: var(--secondaryGreen);
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
 .list-group button {
     background: var(--primaryGreen);
