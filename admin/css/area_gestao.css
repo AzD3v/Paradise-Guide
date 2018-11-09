@@ -1,5 +1,4 @@
 /* General */ 
-button:focus,
 button:active,
 button:visited,
 button:active,
@@ -74,7 +73,7 @@ h1 {
     font-size: 26px;
     color: #fff;
     text-transform: uppercase;
-    margin: 20px;
+    margin: 10px;
     text-align: center;
 }
 
@@ -86,19 +85,45 @@ h1 {
 
 /* Media Queries */
 @media screen and (min-width: 992px) {
+    
+    /* Área administrativa */
     .admin {
         height: 100vh;
         display: flex;
     }
 
+    /* Barra lateral de navegação */
     .admin .admin-sidebar {
         width: 375px;
         overflow: auto;
         margin-right: -20px;
     }
 
+    /* Admin wrapper */
     .admin_wrapper {
         margin-top: 20px;
         width: 80%;
     }
+
+    /* Botão de logout */
+    .logout_button {
+        float: right;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 20px;
+        margin-right: 4%;
+        outline: 0;
+        border: 1px solid #fff !important;
+        padding: 18px;
+        background: none !important;
+        box-shadow: none;
+    }
+
+    /* Ícone do botão de logout */
+    .navbar_logout_icon {
+        position: relative;
+        top: 3px;
+        left: 4px;
+    }
+
 }
