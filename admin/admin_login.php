@@ -4,29 +4,29 @@
     if(isset($_POST["admin_login_submit"])) {
 
         # Aceder aos campos do formulário
-        $admin_username = $_POST["admin_username"];
-        $admin_password = $_POST["admin_password"];
+        $usernameAdmin = $_POST["username_admin"];
+        $passwordAdmin = $_POST["password_admin"];
                 
         # Verificar que os campos não se encontram vazios
-        if (!empty($admin_username) && !empty($admin_password)) { 
+        if (!empty($usernameAdmin) && !empty($passwordAdmin)) { 
 
             # Eliminar os espaços dos campos de username e password
-            $admin_username = trim($admin_username);
-            $admin_password = trim($admin_password);
+            $usernameAdmin = trim($usernameAdmin);
+            $passwordAdmin = trim($passwordAdmin);
 
             # Proteção contra XSS (Cross-Site Scripting)
-            $admin_username = htmlspecialchars($admin_username, ENT_QUOTES, 'UTF-8');
-            $admin_password = htmlspecialchars($admin_password, ENT_QUOTES, 'UTF-8');
+            $usernameAdmin = htmlspecialchars($usernameAdmin, ENT_QUOTES, 'UTF-8');
+            $passwordAdmin = htmlspecialchars($passwordAdmin, ENT_QUOTES, 'UTF-8');
 
             # Query que retorna os dados do utilizador pretendido 
-            $check_user_sql = "SELECT COUNT(id_user_admin) FROM admin_users WHERE "; 
-            $check_user_sql .= "admin_username = :admin_username "; 
-            $check_user_sql .= "AND admin_password = :admin_password"; 
+            $check_user_sql = "SELECT COUNT(idAdmin) FROM admin_users WHERE "; 
+            $check_user_sql .= "usernameAdmin = :usernameAdmin "; 
+            $check_user_sql .= "AND passwordAdmin = :passwordAdmin"; 
 
             # Preparar e executar a query
             $check_admin_stmt = $pdo->prepare($check_user_sql);
-            $check_admin_stmt->execute([":admin_username" => $admin_username, 
-            ":admin_password" => $admin_password]);
+            $check_admin_stmt->execute([":usernameAdmin" => $usernameAdmin, 
+            ":passwordAdmin" => $passwordAdmin]);
             
             # Fetch efetuado para mais tarde verificar se o username existe na base de dados
             $count = $check_admin_stmt->fetchColumn();
@@ -35,7 +35,7 @@
             if ($count == "1") {
                 /* Se o admin de facto existe, o login é efetuado com sucesso e o user é 
                 reencaminhado para a área de gestão */
-                $_SESSION["admin"] = $admin_username;
+                $_SESSION["admin"] = $usernameAdmin;
                 header("Location:area_gestao.php");
             } else {
                 # Caso não haja sucesso no login, é mostrada uma mensagem de erro
@@ -60,10 +60,10 @@
     <form action="" method="post" role="form">
         
         <!-- Username administrativo --> 
-        <input type="text" name="admin_username" placeholder="Digite aqui o seu nome de utilizador" required="required" />
+        <input type="text" name="username_admin" placeholder="Digite aqui o seu nome de utilizador" required="required" />
         
         <!-- Palavra-passe admnistrativa -->
-        <input type="password" name="admin_password" placeholder="Digite aqui a sua palavra-passe" required="required" />
+        <input type="password" name="password_admin" placeholder="Digite aqui a sua palavra-passe" required="required" />
         
         <!-- Botão de submissão -->
         <button type="submit" class="btn btn-primary btn-block btn-large login_btn" name="admin_login_submit">Iniciar sessão</button>
