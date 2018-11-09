@@ -20,10 +20,14 @@ $(document).ready(function() {
         this.value = this.value.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
     });
 
-    // Mensagens de sucesso ou erro após tentativa de reserva 
+    /* Âncoras das mensagens de erro ou de sucesso associadas às reservas (inexistência de reservas incluída) */ 
     $('.check_reserves').click(function () {
         $('#all_activities').fadeOut('slow');
         $('#user_activities').fadeIn('slow');
+    });
+    $('.check_all_activities').click(function () {
+        $('#user_activities').fadeOut('slow');
+        $('#all_activities').fadeIn('slow');
     });
 
 });

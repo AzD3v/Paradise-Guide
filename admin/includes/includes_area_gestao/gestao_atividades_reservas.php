@@ -21,7 +21,6 @@
     <!-- Listagem de todas as reservas do administrador -->
     <div id="all_reserves_admin">
         <h1>Listagem de todas as reservas efetuadas</h1>
-
     </div>
 
     <!-- Editar reservas -->

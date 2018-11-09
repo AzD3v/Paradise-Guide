@@ -41,12 +41,6 @@
             # Proteção contra XSS (Cross-Site Scripting)
             $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
 
-            # Validações do número de cartão de crédito (número de caracteres)
-            if (strlen($cartaoCredito) !== 16) {
-                $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
-                $result = false;
-            } 
-
             # Encriptação do cartão de crédito
             $bytes = openssl_random_pseudo_bytes(8, $cstrong);
             $key = bin2hex($bytes);
@@ -87,6 +81,12 @@
             } 
 
         }   
+
+            # Validação do número de cartão de crédito (número de caracteres) - sem encriptação
+            if (strlen($cartaoCredito) !== 16) {
+                $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
+                $result = false;
+            } 
 
             /* Caso a validação do número de cartão de crédito obtenha sucesso
             a variável de resultado retorna "true" */
@@ -188,9 +188,9 @@
                         <?php 
                                     
                             if (!empty($_POST["idAtividade"])) {
-                            if($_POST["idAtividade"] === $activity->idAtividade) { 
-                                echo $error_message;
-                            }
+                                if($_POST["idAtividade"] === $activity->idAtividade) { 
+                                    echo $error_message;
+                                }
                             }
                                     
                         ?>
@@ -232,7 +232,17 @@
         <?php } ?>
 
     </div>
+   
+                        
+    <?php 
 
+        # Display das atividades reservadas pelo utilizador se estas existirem
+        $user_reserves = Reserve::find_user_reserves($idUser);
+        
+        if (!empty($user_reserves)) {
+        
+    ?>
+                            
     <!-- Atividades escolhidas pelo utilizador -->
     <div id="user_activities">
 
@@ -326,6 +336,16 @@
         </div>
 
     </div> 
+
+    <?php } else { ?>
+
+        <div id="user_activities">
+            
+            <h1 class="alert alert-info text-center">Não possui atividades reservadas! Consulte a nossa <a class="check_all_activities" href="" onclick="return false;">vasta lista</a> e escolha uma que lhe agrade ou mais!</h1>
+            
+        </div>
+    
+    <?php } ?>
 
     <!-- Footer do índex -->
     <?php include_once("includes/includes_area_cliente/area_cliente_footer.php"); ?>
