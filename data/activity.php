@@ -7,7 +7,7 @@
 
         # Atributos da classe Activity 
         public $idAtividade;
-        public $idCategoria;
+        public $idAdmin;
         public $nomeAtividade;
         public $descricaoAtividade;
         public $zonaAtividade;
@@ -46,9 +46,10 @@
             return self::find_this_query("SELECT * FROM atividades");
         }
 
-        public static function find_user_activities($idUser)
+        // Método que retorna todas as atividades de um dado admin
+        public static function find_admin_activities($idAdmin)
         {
-            $the_result_array = self::find_this_query("SELECT * FROM reservas WHERE idUser = $idUser");
+            $the_result_array = self::find_this_query("SELECT * FROM atividades WHERE idAdmin = $idAdmin");
 
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
 

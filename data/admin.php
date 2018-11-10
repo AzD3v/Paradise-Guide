@@ -2,7 +2,7 @@
 <?php include_once("db_config.php"); ?>
 
 <?php 
-
+    
     class Admin {
 
         # Atributos da classe Admin
@@ -13,6 +13,7 @@
         // Método que encontra o ID de um admin pelo username
         public static function find_id_by_username($username)
         {
+            
             $the_result_array = self::find_this_query("SELECT * FROM admin_users WHERE usernameAdmin = '$username' LIMIT 1");
 
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
