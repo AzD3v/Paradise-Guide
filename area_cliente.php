@@ -19,8 +19,8 @@
     // Funcionalidade que possibilita reservar atividades
     # Obter o ID do utilizador que possui sessão iniciada
     $username = $_SESSION["client"];
-    $user_id = User::find_id_by_username($username);
-    $idUser = $user_id->idUser;
+    $id_user = User::find_id_by_username($username);
+    $idUser = $id_user->idUser;
 
     /* Definição do array que irá guardar os novos dados associados a uma reserva (ID do user e ID da atividade) */
     $new_reserve = [];
@@ -232,8 +232,7 @@
         <?php } ?>
 
     </div>
-   
-                        
+                    
     <?php 
 
         # Display das atividades reservadas pelo utilizador se estas existirem
@@ -272,8 +271,7 @@
                     # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
                     $reserves = Reserve::find_all_reserves();
 
-                    /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas 
-                    e atividades do utilizador em questão */
+                    /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas e atividades do utilizador em questão */
                     foreach ($reserves as $reserve) {
                         $idReserva = $reserve->idReserva;
                         $idAtividadeReserva = $reserve->idAtividade;

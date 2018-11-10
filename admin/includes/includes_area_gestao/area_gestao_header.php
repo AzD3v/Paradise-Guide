@@ -4,6 +4,9 @@
 <!-- Incluir a classe Database -->
 <?php include_once("../data/database.php"); ?>
 
+<!-- Incluir a classe Admin -->
+<?php include_once("../data/admin.php"); ?>
+
 <!-- Incluir a classe User -->
 <?php include_once("../data/user.php"); ?>
 

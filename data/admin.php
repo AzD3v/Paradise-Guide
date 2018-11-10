@@ -2,26 +2,19 @@
 <?php include_once("db_config.php"); ?>
 
 <?php 
+    
+    class Admin {
 
-    class Reserve {
+        # Atributos da classe Admin
+        public $idAdmin;
+        public $usernameAdmin;
+        public $passwordAdmin;
 
-        # Atributos da classe Reserve
-        public $idReserva;
-        public $idAtividade;
-        public $idUser;
-        private $cartaoCredito;
-        public $estadoReserva;
-       
-        // Método que retorna todas as reservas
-        public static function find_all_reserves()
+        // Método que encontra o ID de um admin pelo username
+        public static function find_id_by_username($username)
         {
-            return self::find_this_query("SELECT * FROM reservas");
-        }
-
-        // Método que retorna as reserves de um dado utilizador
-        public static function find_user_reserves($idUser)
-        {
-            $the_result_array = self::find_this_query("SELECT idUser, idAtividade FROM reservas WHERE idUser = $idUser");
+            
+            $the_result_array = self::find_this_query("SELECT * FROM admin_users WHERE usernameAdmin = '$username' LIMIT 1");
 
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
@@ -48,11 +41,11 @@
 
         }
 
-        // "Helper method" que instancia a classe Reserve automaticamente
+        // "Helper method" que instancia a classe User automaticamente
         public static function auto_instantiate($the_record)
         {
 
-            // Instanciar a classe Reserve
+            // Instanciar a classe User
             $the_object = new self;
 
             // Iterar sobre os dados obtidos e atribuição de propriedades dinâmica

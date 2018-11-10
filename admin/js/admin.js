@@ -50,8 +50,7 @@ $(document).ready(function () {
 
         // "Highlight" na aba e mudança para a área escolhida
         $('#new_activity_admin_tab').addClass('active');
-        $('#new_activity').fadeIn('slow');
-        
+        $('#new_activity').fadeIn('slow');        
     });
 
     // Mudança para a área de edição de atividades
