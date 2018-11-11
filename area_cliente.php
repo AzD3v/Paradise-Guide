@@ -158,7 +158,7 @@
             
             <!-- Título da atividade -->
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-3"><?php echo $activity->nomeAtividade; ?></h5>
+                <h5 class="mb-3"><?php echo utf8_encode($activity->nomeAtividade); ?></h5>
             </div>
             
             <!-- Descrição da atividade --> 

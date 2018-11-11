@@ -37,7 +37,9 @@
           <!-- Opção de editar atividades -->
           <li>    
             <a href="" onclick="return false;" class="nav-link" id="edit_activities_admin_tab">
-              <ion-icon name="build" class="menu_icons"></ion-icon>Editar atividades</a>
+              <ion-icon name="build" class="menu_icons"></ion-icon>
+              Editar atividades
+            </a>
           </li>
          
         </ul>
@@ -49,13 +51,16 @@
             <!-- Opção de vizualizar todas as reservas -->
             <li>
                 <a href="" onclick="return false;" class="nav-link" id="all_reserves_admin_tab">
-                <ion-icon name="eye" class="menu_icons"></ion-icon>Vizualizar todas as reservas</a>
+                <ion-icon name="eye" class="menu_icons"></ion-icon>
+                Vizualizar todas as reservas
+              </a>
             </li>
 
             <!-- Opção de editar estado das reservas -->
             <li>
                 <a href="" onclick="return false;" class="nav-link" id="edit_reserves_admin_tab">
-                <ion-icon name="build" class="menu_icons"></ion-icon>Editar estado das reservas
+                <ion-icon name="build" class="menu_icons"></ion-icon>
+                Editar estado das reservas
                 </a>
             </li>
 
