@@ -162,7 +162,7 @@ input[name="preco_atividade"] {
 }
 
 input[name="duracao_atividade"] {
-    width: 80px !important;
+    width: 120px !important;
 }
 
 input[name="zona_atividade"] {
@@ -175,7 +175,7 @@ input[name="preco_atividade"] {
 
 .zona_atividade {margin-left: -2.9%}
 .duracao_atividade {margin-left: 4%;}
-.preco_atividade {margin-left: 14%;}
+.preco_atividade {margin-left: 7.5%;}
 .upload_imagem_label {margin-top: 15px;}
 
 #insert_activity_form ion-icon.hydrated {
