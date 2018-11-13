@@ -24,7 +24,7 @@
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
                 <!-- Título da atividade -->
-                <h5 class="mb-3 text-center"><?php echo $activity->nomeAtividade; ?></h5>
+                <h5 class="mb-3 text-center"><?php echo utf8_encode($activity->nomeAtividade); ?></h5>
 
                 <!-- Imagem de destaque da atividade -->
                 <p>IMAGEM DE DESTAQUE</p>

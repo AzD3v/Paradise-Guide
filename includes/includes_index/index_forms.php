@@ -47,7 +47,7 @@
     <div class="modal-dialog" id="register-modal">
         <div class="modal-content">
             
-            <!-- Hedader --> 
+            <!-- Header --> 
             <div class="modal-header">
                 <h3>Torna-se já num novo membro</h3>
             </div>

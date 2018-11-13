@@ -57,7 +57,7 @@
     <!-- Mensagem de erro caso o login administrativo não seja bem sucedido -->    
     <?php echo $error_message_login; ?>
 
-    <form action="" method="post" role="form">
+    <form action="" method="post" role="form" autocomplete="off">
         
         <!-- Username administrativo --> 
         <input type="text" name="username_admin" placeholder="Digite aqui o seu nome de utilizador" required="required" />
