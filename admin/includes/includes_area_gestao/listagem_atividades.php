@@ -24,22 +24,35 @@
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
                 <!-- Título da atividade -->
-                <h5 class="mb-3 text-center"><?php echo utf8_encode($activity->nomeAtividade); ?></h5>
+                <h5 class="mb-3 text-center"><?php echo $activity->nomeAtividade; ?></h5>
 
                 <!-- Imagem de destaque da atividade -->
                 <p>IMAGEM DE DESTAQUE</p>
                 
                 <!-- Descrição da atividade --> 
-                <p class="mb-3"><?php echo utf8_encode($activity->descricaoAtividade); ?></p>
+                <p class="mb-3"><?php echo $activity->descricaoAtividade; ?></p>
 
                 <!-- Zona da atividade --> 
-                <p class="mb-2"><span class="subtitulo_listagem">Zona:</span> <?php echo utf8_encode($activity->zonaAtividade); ?></p>
+                <p class="mb-2"><span class="subtitulo_listagem">Zona:</span> <?php echo $activity->zonaAtividade; ?></p>
 
                 <!-- Duração média da atividade -->
-                <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo ($activity->duracaoAtividade); ?></p>  
+                <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo $activity->duracaoAtividade; ?></p>  
+
+                <?php 
+
+                    if ($activity->precoAtividade !== "Atividade sem custos") {
+
+                ?>
 
                 <!-- Preço da atividade -->
                 <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?>€</p>
+
+                <?php } else { ?>
+                    
+                <!-- Preço da atividade -->
+                <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?></p>
+
+                <?php } ?>
 
                 <!-- Botão de edição -->
                 <div style="text-align: center">

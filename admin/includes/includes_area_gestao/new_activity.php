@@ -9,11 +9,17 @@
         $idAdmin = $id_admin->idAdmin;
 
         # Aceder aos campos do formulário
-        $nomeAtividade = utf8_decode($_POST["nome_atividade"]);
-        $descricaoAtividade = utf8_decode($_POST["descricao_atividade"]);
-        $zonaAtividade = utf8_decode($_POST["zona_atividade"]);
-        $duracaoAtividade = utf8_decode($_POST["duracao_atividade"]);
-        $precoAtividade = utf8_decode($_POST["preco_atividade"]);
+        $nomeAtividade = $_POST["nome_atividade"];
+        $descricaoAtividade = $_POST["descricao_atividade"];
+        $zonaAtividade = $_POST["zona_atividade"];
+        $duracaoAtividade = $_POST["duracao_atividade"];
+        $precoAtividade = $_POST["preco_atividade"];
+
+        # A atividade poderá ser grátis
+        if ($precoAtividade === "") {
+            $precoAtividade = "Atividade sem custos";
+        }
+
 
         # Verificar que os campos não se encontram vazios
         if (!empty($nomeAtividade) && !empty($descricaoAtividade) && !empty($zonaAtividade) && !empty($duracaoAtividade) &&  !empty($precoAtividade)) { 
@@ -37,7 +43,10 @@
             $stmt = $pdo->prepare($sql);
         
             # Executar o statement
-            $stmt->execute(["idAdmin" => $idAdmin, ":nomeAtividade" => $nomeAtividade, ":descricaoAtividade" => $descricaoAtividade, ":zonaAtividade" => $zonaAtividade, ":duracaoAtividade" => $duracaoAtividade, ":precoAtividade" => $precoAtividade, ":imagemAtividade" => 1]); 
+            $stmt->execute([":idAdmin" => $idAdmin, ":nomeAtividade" => $nomeAtividade, ":descricaoAtividade" => $descricaoAtividade, ":zonaAtividade" => $zonaAtividade, ":duracaoAtividade" => $duracaoAtividade, ":precoAtividade" => $precoAtividade, ":imagemAtividade" => 1]); 
+
+            # Refrescar a página
+            echo '<meta http-equiv="refresh" content="0">';
 
         }
                 
@@ -98,7 +107,7 @@
             <!-- Inserir preço da atividade -->
             <div class="input-group preco_atividade">
                 <ion-icon name="cash"></ion-icon>
-                <input type="text" name="preco_atividade" placeholder="Ex: Desde 30€" class="form-control" required>
+                <input type="text" name="preco_atividade" placeholder="Ex: Desde 30€" class="form-control">
             </div>
 
         </div>
