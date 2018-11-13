@@ -20,7 +20,7 @@
 
         <!-- Opção de logout -->
         <a href="includes/includes_area_gestao/admin_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão<ion-icon class="navbar_logout_icon" name="power"></ion-icon></button></a>
-        
+
         <!-- Título da área -->
         <h1>Área de criação de atividades</h1> 
 
@@ -46,14 +46,11 @@
     <!-- Listagem de todas as reservas do administrador -->
     <div id="all_reserves_admin">
 
-        <!-- Opção de logout -->    
+        <!-- Opção de logout -->
         <a href="includes/includes_area_gestao/admin_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão<ion-icon class="navbar_logout_icon" name="power"></ion-icon></button></a>
 
         <!-- Título da área -->
         <h1>Listagem de todas as reservas efetuadas</h1>
-
-        <!-- Incluir a listagem de todas as reservas associadas ao admin -->
-        <?php // include_once("includes_gestao_atividades/edit_activity.php"); ?>
 
     </div>
 

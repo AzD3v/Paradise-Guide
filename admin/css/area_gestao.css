@@ -14,7 +14,7 @@ a::after {
     box-shadow: none !important;
 }
 
-/* Menu de navegação admin */ 
+/* Menu de navegação admin e topo da página */ 
 .navbar button {
     text-transform: uppercase;
     color: #fff !important;
@@ -73,7 +73,6 @@ h1 {
     font-size: 26px;
     color: #fff;
     text-transform: uppercase;
-    margin: 10px;
     text-align: center;
 }
 
@@ -83,12 +82,14 @@ h1 {
 #all_reserves_admin,
 #edit_reserves {display: none;}
 
+
 /* Listagem de atividades */ 
-#all_activities_admin {overflow: auto;}
 #all_activities_admin .list-group {padding: 20px 30px;}
 .list-group-item.active {
     background: none;
     border: 2px solid #fff;
+    margin-top: 20px;
+    width: 850px;
 }
 .list-group h5 {font-size: 25px;font-weight: bold;}
 .list-group p {font-size: 21px;margin: 20px 0}
@@ -109,7 +110,79 @@ h1 {
 .list-group button:hover {color: #fff;}
 
 /* Nova atividade */ 
+#insert_activity_form {
+    margin: 25px 0 25px 3%;
+    border: 2px solid #fff;
+    width: 71%;
+    padding: 20px 50px;
+}
 
+#insert_activity_form button {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    outline: 0;
+    border: 1px solid #fff !important;
+    padding: 18px;
+    background: none !important;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.form-control {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.form-group label {
+    font-size: 22px !important;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+label {
+    font-size: 22px !important;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.inline_fields_labels {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px -50px;
+}
+
+input[name="nome_atividade"],
+textarea[name="descricao_atividade"], 
+input[name="duracao_atividade"],
+input[name="zona_atividade"],
+input[name="preco_atividade"] {
+    font-size: 19px;
+}
+
+input[name="duracao_atividade"] {
+    width: 120px !important;
+}
+
+input[name="zona_atividade"] {
+    width: 160px !important;
+}
+
+input[name="preco_atividade"] {
+    width: 135px !important;
+}
+
+.zona_atividade {margin-left: -2.9%}
+.duracao_atividade {margin-left: 4%;}
+.preco_atividade {margin-left: 7.5%;}
+.upload_imagem_label {margin-top: 15px;}
+
+#insert_activity_form ion-icon.hydrated {
+    font-size: 40px;
+    color: #fff;
+    margin-right: 4px;
+}
 
 /* Media Queries */
 @media screen and (min-width: 992px) {
@@ -139,10 +212,11 @@ h1 {
         color: #fff;
         text-transform: uppercase;
         font-size: 20px;
-        margin-right: 4%;
+        margin-right: 3%;
+        margin-top: -5px;
         outline: 0;
         border: 1px solid #fff !important;
-        padding: 18px;
+        padding: 15px;
         background: none !important;
         box-shadow: none;
     }
