@@ -15,23 +15,17 @@
         $duracaoAtividade = $_POST["duracao_atividade"];
         $precoAtividade = $_POST["preco_atividade"];
 
-        # Aceder ao ficheiro da imagem uploaded e opções
-        $file = $_FILES["ficheiro_imagem"];
-        
-        $fileName = $_FILES["ficheiro_imagem"]["name"];
-        $fileTmpName = $_FILES["ficheiro_imagem"]["tmp_name"];
-        $fileSize = $_FILES["ficheiro_imagem"]["size"];
-        
-        $uploadLocation = "img";
-        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $validExtensions = array("jpeg", "jpg", "png", "gif", "pdf");
-        
-
         # A atividade poderá ser grátis
         if ($precoAtividade === "") {$precoAtividade = "Atividade sem custos";}
 
+        # Aceder ao ficheiro da imagem para upload
+        $imagemAtividade = $_FILES['ficheiro_imagem']['name'];
+        $imagemAtividadeTemp = $_FILES['ficheiro_imagem']['tmp_name'];
+
         # Verificar que os campos não se encontram vazios
-        if (!empty($nomeAtividade) && !empty($descricaoAtividade) && !empty($zonaAtividade) && !empty($duracaoAtividade) &&  !empty($precoAtividade)) { 
+        if (!empty($nomeAtividade) && !empty($descricaoAtividade) && !empty($zonaAtividade) && !empty($duracaoAtividade)) { 
+
+            move_uploaded_file($imagemAtividadeTemp, "img/imgs_atividades/{$imagemAtividade}");
 
             # Eliminar o espaço em branco dos campos de inserção da nova atividade
             $nomeAtividade = trim($nomeAtividade);
@@ -40,7 +34,7 @@
             $duracaoAtividade = trim($duracaoAtividade);
             $precoAtividade = trim($precoAtividade);
 
-            # Proteção contra XSS (Cross-Site Scripting)
+            # Proteção contra XSS (Cross Site Scripting)
             $nomeAtividade = htmlspecialchars($nomeAtividade, ENT_QUOTES, 'UTF-8');
             $descricaoAtividade = htmlspecialchars($descricaoAtividade, ENT_QUOTES, 'UTF-8');
             $zonaAtividade = htmlspecialchars($zonaAtividade, ENT_QUOTES, 'UTF-8');
@@ -69,7 +63,7 @@
 <!-- Formulário de inserção de uma nova atividade -->
 <div id="insert_activity_form">
     
-    <form action="" method="post" enctype="multipart/form-data" autocomplete="off" role="form"> 
+    <form action="" method="post" autocomplete="off" role="form" enctype="multipart/form-data"> 
         
         <!-- Inserir o nome da atividade --> 
         <div class="form-group">
@@ -127,7 +121,7 @@
         <!-- Upload da imagem de destaque da atividade --> 
         <div class="form-group upload_imagem_label">
             <label for="zona_atividade">Upload da imagem de destaque da atividade</label>
-            <input type="file" name="ficheiro_imagem">
+            <input type="file" name="ficheiro_imagem" accept="*/image">
         </div>
         
         <!-- Botão de submissão -->

@@ -97,6 +97,10 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
 .d-flex h5 {font-size: 25px; font-weight: bold;}
 .list-group p {font-size: 21px; margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
+.list-group .img_listagem {
+    width: 500px;
+    height: 300px;
+}
 
 div#user_activities h1.alert.alert-info {
     color: var(--secondaryGreen);

@@ -27,7 +27,7 @@
                 <h5 class="mb-3 text-center"><?php echo $activity->nomeAtividade; ?></h5>
 
                 <!-- Imagem de destaque da atividade -->
-                <p>IMAGEM DE DESTAQUE</p>
+                <img src=<?php echo "../img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
                 
                 <!-- Descrição da atividade --> 
                 <p class="mb-3"><?php echo $activity->descricaoAtividade; ?></p>
@@ -40,6 +40,7 @@
 
                 <?php 
 
+                    # Mostrar o símbolo do euro apenas caso a atividade possuir um preço
                     if ($activity->precoAtividade !== "Atividade sem custos") {
 
                 ?>
