@@ -157,8 +157,8 @@
             <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
             <!-- Título da atividade -->
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-3"><?php echo $activity->nomeAtividade; ?></h5>
+            <div class="text-center">
+                <h5 class="mb-3r"><?php echo $activity->nomeAtividade; ?></h5>
             </div>
             
             <!-- Descrição da atividade --> 
