@@ -8,12 +8,27 @@
         $id_admin = Admin::find_id_by_username($admin);
         $idAdmin = $id_admin->idAdmin;
 
-        # Aceder aos campos do formulário
-        $nomeAtividade = utf8_decode($_POST["nome_atividade"]);
-        $descricaoAtividade = utf8_decode($_POST["descricao_atividade"]);
-        $zonaAtividade = utf8_decode($_POST["zona_atividade"]);
-        $duracaoAtividade = utf8_decode($_POST["duracao_atividade"]);
-        $precoAtividade = utf8_decode($_POST["preco_atividade"]);
+        # Aceder aos campos do formulário (campos de texto)
+        $nomeAtividade = $_POST["nome_atividade"];
+        $descricaoAtividade = $_POST["descricao_atividade"];
+        $zonaAtividade = $_POST["zona_atividade"];
+        $duracaoAtividade = $_POST["duracao_atividade"];
+        $precoAtividade = $_POST["preco_atividade"];
+
+        # Aceder ao ficheiro da imagem uploaded e opções
+        $file = $_FILES["ficheiro_imagem"];
+        
+        $fileName = $_FILES["ficheiro_imagem"]["name"];
+        $fileTmpName = $_FILES["ficheiro_imagem"]["tmp_name"];
+        $fileSize = $_FILES["ficheiro_imagem"]["size"];
+        
+        $uploadLocation = "img";
+        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $validExtensions = array("jpeg", "jpg", "png", "gif", "pdf");
+        
+
+        # A atividade poderá ser grátis
+        if ($precoAtividade === "") {$precoAtividade = "Atividade sem custos";}
 
         # Verificar que os campos não se encontram vazios
         if (!empty($nomeAtividade) && !empty($descricaoAtividade) && !empty($zonaAtividade) && !empty($duracaoAtividade) &&  !empty($precoAtividade)) { 
@@ -33,11 +48,17 @@
             $precoAtividade = htmlspecialchars($precoAtividade, ENT_QUOTES, 'UTF-8');
             
             # Inserir campos na base de dados
-            $sql = "INSERT INTO atividades (idAdmin, nomeAtividade, descricaoAtividade, zonaAtividade, duracaoAtividade, precoAtividade, imagemAtividade) VALUES(:idAdmin, :nomeAtividade, :descricaoAtividade, :zonaAtividade, :duracaoAtividade, :precoAtividade, :imagemAtividade)";
+            $sql = "INSERT INTO atividades (idAdmin, nomeAtividade, descricaoAtividade, zonaAtividade, duracaoAtividade, precoAtividade, imagemAtividade) ";
+            $sql .= "VALUES(:idAdmin, :nomeAtividade, :descricaoAtividade, :zonaAtividade, :duracaoAtividade, :precoAtividade, :imagemAtividade)";
             $stmt = $pdo->prepare($sql);
         
             # Executar o statement
-            $stmt->execute(["idAdmin" => $idAdmin, ":nomeAtividade" => $nomeAtividade, ":descricaoAtividade" => $descricaoAtividade, ":zonaAtividade" => $zonaAtividade, ":duracaoAtividade" => $duracaoAtividade, ":precoAtividade" => $precoAtividade, ":imagemAtividade" => 1]); 
+            $stmt->execute([":idAdmin" => $idAdmin, ":nomeAtividade" => $nomeAtividade, ":descricaoAtividade" => $descricaoAtividade, ":zonaAtividade" => $zonaAtividade, ":duracaoAtividade" => $duracaoAtividade, ":precoAtividade" => $precoAtividade, ":imagemAtividade" => $imagemAtividade]); 
+
+            # Refrescar a página com a nova atividade incluída
+            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+            echo "<script>alert('A sua nova atividade foi adicionada com sucesso!')</script>";
+            echo "<script>location.reload();</script>"; 
 
         }
                 
@@ -48,7 +69,7 @@
 <!-- Formulário de inserção de uma nova atividade -->
 <div id="insert_activity_form">
     
-    <form action="" method="post" autocomplete="off" role="form"> 
+    <form action="" method="post" enctype="multipart/form-data" autocomplete="off" role="form"> 
         
         <!-- Inserir o nome da atividade --> 
         <div class="form-group">
@@ -98,7 +119,7 @@
             <!-- Inserir preço da atividade -->
             <div class="input-group preco_atividade">
                 <ion-icon name="cash"></ion-icon>
-                <input type="text" name="preco_atividade" placeholder="Ex: Desde 30€" class="form-control" required>
+                <input type="text" name="preco_atividade" placeholder="Ex: Desde 30€" class="form-control">
             </div>
 
         </div>
@@ -106,12 +127,13 @@
         <!-- Upload da imagem de destaque da atividade --> 
         <div class="form-group upload_imagem_label">
             <label for="zona_atividade">Upload da imagem de destaque da atividade</label>
+            <input type="file" name="ficheiro_imagem">
         </div>
         
         <!-- Botão de submissão -->
         <div style="text-align: center">
             <button type="submit" name="submit_insert" id="insert_button" 
-            class="btn">Inserir nova atividade</button>
+            class="btn" onclick="return preventDouble();">Inserir nova atividade</button>
         </div>
     
     </form>
