@@ -14,7 +14,7 @@
             $usernameAdmin = trim($usernameAdmin);
             $passwordAdmin = trim($passwordAdmin);
 
-            # Proteção contra XSS (Cross-Site Scripting)
+            # Proteção contra XSS (Cross Site Scripting)
             $usernameAdmin = htmlspecialchars($usernameAdmin, ENT_QUOTES, 'UTF-8');
             $passwordAdmin = htmlspecialchars($passwordAdmin, ENT_QUOTES, 'UTF-8');
 

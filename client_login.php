@@ -14,7 +14,7 @@
             $username = trim($username);
             $password_attempt = trim($password_attempt);
 
-            # Proteção contra XSS (Cross-Site Scripting)
+            # Proteção contra XSS (Cross Site Scripting)
             $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
             $password_attempt = htmlspecialchars($password_attempt, ENT_QUOTES, 'UTF-8');
 

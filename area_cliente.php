@@ -38,7 +38,7 @@
             de cartão de crédito */
             $cartaoCredito = trim(preg_replace('/\s+/', '', $cartaoCredito));
 
-            # Proteção contra XSS (Cross-Site Scripting)
+            # Proteção contra XSS (Cross Site Scripting)
             $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
 
             # Encriptação do cartão de crédito
@@ -111,7 +111,7 @@
         # Obter o ID da atividade que se deseja eliminar
         $idReserva = $_POST["idReserva"];
 
-         # Proteção contra XSS (Cross-Site Scripting)
+         # Proteção contra XSS (Cross Site Scripting)
         $idReserva = htmlspecialchars($idReserva, ENT_QUOTES, 'UTF-8');
 
         # Query que eliminará a atividade da base de dados 
@@ -157,23 +157,38 @@
             <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
             <!-- Título da atividade -->
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-3"><?php echo utf8_encode($activity->nomeAtividade); ?></h5>
+            <div class="text-center">
+                <h5 class="mb-3r"><?php echo $activity->nomeAtividade; ?></h5>
             </div>
             
             <!-- Descrição da atividade --> 
-            <p class="mb-3"><?php echo utf8_encode($activity->descricaoAtividade); ?></p>
+            <p class="mb-3"><?php echo $activity->descricaoAtividade; ?></p>
 
             <!-- Zona da atividade --> 
-            <p class="mb-2"><span class="subtitulo_listagem">Zona:</span> <?php echo utf8_encode($activity->zonaAtividade); ?></p>
+            <p class="mb-2"><span class="subtitulo_listagem">Zona:</span> <?php echo $activity->zonaAtividade; ?></p>
 
             <!-- Duração média da atividade -->
-            <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo ($activity->duracaoAtividade); ?></p>  
+            <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo $activity->duracaoAtividade; ?></p>  
+
+             <?php 
+
+                # Mostrar o símbolo do euro apenas caso a atividade possuir um preço
+                if ($activity->precoAtividade !== "Atividade sem custos") {
+
+            ?>
 
             <!-- Preço da atividade -->
             <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?>€</p>
 
-            <p>IMAGEM DE DESTAQUE À DIREITA</p>
+            <?php } else { ?>
+
+            <!-- Preço da atividade -->
+            <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?></p>
+
+            <?php } ?>
+
+                <!-- Imagem de destaque da atividade -->
+                <img src=<?php echo "img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
                 
                 <!-- Separador --> 
                 <hr class="hr_style">
@@ -287,13 +302,13 @@
                                 if ($idAtividadeReserva === $idAtividade) {
                                     
                                     echo "<tr>";
-                                    echo utf8_encode("<td>{$activity->nomeAtividade}</td>");
-                                    echo utf8_encode("<td>{$activity->descricaoAtividade}</td>");
-                                    echo utf8_encode("<td>{$activity->zonaAtividade}</td>");
-                                    echo "<td>{$activity->duracaoAtividade}</td>" ;
-                                    echo utf8_encode("<td>{$activity->imagemAtividade}</td>");
-                                    echo "<td>{$activity->precoAtividade}€</td>" ;
-                                    echo "<td>{$reserve->estadoReserva}</td>" ;
+                                    echo "<td>{$activity->nomeAtividade}</td>";
+                                    echo "<td>{$activity->descricaoAtividade}</td>";
+                                    echo "<td>{$activity->zonaAtividade}</td>";
+                                    echo "<td>{$activity->duracaoAtividade}</td>";
+                                    echo "<td>{$activity->imagemAtividade}</td>";
+                                    echo "<td>{$activity->precoAtividade}€</td>";
+                                    echo "<td>{$reserve->estadoReserva}</td>";
                                     
                                     ?>
 
