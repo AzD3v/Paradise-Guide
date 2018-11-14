@@ -11,7 +11,7 @@
         <h1>Listagem de todas as suas atividades</h1>
 
         <!-- Incluir a listagem de todas as atividades associadas ao admin -->
-        <?php include_once("includes_gestao_atividades/listagem_atividades.php"); ?>
+        <?php include_once("listagem_atividades.php"); ?>
 
     </div>
 
