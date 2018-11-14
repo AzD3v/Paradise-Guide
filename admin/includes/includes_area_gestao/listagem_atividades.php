@@ -15,9 +15,9 @@
         
         # Listar todas as atividades referentes a este administrador
         if ($adminAtividade === $idAdmin) {
-        
+
         ?>
-            
+
             <!-- Grupo que contém os detalhes de cada atividade -->
             <div class="list-group">
                 
