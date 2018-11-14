@@ -92,6 +92,10 @@ h1 {
     width: 850px;
 }
 .list-group h5 {font-size: 25px;font-weight: bold;}
+.list-group .img_listagem {
+    width: 500px;
+    margin: 20px 18%;
+}
 .list-group p {font-size: 21px;margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
 

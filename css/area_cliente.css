@@ -94,9 +94,14 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
     text-align: center;
 }
 #all_activities .list-group {padding: 20px 30px;}
-.d-flex h5 {font-size: 25px; font-weight: bold;}
+.d-flex h5 {font-size: 28px; font-weight: bold;}
 .list-group p {font-size: 21px; margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
+.list-group .img_listagem {
+    width: 650px;
+    height: 450px;
+    margin: -110px 0 0 45.3%;
+}
 
 div#user_activities h1.alert.alert-info {
     color: var(--secondaryGreen);
@@ -142,8 +147,10 @@ div#user_activities h1.alert.alert-info {
 
 /* Formulário de reserva */
 .list-group-item .form-group {display: flex; flex-direction: column;}
-.list-group-item h3 {font-size: 22px; font-weight: bold; margin-bottom: 20px;}
-.list-group-item label {font-weight: bold;}
+.list-group-item h5 {font-size: 30px; font-weight: bold; margin-bottom: 20px;}
+.list-group-item h3 {font-size: 24px; font-weight: bold; margin-bottom: 20px;}
+.list-group-item p {font-size: 23px;}
+.list-group label {font-size: 18px !important; font-weight: bold;}
 .cn {width: 165px;}
 #exp {width: 80px;}
 #card_name {width: 285px;}

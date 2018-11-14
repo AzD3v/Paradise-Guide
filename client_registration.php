@@ -18,7 +18,7 @@
             $password = trim($password);
             $password_rewrite = trim($password_rewrite);
 
-            # Proteção contra XSS (Cross-Site Scripting)
+            # Proteção contra XSS (Cross Site Scripting)
             $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
             $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
             $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
