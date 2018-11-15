@@ -17,12 +17,15 @@
 
         <!-- Gestão de atividades -->
         <ul class="nav navbar-nav">
+
+          <!-- Filtrar atividades por nome --> 
+          <input type="text">
           
           <!-- Opção de vizualizar todas as atividades -->
           <li>
             <a href="" onclick="return false;" class="nav-link active" id="all_activities_admin_tab">
-              <ion-icon name="eye" class="menu_icons"></ion-icon>
-              Vizualizar todas as atividades
+              <ion-icon name="build" class="menu_icons"></ion-icon>
+              Gestor de atividades
             </a>
           </li>
           <li>
@@ -35,12 +38,12 @@
           </li>
 
           <!-- Opção de editar atividades -->
-          <li>    
+          <!-- <li>    
             <a href="" onclick="return false;" class="nav-link" id="edit_activities_admin_tab">
               <ion-icon name="build" class="menu_icons"></ion-icon>
               Editar atividades
             </a>
-          </li>
+          </li> -->
          
         </ul>
 
@@ -51,18 +54,18 @@
             <!-- Opção de vizualizar todas as reservas -->
             <li>
                 <a href="" onclick="return false;" class="nav-link" id="all_reserves_admin_tab">
-                <ion-icon name="eye" class="menu_icons"></ion-icon>
-                Vizualizar todas as reservas
+                <ion-icon name="build" class="menu_icons"></ion-icon>
+                Gestor das reservas efetuadas
               </a>
             </li>
 
             <!-- Opção de editar estado das reservas -->
-            <li>
+            <!-- <li>
                 <a href="" onclick="return false;" class="nav-link" id="edit_reserves_admin_tab">
                 <ion-icon name="build" class="menu_icons"></ion-icon>
                 Editar estado das reservas
                 </a>
-            </li>
+            </li> -->
 
         </ul>
 

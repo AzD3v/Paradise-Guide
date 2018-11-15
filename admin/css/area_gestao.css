@@ -91,7 +91,7 @@ h1 {
     margin-top: 20px;
     width: 850px;
 }
-.list-group h5 {font-size: 25px;font-weight: bold;}
+.list-group h5 {margin-top: 10px; font-size: 25px; font-weight: bold;}
 .list-group .img_listagem {
     width: 500px;
     margin: 20px 18%;
