@@ -1,4 +1,9 @@
 /* General */ 
+:root {
+    --deleteButtonHover: #c0392b;
+    --editButtonHover: ;
+}
+
 button:active,
 button:visited,
 button:active,
@@ -82,7 +87,6 @@ h1 {
 #all_reserves_admin,
 #edit_reserves {display: none;}
 
-
 /* Listagem de atividades */ 
 #all_activities_admin .list-group {padding: 20px 30px;}
 .list-group-item.active {
@@ -120,12 +124,28 @@ h1 {
 .list-group button:hover {color: #fff;}
 
 .manager_buttons #edit_button,
+#edit_button_confirm,
 .manager_buttons #delete_button {
     transition: all 300ms ease-in-out;
 }
 
+#edit_button_confirm {
+    margin: 20px 0 0 33%;
+}
+
 .manager_buttons #edit_button.btn:hover {
-    color: red !important;
+    background: #34495e !important;
+    padding: 25px;
+}
+
+#edit_button_confirm:hover {
+    background: #34495e !important;
+    padding: 25px;
+}
+
+.manager_buttons #delete_button.btn:hover {
+    background: var(--deleteButtonHover) !important;
+    padding: 25px;
 }
 
 /* Nova atividade */ 
@@ -173,7 +193,6 @@ label {
 }
 
 input[name="nome_atividade"],
-textarea[name="descricao_atividade"], 
 input[name="duracao_atividade"],
 input[name="zona_atividade"],
 input[name="preco_atividade"] {
@@ -202,6 +221,22 @@ input[name="preco_atividade"] {
     color: #fff;
     margin-right: 4px;
 }
+
+/* Editar atividades */ 
+#edit_activities input[name="novo_nome_atividade"] {
+    font-size: 18px !important;
+    width: 350px !important;
+    margin-bottom: -15px;
+}
+
+#edit_activities input[name="nova_descricao_atividade"] {
+    font-size: 18px !important;
+    width: 200px !important;
+}
+
+.edit_img {width: 300px;}
+.new_image {margin-top: 10px;}
+.new_description_label {margin-bottom: 10px;}
 
 /* Media Queries */
 @media screen and (min-width: 992px) {

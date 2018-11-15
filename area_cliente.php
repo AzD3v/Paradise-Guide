@@ -25,12 +25,17 @@
     /* Definição do array que irá guardar os novos dados associados a uma reserva (ID do user e ID da atividade) */
     $new_reserve = [];
 
-    // Processo de inserção na base de dados
+    # Processo de inserção de uma atividade na base de dados
     if (isset($_POST["reserve_btn"])) {
         
         # Obter o número do cartão de crédito
         $cartaoCredito = $_POST["credit_card"];
+
+        # Obter o ID da atividade em questão
         $idAtividade = $_POST["idAtividade"];
+
+        # Proteção contra XSS (Cross Site Scripting) - ID da atividade
+        $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
 
         if (!empty($cartaoCredito)) {
             
@@ -38,7 +43,7 @@
             de cartão de crédito */
             $cartaoCredito = trim(preg_replace('/\s+/', '', $cartaoCredito));
 
-            # Proteção contra XSS (Cross Site Scripting)
+            # Proteção contra XSS (Cross Site Scripting) - Cartão de crédito
             $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
 
             # Encriptação do cartão de crédito
@@ -148,6 +153,7 @@
 
         <?php
 
+        # Display de todas as atividades
         foreach($activities as $activity) {
         
         ?>
@@ -188,7 +194,7 @@
             <?php } ?>
 
                 <!-- Imagem de destaque da atividade -->
-                <img src=<?php echo "img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
+                <img src=<?php echo "admin/img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
                 
                 <!-- Separador --> 
                 <hr class="hr_style">

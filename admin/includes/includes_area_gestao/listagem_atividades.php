@@ -5,7 +5,7 @@
     $id_admin = Admin::find_id_by_username($admin);
     $idAdmin = $id_admin->idAdmin;
 
-    # Aceder a todos os dados de cada atividade
+    # Aceder a todos os dados de todas as atividades
     $activities = Activity::find_all_activities(); 
     
     foreach($activities as $activity) {
@@ -19,7 +19,7 @@
         ?>
 
             <!-- Grupo que contém os detalhes de cada atividade -->
-            <div class="list-group">
+            <div class="list-group" id="<?php echo $activity->idAtividade; ?>">
                 
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
@@ -27,7 +27,7 @@
                 <h5 class="mb-3 text-center"><?php echo $activity->nomeAtividade; ?></h5>
 
                 <!-- Imagem de destaque da atividade -->
-                <img src=<?php echo "../img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
+                <img src=<?php echo "img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
                 
                 <!-- Descrição da atividade --> 
                 <p class="mb-3"><?php echo $activity->descricaoAtividade; ?></p>
@@ -38,6 +38,7 @@
                 <!-- Duração média da atividade -->
                 <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo $activity->duracaoAtividade; ?></p>  
 
+                <!-- Preço da atividade -->
                 <?php 
 
                     # Mostrar o símbolo do euro apenas caso a atividade possuir um preço
@@ -45,7 +46,6 @@
 
                 ?>
 
-                <!-- Preço da atividade -->
                 <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?>€</p>
 
                 <?php } else { ?>
@@ -57,10 +57,13 @@
                 
                 <!-- Manager buttons -->
                 <div class="manager_buttons">   
-                    <!-- Botão de edição -->
+
+                    <!-- Formulário e botão de edição -->
                     <div>
-                        <button type="submit" id="edit_button" 
-                        class="btn">Editar esta atividade</button>
+                        <form action="area_gestao.php?action=edit&id=<?php echo $activity->idAtividade; ?>" method="post" role="form">
+
+                        <button type="submit" id="edit_button" class="btn">Editar esta atividade</button>
+                        </form>
                     </div>
 
                     <!-- Botão que elimina uma atividade -->
