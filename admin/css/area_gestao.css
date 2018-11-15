@@ -91,13 +91,19 @@ h1 {
     margin-top: 20px;
     width: 850px;
 }
-.list-group h5 {font-size: 25px;font-weight: bold;}
+.list-group h5 {margin-top: 10px; font-size: 25px; font-weight: bold;}
 .list-group .img_listagem {
     width: 500px;
     margin: 20px 18%;
 }
 .list-group p {font-size: 21px;margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
+
+.manager_buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
 
 .list-group button {
     color: #fff;
@@ -112,6 +118,15 @@ h1 {
 }
 
 .list-group button:hover {color: #fff;}
+
+.manager_buttons #edit_button,
+.manager_buttons #delete_button {
+    transition: all 300ms ease-in-out;
+}
+
+.manager_buttons #edit_button.btn:hover {
+    color: red !important;
+}
 
 /* Nova atividade */ 
 #insert_activity_form {

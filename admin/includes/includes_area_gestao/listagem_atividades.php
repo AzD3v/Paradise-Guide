@@ -54,11 +54,20 @@
                 <p class="mb-2"><span class="subtitulo_listagem">Preço:</span> <?php echo $activity->precoAtividade; ?></p>
 
                 <?php } ?>
+                
+                <!-- Manager buttons -->
+                <div class="manager_buttons">   
+                    <!-- Botão de edição -->
+                    <div>
+                        <button type="submit" id="edit_button" 
+                        class="btn">Editar esta atividade</button>
+                    </div>
 
-                <!-- Botão de edição -->
-                <div style="text-align: center">
-                    <button type="submit" id="edit_button" 
-                    class="btn">Editar esta atividade</button>
+                    <!-- Botão que elimina uma atividade -->
+                    <div>
+                        <button type="submit" id="delete_button" 
+                        class="btn">Eliminar atividade</button>
+                    </div>
                 </div>
                 
                 </div>
