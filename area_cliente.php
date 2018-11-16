@@ -91,7 +91,7 @@
             if (strlen($cartaoCredito) !== 16) {
                 $error_message = "<div class='alert alert-danger text-center' role='alert'>O número de cartão de crédito introduzido não é válido!</div>";
                 $result = false;
-            } 
+            }   
 
             /* Caso a validação do número de cartão de crédito obtenha sucesso
             a variável de resultado retorna "true" */
@@ -100,11 +100,11 @@
                 $success_message = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na sua <a href='' onclick='return false;' class='check_reserves' id='check_success'>lista de atividades</a>.</div>";
 
                 # Proceder à reserva de uma dada atividade
-                $sql = "INSERT INTO reservas (idAtividade, idUser, cartaoCredito, estadoReserva) ";
-                $sql .= "VALUES(:idAtividade, :idUser, :cartaoCredito, :estadoReserva)";
+                $sql = "INSERT INTO reservas (idAtividade, idUser, idAdmin, cartaoCredito, estadoReserva) ";
+                $sql .= "VALUES(:idAtividade, :idUser, :idAdmin, :cartaoCredito, :estadoReserva)";
                 
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":cartaoCredito" => $cipherCartaoCredito, ":estadoReserva" => "Marcada"]);
+                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":idAdmin" => 1, ":cartaoCredito" => $cipherCartaoCredito, ":estadoReserva" => "Marcada"]);
                 
             }
             
@@ -294,6 +294,7 @@
 
                     /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas e atividades do utilizador em questão */
                     foreach ($reserves as $reserve) {
+
                         $idReserva = $reserve->idReserva;
                         $idAtividadeReserva = $reserve->idAtividade;
                         $estadoReserva = $reserve->estadoReserva;
@@ -328,7 +329,7 @@
                                     <?php 
 
                                         # Botão que cancela uma dada atividade
-                                        echo "<td><button type='submit' name='cancelar_atividade' class='btn-danger btn-block'>Cancelar</button></td>" ;
+                                        echo "<td><button type='submit' name='cancelar_reserva' class='btn-danger btn-block'>Cancelar</button></td>" ;
                                     
                                     ?>
 
