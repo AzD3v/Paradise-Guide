@@ -54,18 +54,18 @@
             <!-- Opção de vizualizar todas as reservas -->
             <li>
                 <a href="" onclick="return false;" class="nav-link" id="all_reserves_admin_tab">
-                <ion-icon name="build" class="menu_icons"></ion-icon>
-                Gestor das reservas efetuadas
+                <ion-icon name="eye" class="menu_icons"></ion-icon>
+                Vizalizar todas as reservas
               </a>
             </li>
 
-            <!-- Opção de editar estado das reservas -->
-            <!-- <li>
+            <!-- Opção de atualizar o estado das reservas -->
+            <li>
                 <a href="" onclick="return false;" class="nav-link" id="edit_reserves_admin_tab">
                 <ion-icon name="build" class="menu_icons"></ion-icon>
-                Editar estado das reservas
+                Atualizar estado das reservas
                 </a>
-            </li> -->
+            </li>
 
         </ul>
 
