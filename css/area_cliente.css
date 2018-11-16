@@ -155,7 +155,7 @@ div#user_activities h1.alert.alert-info {
 #exp {width: 80px;}
 #card_name {width: 285px;}
 
-/* Reserva */ 
+/* Listagem de reservas (cliente) */ 
 #user_activities h1 {
     font-size: 26px;
     color: #fff;
@@ -188,3 +188,4 @@ tbody {color: #fff;font-size: 18px;background: var(--primaryGreen);}
 }
 
 .table-bordered button:hover {cursor: pointer;}
+.img_reservas_cliente {width: 100px;}

@@ -52,6 +52,9 @@
         <!-- Título da área -->
         <h1>Listagem de todas as reservas efetuadas</h1>
 
+        <!-- Incluir a listagem de todas as reservas feitas pelos clientes -->
+        <?php include_once("listagem_reservas.php"); ?>
+
     </div>
 
     <!-- Editar reservas -->
@@ -61,7 +64,7 @@
         <a href="includes/includes_area_gestao/admin_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão<ion-icon class="navbar_logout_icon" name="power"></ion-icon></button></a>
 
         <!-- Título da área -->
-        <h1>Área de edição de reservas</h1>
+        <h1>Atualize o estado das reservas</h1>
 
          <!-- Incluir a o formulário de edição de reservas -->
         <?php // include_once("includes_gestao_atividades/edit_activity.php"); ?>

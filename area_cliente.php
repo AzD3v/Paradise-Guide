@@ -258,7 +258,7 @@
 
         # Display das atividades reservadas pelo utilizador se estas existirem
         $user_reserves = Reserve::find_user_reserves($idUser);
-        
+
         if (!empty($user_reserves)) {
         
     ?>
@@ -313,7 +313,7 @@
                                     echo "<td>{$activity->descricaoAtividade}</td>";
                                     echo "<td>{$activity->zonaAtividade}</td>";
                                     echo "<td>{$activity->duracaoAtividade}</td>";
-                                    echo "<td>{$activity->imagemAtividade}</td>";
+                                    echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
                                     echo "<td>{$activity->precoAtividade}€</td>";
                                     echo "<td>{$reserve->estadoReserva}</td>";
                                     
