@@ -19,7 +19,9 @@
         <ul class="nav navbar-nav">
 
           <!-- Filtrar atividades por nome --> 
-          <input type="text">
+          <form action="" method="">
+            <input type="search" placeholder="Filtrar atividades">
+          </form>
           
           <!-- Opção de vizualizar todas as atividades -->
           <li>

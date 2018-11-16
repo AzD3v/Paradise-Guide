@@ -1,7 +1,7 @@
 /* General */ 
 :root {
     --deleteButtonHover: #c0392b;
-    --editButtonHover: ;
+    --editButtonHover: #34495e;
 }
 
 button:active,
@@ -19,7 +19,29 @@ a::after {
     box-shadow: none !important;
 }
 
-/* Menu de navegação admin e topo da página */ 
+/* Filtro, menu de navegação admin e topo da página */ 
+input[type=search] {
+    width: 15px;
+    padding-left: 10px;
+    color: transparent;
+    cursor: pointer;
+}
+
+input[type=search]:hover {
+    background-color: #fff;
+}
+
+input[type=search]:focus {
+    width: 130px;
+    padding-left: 32px;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+}
+
+input:-moz-placeholder {color: transparent;}
+input::-webkit-input-placeholder {color: transparent;}
+
 .navbar button {
     text-transform: uppercase;
     color: #fff !important;
@@ -134,12 +156,12 @@ h1 {
 }
 
 .manager_buttons #edit_button.btn:hover {
-    background: #34495e !important;
+    background: var(--editButtonHover) !important;
     padding: 25px;
 }
 
 #edit_button_confirm:hover {
-    background: #34495e !important;
+    background: var(--editButtonHover) !important;
     padding: 25px;
 }
 
