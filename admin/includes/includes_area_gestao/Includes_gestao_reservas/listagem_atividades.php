@@ -1,5 +1,13 @@
 <?php 
 
+    # Obter o ID do admin que possui sessão iniciada
+    $admin = $_SESSION["admin"];
+    $id_admin = Admin::find_id_by_username($admin);
+    $idAdmin = $id_admin->idAdmin;
+
+    # Aceder a todos os dados de todas as atividades
+    $activities = Activity::find_all_activities(); 
+
     # Atalho para edição de atividades
     if (isset($_POST["edit_button_confirm"])) {
         
@@ -76,14 +84,10 @@
 
     }
 
-    # Obter o ID do admin que possui sessão iniciada
-    $admin = $_SESSION["admin"];
-    $id_admin = Admin::find_id_by_username($admin);
-    $idAdmin = $id_admin->idAdmin;
+    # Eliminação de um dada atividade 
 
-    # Aceder a todos os dados de todas as atividades
-    $activities = Activity::find_all_activities(); 
-    
+
+    # Listagem de atividades 
     foreach($activities as $activity) {
 
         # Obter o ID do admin que está encarregado da atividade
@@ -200,9 +204,14 @@
                         </form>
                     </div>
 
-                    <!-- Botão que elimina uma atividade -->
+                    <!-- Botão e formulário que elimina uma atividade -->
                     <div>
-                        <button type="submit" id="delete_button" 
+                        <form action="" method="post" role="form">
+
+                        <!-- Input type "hidden" - ID da atividade --> 
+                        <input type="hidden" name="idAtividadeEliminar" value="<?php echo $activity->idAtividade; ?>">
+
+                        <button type="submit" name="eliminar_atividade" id="delete_button" 
                         class="btn">Eliminar atividade</button>
                     </div>
                 </div>
