@@ -24,8 +24,8 @@
           <!-- Opção de vizualizar todas as atividades -->
           <li>
             <a href="" onclick="return false;" class="nav-link active" id="all_activities_admin_tab">
-              <ion-icon name="build" class="menu_icons"></ion-icon>
-              Gestor de atividades
+              <ion-icon name="eye" class="menu_icons"></ion-icon>
+              Vizualizar todas as atividades
             </a>
           </li>
           <li>
@@ -38,12 +38,12 @@
           </li>
 
           <!-- Opção de editar atividades -->
-          <!-- <li>    
+          <li>    
             <a href="" onclick="return false;" class="nav-link" id="edit_activities_admin_tab">
               <ion-icon name="build" class="menu_icons"></ion-icon>
               Editar atividades
             </a>
-          </li> -->
+          </li>
          
         </ul>
 
