@@ -1,4 +1,71 @@
-<?php 
+<?php   
+
+        // Alteração do estado das reservas
+        # Marcar reserva como "realizada"
+        if (isset($_POST["marcar_reserva_realizada"])) {
+            
+            # Acesso ao ID da reserva marcada como "realizada" 
+            $idReservaRealizada = $_POST["idReserva"];
+
+            # Modificar estado da reserva para "realizada" 
+            $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
+            $sql .= "WHERE idReserva = :idReserva";
+            
+            # Preparar o statement
+            $stmt = $pdo->prepare($sql);
+
+            # Executar o statement 
+            $stmt->execute([":estadoReserva" => "Realizada", ":idReserva" => $idReservaRealizada]);
+
+            # Refrescar a página com a reserva em questão atualizada
+            echo "<script>alert('A reserva foi marcada como realizada!')</script>";
+            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+
+        }
+
+        # Marcar reserva como "adiada"
+        if (isset($_POST["adiar_reserva"])) {
+            
+            # Acesso ao ID da reserva marcada como "adiada" 
+            $idReservaRealizada = $_POST["idReserva"];
+
+            # Modificar estado da reserva para "adiada" 
+            $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
+            $sql .= "WHERE idReserva = :idReserva";
+            
+            # Preparar o statement
+            $stmt = $pdo->prepare($sql);
+
+            # Executar o statement 
+            $stmt->execute([":estadoReserva" => "Adiada", ":idReserva" => $idReservaRealizada]);
+
+            # Refrescar a página com a reserva em questão atualizada
+            echo "<script>alert('A reserva foi marcada como adiada!')</script>";
+            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+
+        }
+
+        # Marcar atividade como "cancelada"
+        if (isset($_POST["cancelar_reserva"])) {
+            
+            # Acesso ao ID da atividade a marcar como "cancelada" 
+            $idReservaRealizada = $_POST["idReserva"];
+
+            # Modificar estado da atividade para "cancelada" 
+            $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
+            $sql .= "WHERE idReserva = :idReserva";
+            
+            # Preparar o statement
+            $stmt = $pdo->prepare($sql);
+
+            # Executar o statement 
+            $stmt->execute([":estadoReserva" => "Cancelada", ":idReserva" => $idReservaRealizada]);
+
+            # Refrescar a página com a reserva em questão atualizada
+            echo "<script>alert('A reserva foi marcada como cancelada!')</script>";
+            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+
+        }
 
         # Display das atividades reservadas pelo utilizador se estas existirem
         $user_reserves = Reserve::find_admin_reserves($idAdmin);
@@ -31,65 +98,72 @@
                     
                     <?php 
 
-                    # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
-                    $reserves = Reserve::find_all_reserves();
+                        # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
+                        $reserves = Reserve::find_all_reserves();
 
-                    /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas e atividades do utilizador em questão */
-                    foreach ($reserves as $reserve) {
+                        /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas e atividades do utilizador em questão */
+                        foreach ($reserves as $reserve) {
 
-                        $idReserva = $reserve->idReserva;
-                        $idAtividadeReserva = $reserve->idAtividade;
-                        $estadoReserva = $reserve->estadoReserva;
-                        $adminReserva = $reserve->idAdmin;
+                            $idReserva = $reserve->idReserva;
+                            $idAtividadeReserva = $reserve->idAtividade;
+                            $estadoReserva = $reserve->estadoReserva;
+                            $adminReserva = $reserve->idAdmin;
 
-                        if ($adminReserva === $idAdmin) {
+                            if ($adminReserva === $idAdmin) {
 
-                            foreach($activities as $activity) {
-                                
-                                $idAtividade = $activity->idAtividade;
-                                
-                                if ($idAtividadeReserva === $idAtividade) {
+                                foreach($activities as $activity) {
                                     
-                                    echo "<tr>";
-                                    echo "<td>{$activity->nomeAtividade}</td>";
-                                    echo "<td>{$activity->descricaoAtividade}</td>";
-                                    echo "<td>{$activity->zonaAtividade}</td>";
-                                    echo "<td>{$activity->duracaoAtividade}</td>";
-                                    echo "<td><img src='img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
-                                    echo "<td>{$activity->precoAtividade}€</td>";
-                                    echo "<td>{$reserve->estadoReserva}</td>";
+                                    $idAtividade = $activity->idAtividade;
                                     
-                                    ?>
+                                    if ($idAtividadeReserva === $idAtividade) {
+                                        
+                                        echo "<tr>";
+                                        echo "<td>{$activity->nomeAtividade}</td>";
+                                        echo "<td>{$activity->descricaoAtividade}</td>";
+                                        echo "<td>{$activity->zonaAtividade}</td>";
+                                        echo "<td>{$activity->duracaoAtividade}</td>";
+                                        echo "<td><img src='img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
+                                        echo "<td>{$activity->precoAtividade}€</td>";
+                                        echo "<td>{$reserve->estadoReserva}</td>";
+                                        
+                                        # Marcar atividade como realizada, adiada ou cancelada
+                                        echo "<td>
+                                            
+                                            <form action='' method='post' role='form'>
+                                                
+                                                <input type='hidden' name='idReserva' value='$idReserva'>
 
-                                    <!-- Opção de cancelar a reserva --> 
-                                    <form method="post">
+                                                <button type='submit' name='marcar_reserva_realizada' class='btn-success btn-block'>Realizada</button>
 
-                                        <!-- Campo hidden que contém o ID da atividade que se
-                                        deseja eliminar -->
-                                        <input type="hidden" name="idReserva" value="<?php echo $idReserva; ?>">
+                                            </form>
+
+                                            <form action='' method='post' role='form'>
+
+                                                <input type='hidden' name='idReserva' value='$idReserva'>
+                                                
+                                                <button type='submit' name='adiar_reserva' class='btn-info btn-block'>Adiar</button>
+
+                                            </form>
+
+                                            <form action='' method='post' role='form'>
+
+                                                <input type='hidden' name='idReserva' value='$idReserva'>
+                                        
+                                                <button type='submit' name='cancelar_reserva' class='btn-danger btn-block'>Cancelar</button>
+                                        
+                                            </form>
+                                            
+                                            </td>";
+                                        
+                                        echo "</tr>";
                                     
-                                    <?php 
-
-                                        # Botão que cancela uma dada atividade
-                                        echo "<td><button type='submit' name='cancelar_reserva' class='btn-danger btn-block'>Realizada</button>
-                                        <button type='submit' name='cancelar_reserva' class='btn-danger btn-block'>Adiar</button>
-                                        <button type='submit' name='cancelar_reserva' class='btn-danger btn-block'>Cancelar</button></td>";
-                                    
-                                    ?>
-
-                                    </form>
-
-                                    <?php 
-                                    
-                                    echo "</tr>";
+                                    }
 
                                 }
 
                             }
 
                         }
-
-                    }
 
                     ?>
 

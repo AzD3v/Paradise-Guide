@@ -1,7 +1,7 @@
 <?php
 
     # Processo de edição de uma determinada atividade
-    if (isset($_POST["edit_button_confirm"])) {
+    if (isset($_POST["edit_button"])) {
         
         # Obter o ID da atividade em questão
         $idAtividade = $_POST["idAtividade"];
@@ -73,6 +73,7 @@
         # Refrescar a página com a atividade em questão atualizada
         echo "<script>alert('A atividade foi atualizada com sucesso!')</script>";
         echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+        echo "<script>location.reload();</script>"; 
 
     }
 
@@ -136,7 +137,7 @@
                     <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
 
                     <!-- Botão de confirmação da edição -->
-                    <button type="submit" name="edit_button_confirm" id="edit_button_confirm" class="btn">Concluir edição da atividade</button>
+                    <button type="submit" name="edit_button" id="edit_button_confirm" class="btn">Concluir edição da atividade</button>
 
                 </form>
                 
