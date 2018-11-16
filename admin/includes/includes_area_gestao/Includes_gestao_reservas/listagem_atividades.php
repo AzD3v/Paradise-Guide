@@ -11,6 +11,7 @@
     # Atalho para edição de atividades
     if (isset($_POST["edit_button_confirm"])) {
 
+        # Obter o ID da atividade em questão
         $idAtividade = $_POST["idAtividade"];
         
         # Acesso aos dados do formulário 
@@ -87,6 +88,25 @@
     }
 
     # Eliminação de um dada atividade 
+    if (isset($_POST["eliminar_atividade"])) {
+
+        # Obter o ID da atividade que se deseja eliminar
+        $idAtividade = $_POST["idAtividade"];
+
+         # Proteção contra XSS (Cross Site Scripting)
+        $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
+
+        # Query que eliminará a atividade da base de dados 
+        $sql = "DELETE FROM atividades WHERE idAtividade = :idAtividade";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([":idAtividade" => $idAtividade]); 
+
+        # Refrescar a página com a atividade em questão eliminada
+        echo "<script>alert('A atividade foi eliminada com sucesso!')</script>";
+        echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+        echo "<script>location.reload();</script>"; 
+        
+    }
 
 
     # Listagem de atividades 
@@ -214,7 +234,7 @@
                         <form action="" method="post" role="form">
 
                         <!-- Input type "hidden" - ID da atividade --> 
-                        <input type="hidden" name="idAtividadeEliminar" value="<?php echo $activity->idAtividade; ?>">
+                        <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
 
                         <button type="submit" name="eliminar_atividade" id="delete_button" 
                         class="btn">Eliminar atividade</button>
