@@ -25,7 +25,7 @@
         <h1>Área de criação de atividades</h1> 
 
         <!-- Incluir o formulário de criação de atividades -->
-        <?php include_once("new_activity.php"); ?>
+        <?php include_once("nova_atividade.php"); ?>
          
     </div>
 
@@ -39,7 +39,7 @@
         <h1>Área de edição de atividades</h1>
 
         <!-- Incluir o formulário de edição de atividades -->
-        <?php // include_once("includes_gestao_atividades/edit_activity.php"); ?>
+        <?php include_once("editar_atividades.php"); ?>
 
     </div>
 

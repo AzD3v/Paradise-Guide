@@ -15,7 +15,7 @@
         $duracaoAtividade = $_POST["duracao_atividade"];
         $precoAtividade = $_POST["preco_atividade"];
 
-        # A atividade poderá ser grátis
+        # Permitir que haja a possibilidade da atividade ser grátis
         if ($precoAtividade === "") {$precoAtividade = "Atividade sem custos";}
 
         # Aceder ao ficheiro da imagem para upload
@@ -25,10 +25,10 @@
         # Verificar que os campos não se encontram vazios
         if (!empty($nomeAtividade) && !empty($descricaoAtividade) && !empty($zonaAtividade) && !empty($duracaoAtividade)) { 
 
-            move_uploaded_file($imagemAtividadeTemp, "img/imgs_atividades/{$imagemAtividade}");
-
             # Eliminar o espaço em branco dos campos de inserção da nova atividade
             $nomeAtividade = trim($nomeAtividade);
+            $imagemAtividade = trim($imagemAtividade);
+            $imagemAtividadeTemp = trim($imagemAtividadeTemp);
             $descricaoAtividade = trim($descricaoAtividade);
             $zonaAtividade = trim($zonaAtividade);
             $duracaoAtividade = trim($duracaoAtividade);
@@ -36,14 +36,21 @@
 
             # Proteção contra XSS (Cross Site Scripting)
             $nomeAtividade = htmlspecialchars($nomeAtividade, ENT_QUOTES, 'UTF-8');
+            $imagemAtividade = htmlspecialchars($imagemAtividade, ENT_QUOTES, 'UTF-8');
+            $imagemAtividadeTemp = htmlspecialchars($imagemAtividadeTemp, ENT_QUOTES, 'UTF-8');
             $descricaoAtividade = htmlspecialchars($descricaoAtividade, ENT_QUOTES, 'UTF-8');
             $zonaAtividade = htmlspecialchars($zonaAtividade, ENT_QUOTES, 'UTF-8');
             $duracaoAtividade = htmlspecialchars($duracaoAtividade, ENT_QUOTES, 'UTF-8');
             $precoAtividade = htmlspecialchars($precoAtividade, ENT_QUOTES, 'UTF-8');
+
+            # Mover a imagem carregada para a pasta respetiva
+            move_uploaded_file($imagemAtividadeTemp, "img/imgs_atividades/{$imagemAtividade}");
             
             # Inserir campos na base de dados
             $sql = "INSERT INTO atividades (idAdmin, nomeAtividade, descricaoAtividade, zonaAtividade, duracaoAtividade, precoAtividade, imagemAtividade) ";
             $sql .= "VALUES(:idAdmin, :nomeAtividade, :descricaoAtividade, :zonaAtividade, :duracaoAtividade, :precoAtividade, :imagemAtividade)";
+
+            # Preparar o statement
             $stmt = $pdo->prepare($sql);
         
             # Executar o statement
@@ -127,7 +134,7 @@
         <!-- Botão de submissão -->
         <div style="text-align: center">
             <button type="submit" name="submit_insert" id="insert_button" 
-            class="btn" onclick="return preventDouble();">Inserir nova atividade</button>
+            class="btn">Inserir nova atividade</button>
         </div>
     
     </form>
