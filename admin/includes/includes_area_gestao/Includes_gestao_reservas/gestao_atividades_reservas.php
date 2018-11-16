@@ -57,18 +57,4 @@
 
     </div>
 
-    <!-- Editar reservas -->
-    <div id="edit_reserves">
-
-        <!-- Opção de logout -->
-        <a href="includes/includes_area_gestao/admin_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão<ion-icon class="navbar_logout_icon" name="power"></ion-icon></button></a>
-
-        <!-- Título da área -->
-        <h1>Atualize o estado das reservas</h1>
-
-         <!-- Incluir a o formulário de edição de reservas -->
-        <?php // include_once("includes_gestao_atividades/edit_activity.php"); ?>
-   
-   </div>
-
 </div>
