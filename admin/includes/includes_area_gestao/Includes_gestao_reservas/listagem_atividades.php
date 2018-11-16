@@ -10,9 +10,9 @@
 
     # Atalho para edição de atividades
     if (isset($_POST["edit_button_confirm"])) {
-        
-        $idAtividade = $_GET["id"];
 
+        $idAtividade = $_POST["idAtividade"];
+        
         # Acesso aos dados do formulário 
         $novoNomeatividade = $_POST["novo_nome_atividade"];
         $novaDescricaoAtividade = $_POST["nova_descricao_atividade"];
@@ -38,6 +38,7 @@
         $novaZonaAtividade = trim($novaZonaAtividade);
         $novaDuracaoAtividade = trim($novaDuracaoAtividade);
         $novoCustoAtividade = trim($novoCustoAtividade);
+        $idAtividade = trim($idAtividade);
 
         # Proteção contra XSS (Cross Site Scripting) - dados do formulário
         $novoNomeatividade = htmlspecialchars($novoNomeatividade, ENT_QUOTES, 'UTF-8');
@@ -47,6 +48,7 @@
         $novaZonaAtividade = htmlspecialchars($novaZonaAtividade, ENT_QUOTES, 'UTF-8');
         $novaDuracaoAtividade = htmlspecialchars($novaDuracaoAtividade, ENT_QUOTES, 'UTF-8');
         $novoCustoAtividade = htmlspecialchars($novoCustoAtividade, ENT_QUOTES, 'UTF-8');
+        $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
 
         # Não permitir que exista uma atualização sem alterações aos dados
         if (empty($novoNomeatividade) && empty($novaDescricaoAtividade) && empty($novaDuracaoAtividade) && empty($novaZonaAtividade) && empty($novoCustoAtividade)) {
@@ -98,9 +100,9 @@
 
             if (isset($_POST["editar_atividade"])) {
 
-                $idAtividade = $_GET["id"];
+                $idEditarAtividade = $_POST["idAtividadeEditar"];
 
-                    if ($idAtividade === $activity->idAtividade) {
+                    if ($idEditarAtividade === $activity->idAtividade) {
 
                     ?> 
 
@@ -197,7 +199,10 @@
 
                     <!-- Formulário e botão de edição -->
                     <div>
-                        <form action="area_gestao.php?action=edit&id=<?php echo $activity->idAtividade; ?>" method="post" role="form">
+                        <form action="" method="post" role="form">
+
+                            <!-- Input type hidden - ID da atividade --> 
+                            <input type="hidden" name="idAtividadeEditar" value="<?php echo $activity->idAtividade; ?>">
 
                             <button type="submit" name="editar_atividade" id="edit_button" class="btn">Editar esta atividade</button>
 
