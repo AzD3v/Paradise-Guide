@@ -110,21 +110,21 @@
             
         }
 
-    # Cancelamento de uma dada atividade 
-    if (isset($_POST["cancelar_atividade"])) {
+    # Cancelamento de uma dada reserva
+    if (isset($_POST["cancelar_reserva"])) {
 
-        # Obter o ID da atividade que se deseja eliminar
+        # Obter o ID da reserva que se deseja eliminar
         $idReserva = $_POST["idReserva"];
 
          # Proteção contra XSS (Cross Site Scripting)
         $idReserva = htmlspecialchars($idReserva, ENT_QUOTES, 'UTF-8');
 
-        # Query que eliminará a atividade da base de dados 
+        # Query que eliminará a reserva da base de dados 
         $sql = "DELETE FROM reservas WHERE idReserva = :idReserva";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([":idReserva" => $idReserva]); 
 
-        # Mensagem que aparecerá após uma atividade ser eliminada 
+        # Mensagem que aparecerá após uma reserva ser eliminada 
         $message_after_delete = "<div class='alert alert-danger text-center' role='alert'>Lamentamos o seu cancelamento da atividade! Esperemos que encontre uma do seu agrado na nossa vasta lista!</div>";
 
     }         

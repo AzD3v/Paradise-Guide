@@ -7,7 +7,7 @@
     <?php include("includes/includes_area_gestao/area_gestao_nav.php"); ?>
     
     <!-- Incluir as áreas de gestão das atividades e reservas -->
-    <?php include("includes/includes_area_gestao/gestao_atividades_reservas.php"); ?>
+    <?php include("includes/includes_area_gestao/Includes_gestao_reservas/gestao_atividades_reservas.php"); ?>
 
     <!-- Incluir o footer da área de gestão --> 
     <?php include("includes/includes_area_gestao/area_gestao_footer.php"); ?>
