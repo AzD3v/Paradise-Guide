@@ -19,8 +19,15 @@
     // Funcionalidade que possibilita reservar atividades
     # Obter o ID do utilizador que possui sessão iniciada
     $username = $_SESSION["client"];
-    $id_user = User::find_id_by_username($username);
-    $idUser = $id_user->idUser;
+
+    # Prepared statement que retorna o ID do utilizador em questão
+    $user_id_sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+    $user_id_stmt = $pdo->prepare($user_id_sql);
+    $user_id_stmt->execute([":username" => $username]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $user_id_result = $user_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idUser = $user_id_result["idUser"];
 
     /* Definição do array que irá guardar os novos dados associados a uma reserva (ID do user e ID da atividade) */
     $new_reserve = [];
@@ -256,10 +263,16 @@
                     
     <?php 
 
-        # Display das atividades reservadas pelo utilizador se estas existirem
-        $user_reserves = Reserve::find_user_reserves($idUser);
+        // Display das atividades reservadas pelo utilizador se estas existirem
+        # Prepared statement que retorna todas as reservas do utilizador em questão
+        $user_reservas_sql = "SELECT idUser, idAtividade FROM reservas WHERE idUser = :idUser";
+        $user_reservas_stmt = $pdo->prepare($user_reservas_sql);
+        $user_reservas_stmt->execute([":idUser" => $idUser]);
 
-        if (!empty($user_reserves)) {
+        # Fetch à base de dados de modo a retornar todas as reservadas do utilizador
+        $user_reservas = $user_reservas_stmt->fetchAll();
+                            
+        if (!empty($user_reservas)) {
         
     ?>
                             

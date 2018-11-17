@@ -1,7 +1,7 @@
 /* General */ 
 :root {
     --deleteButtonHover: #c0392b;
-    --editButtonHover: ;
+    --editButtonHover: #34495e;
 }
 
 button:active,
@@ -19,7 +19,194 @@ a::after {
     box-shadow: none !important;
 }
 
-/* Menu de navegação admin e topo da página */ 
+/* Filtro, menu de navegação admin e topo da página */ 
+
+/* Área administrativa */
+.admin {
+    height: 100vh;
+    display: flex;
+}
+
+/* Barra lateral de navegação */
+.admin .admin-sidebar {
+    width: 375px;
+    overflow: auto;
+    margin-right: -20px;
+}
+
+/* Admin wrapper */
+.admin_wrapper {
+    margin-top: 20px;
+    width: 80%;
+}
+
+/* Botão de logout - geral */
+.logout_button {
+    float: right;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-right: 3%;
+    margin-top: -5px;
+    outline: 0;
+    border: 1px solid #fff !important;
+    padding: 15px;
+    background: none !important;
+    box-shadow: none;
+}
+
+/* Ícone do botão de logout - geral */
+.logout_button .navbar_logout_icon {
+    position: relative;
+    top: 3px;
+    left: 4px;
+}
+
+/* Botão de logout - Área de criação de atividades */
+.top_nav_new_activity .btn.btn-primary.logout_button {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-right: 14%;
+    outline: 0;
+    border: 1px solid #fff !important;
+    padding: 15px;
+    background: none !important;
+    box-shadow: none;
+}
+
+/* Ícone do botão de logout - Área de criação de atividades */
+.top_nav_new_activity .navbar_logout_icon {
+    position: relative;
+    top: 3px;
+    left: 4px;
+}
+
+.top_nav_new_activity .return_button {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-left: 7%;
+    outline: 0;
+    border: 1px solid #fff !important;
+    padding: 15px;
+    background: none !important;
+    box-shadow: none;
+}
+
+/* Ícone do botão de return */
+.return_button_icon {
+    position: relative;
+    top: 3px;
+    right: 4px;
+}
+
+/* Filtro de atividades */ 
+.search_form {
+    display: flex;
+}
+
+.search_form ion-icon.hydrated {
+    position: relative;
+    font-size: 32px;
+    top: 14px;
+    right: 4px;
+    color: #ecf0f1;
+}
+
+input[type=search] {
+    margin: 15px 0;
+    height: 30px;
+    font-size: 17px !important;
+    width: 200px;
+    color: transparent;
+    cursor: pointer;
+    background: #ecf0f1;
+    color: #000;
+}
+
+input[type=search]:hover {
+    background-color: #fff;
+}
+
+input[type=search]:focus {
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+}
+
+input:-moz-placeholder {color: transparent;}
+input::-webkit-input-placeholder {color: transparent;}
+
+.btn_search {
+    color: #fff;
+    outline: 0;
+    border: 1px solid #fff !important;
+    background: none;
+    text-transform: uppercase;
+    height: 30px;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.btn_search:hover {cursor: pointer;}
+
+/* Página com listagem (resultado do filtro) */
+#listagem_filtro {
+    margin-top: 25px;
+}
+
+.top_nav_filtro_atividades {
+    display: flex;
+    justify-content: space-between;
+}
+
+#listagem_filtro h1 {
+    margin-top: 15px;
+}
+
+/* Botão de logout - Listagem do filtro de pesquisa */
+.top_nav_filtro_atividades .btn.btn-primary.logout_button {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-right: 14%;
+    outline: 0;
+    border: 1px solid #fff !important;
+    padding: 15px;
+    background: none !important;
+    box-shadow: none;
+}
+
+/* Ícone do botão de logout - Área de criação de atividades */
+.top_nav_filtro_atividades .navbar_logout_icon {
+    position: relative;
+    top: 3px;
+    left: 4px;
+}
+
+.top_nav_filtro_atividades .return_button {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-left: 7%;
+    outline: 0;
+    border: 1px solid #fff !important;
+    padding: 15px;
+    background: none !important;
+    box-shadow: none;
+}
+
+#resultados_filtro .list-group {
+    margin: 20px 20%;
+}
+
+/* Shortcut de edição (listagem) */ 
+#listagem_edicao .list-group {
+    margin: 20px 20%;
+}
+
+/* Navbar */ 
 .navbar button {
     text-transform: uppercase;
     color: #fff !important;
@@ -82,7 +269,6 @@ h1 {
 }
 
 #all_activities,
-#new_activity,
 #edit_activities,
 #all_reserves_admin,
 #edit_reserves {display: none;}
@@ -125,6 +311,7 @@ h1 {
 
 .manager_buttons #edit_button,
 #edit_button_confirm,
+#edit_button_filter,
 .manager_buttons #delete_button {
     transition: all 300ms ease-in-out;
 }
@@ -133,13 +320,10 @@ h1 {
     margin: 20px 0 0 33%;
 }
 
-.manager_buttons #edit_button.btn:hover {
-    background: #34495e !important;
-    padding: 25px;
-}
-
+.manager_buttons #edit_button.btn:hover,
+.manager_buttons #edit_button_filter:hover,
 #edit_button_confirm:hover {
-    background: #34495e !important;
+    background: var(--editButtonHover) !important;
     padding: 25px;
 }
 
@@ -149,10 +333,23 @@ h1 {
 }
 
 /* Nova atividade */ 
+#new_activity {
+    margin-top: 25px;
+}
+
+.top_nav_new_activity {
+    display: flex;
+    justify-content: space-between;
+}
+
+#new_activity h1 {
+    margin-top: 15px;
+}
+
 #insert_activity_form {
-    margin: 25px 0 25px 3%;
+    margin: 45px auto;
     border: 2px solid #fff;
-    width: 71%;
+    width: 80%;
     padding: 20px 50px;
 }
 
@@ -174,14 +371,14 @@ h1 {
     border-radius: 0;
 }
 
-.form-group label {
-    font-size: 22px !important;
+#insert_activity_form .form-group label {
+    font-size: 24px !important;
     margin-bottom: 10px;
     color: #fff;
 }
 
-label {
-    font-size: 22px !important;
+#insert_activity_form  label {
+    font-size: 25px !important;
     margin-top: 15px;
     color: #fff;
 }
@@ -189,32 +386,33 @@ label {
 .inline_fields_labels {
     display: flex;
     justify-content: space-around;
-    margin: 15px -50px;
+    margin: 20px -50px;
 }
 
 input[name="nome_atividade"],
 input[name="duracao_atividade"],
 input[name="zona_atividade"],
-input[name="preco_atividade"] {
-    font-size: 19px;
-}
-
-input[name="duracao_atividade"] {
-    width: 120px !important;
+input[name="preco_atividade"],
+textarea[name="descricao_atividade"] {
+    font-size: 20px;
 }
 
 input[name="zona_atividade"] {
-    width: 160px !important;
+    width: 250px !important;
+}
+
+input[name="duracao_atividade"] {
+    width: 200px !important;
 }
 
 input[name="preco_atividade"] {
-    width: 135px !important;
+    width: 180px !important;
 }
 
-.zona_atividade {margin-left: -2.9%}
-.duracao_atividade {margin-left: 4%;}
-.preco_atividade {margin-left: 7.5%;}
-.upload_imagem_label {margin-top: 15px;}
+.zona_atividade {margin-left: 2.2%}
+.duracao_atividade {margin-left: 6%;}
+.preco_atividade {margin-left: 7.9%;}
+.upload_imagem_label {margin-top: 20px;}
 
 #insert_activity_form ion-icon.hydrated {
     font-size: 40px;
@@ -281,48 +479,7 @@ tbody {
     width: 100px;
 }
 
-/* Media Queries */
-@media screen and (min-width: 992px) {
-    
-    /* Área administrativa */
-    .admin {
-        height: 100vh;
-        display: flex;
-    }
-
-    /* Barra lateral de navegação */
-    .admin .admin-sidebar {
-        width: 375px;
-        overflow: auto;
-        margin-right: -20px;
-    }
-
-    /* Admin wrapper */
-    .admin_wrapper {
-        margin-top: 20px;
-        width: 80%;
-    }
-
-    /* Botão de logout */
-    .logout_button {
-        float: right;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 20px;
-        margin-right: 3%;
-        margin-top: -5px;
-        outline: 0;
-        border: 1px solid #fff !important;
-        padding: 15px;
-        background: none !important;
-        box-shadow: none;
-    }
-
-    /* Ícone do botão de logout */
-    .navbar_logout_icon {
-        position: relative;
-        top: 3px;
-        left: 4px;
-    }
-
+.no_reserves {
+    font-size: 20px;
+    margin: 40px 30px 0 0;
 }

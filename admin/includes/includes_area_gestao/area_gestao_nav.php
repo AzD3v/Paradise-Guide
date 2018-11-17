@@ -19,7 +19,15 @@
         <ul class="nav navbar-nav">
 
           <!-- Filtrar atividades por nome --> 
-          <input type="text">
+          <form action="lista_filtro.php" autocomplete="off" method="post">
+            <div class="search_form">
+              <ion-icon name="search"></ion-icon>
+              <input type="search" name="nome_atividade" placeholder="Filtrar atividades" class="form-control">
+              <input class="btn_search" type="submit" value="Filtrar!" name="filtrar_atividades">
+            </div>
+          </form>
+
+          <hr>
           
           <!-- Opção de vizualizar todas as atividades -->
           <li>
@@ -31,7 +39,7 @@
           <li>
 
             <!-- Opção de criar uma nova atividade -->
-            <a href="" onclick="return false;" class="nav-link" id="new_activity_admin_tab">
+            <a href="nova_atividade.php" class="nav-link" id="new_activity_admin_tab">
             <ion-icon name="add-circle" class="menu_icons"></ion-icon>
               Criar uma nova atividade
             </a>

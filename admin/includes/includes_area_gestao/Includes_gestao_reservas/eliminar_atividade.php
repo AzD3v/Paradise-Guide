@@ -15,6 +15,6 @@
         $stmt->execute([":idAtividade" => $idAtividadeEliminar]); 
 
         # Mensagem que aparecerá após uma atividade ser eliminada 
+        echo "<script>alert('A atividade foi eliminada com sucesso!')</script>";
         
-
     } 
