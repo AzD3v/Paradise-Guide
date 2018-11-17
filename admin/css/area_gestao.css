@@ -201,6 +201,11 @@ input::-webkit-input-placeholder {color: transparent;}
     margin: 20px 20%;
 }
 
+/* Shortcut de edição (listagem) */ 
+#listagem_edicao .list-group {
+    margin: 20px 20%;
+}
+
 /* Navbar */ 
 .navbar button {
     text-transform: uppercase;
@@ -306,6 +311,7 @@ h1 {
 
 .manager_buttons #edit_button,
 #edit_button_confirm,
+#edit_button_filter,
 .manager_buttons #delete_button {
     transition: all 300ms ease-in-out;
 }
@@ -314,11 +320,8 @@ h1 {
     margin: 20px 0 0 33%;
 }
 
-.manager_buttons #edit_button.btn:hover {
-    background: var(--editButtonHover) !important;
-    padding: 25px;
-}
-
+.manager_buttons #edit_button.btn:hover,
+.manager_buttons #edit_button_filter:hover,
 #edit_button_confirm:hover {
     background: var(--editButtonHover) !important;
     padding: 25px;

@@ -10,6 +10,9 @@
 <!-- Incluir a classe Activity -->
 <?php include_once("../data/activity.php"); ?>
 
+<!-- Iniciar a sessão --> 
+<?php session_start(); ?>
+
 <?php if (isset($_SESSION["client"])) {header("Location:../index.php");} ?>
 
 <!DOCTYPE html>
