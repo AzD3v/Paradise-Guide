@@ -2,11 +2,15 @@
 
     # Obter o ID do admin que possui sessão iniciada
     $admin = $_SESSION["admin"];
-    $id_admin = Admin::find_id_by_username($admin);
-    $idAdmin = $id_admin->idAdmin;
 
-    # Aceder a todos os dados de todas as atividades
-    $activities = Activity::find_all_activities(); 
+    # Prepared statement que retorna o ID do admin em questão
+    $admin_id_sql = "SELECT * FROM admin_users WHERE usernameAdmin = :usernameAdmin LIMIT 1";
+    $admin_id_stmt = $pdo->prepare($admin_id_sql);
+    $admin_id_stmt->execute([":usernameAdmin" => $admin]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $admin_id_result = $admin_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idAdmin = $admin_id_result["idAdmin"];
 
     # Atalho para edição de atividades
     if (isset($_POST["edit_button_shortcut"])) {
@@ -107,8 +111,10 @@
         
     }
 
+    # Aceder a todos os dados de todas as atividades
+    $activities = Activity::find_all_activities(); 
 
-    # Listagem de atividades 
+    # Listagem de atividades na área admin
     foreach($activities as $activity) {
 
         # Obter o ID do admin que está encarregado da atividade

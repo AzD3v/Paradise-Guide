@@ -1,83 +1,89 @@
 <?php   
 
-        // Alteração do estado das reservas
-        # Marcar reserva como "realizada"
-        if (isset($_POST["marcar_reserva_realizada"])) {
-            
-            # Acesso ao ID da reserva marcada como "realizada" 
-            $idReservaRealizada = $_POST["idReserva"];
-
-            # Modificar estado da reserva para "realizada" 
-            $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
-            $sql .= "WHERE idReserva = :idReserva";
-            
-            # Preparar o statement
-            $stmt = $pdo->prepare($sql);
-
-            # Executar o statement 
-            $stmt->execute([":estadoReserva" => "Realizada", ":idReserva" => $idReservaRealizada]);
-
-            # Refrescar a página com a reserva em questão atualizada
-            echo "<script>alert('A reserva foi marcada como realizada!')</script>";
-            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
-
-        }
-
-        # Marcar reserva como "adiada"
-        if (isset($_POST["adiar_reserva"])) {
-            
-            # Acesso ao ID da reserva marcada como "adiada" 
-            $idReservaRealizada = $_POST["idReserva"];
-
-            # Modificar estado da reserva para "adiada" 
-            $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
-            $sql .= "WHERE idReserva = :idReserva";
-            
-            # Preparar o statement
-            $stmt = $pdo->prepare($sql);
-
-            # Executar o statement 
-            $stmt->execute([":estadoReserva" => "Adiada", ":idReserva" => $idReservaRealizada]);
-
-            # Refrescar a página com a reserva em questão atualizada
-            echo "<script>alert('A reserva foi marcada como adiada!')</script>";
-            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
-
-        }
-
-        # Marcar atividade como "cancelada"
-        if (isset($_POST["cancelar_reserva"])) {
-            
-            # Acesso ao ID da atividade a marcar como "cancelada" 
-            $idReservaRealizada = $_POST["idReserva"];
-
-            # Modificar estado da atividade para "cancelada" 
-            $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
-            $sql .= "WHERE idReserva = :idReserva";
-            
-            # Preparar o statement
-            $stmt = $pdo->prepare($sql);
-
-            # Executar o statement 
-            $stmt->execute([":estadoReserva" => "Cancelada", ":idReserva" => $idReservaRealizada]);
-
-            # Refrescar a página com a reserva em questão atualizada
-            echo "<script>alert('A reserva foi marcada como cancelada!')</script>";
-            echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
-
-        }
-
-        # Display das atividades reservadas pelo utilizador se estas existirem
-        $user_reserves = Reserve::find_admin_reserves($idAdmin);
+    // Alteração do estado das reservas
+    # Marcar reserva como "realizada"
+    if (isset($_POST["marcar_reserva_realizada"])) {
         
-        if (!empty($user_reserves)) {
+        # Acesso ao ID da reserva marcada como "realizada" 
+        $idReservaRealizada = $_POST["idReserva"];
+
+        # Modificar estado da reserva para "realizada" 
+        $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
+        $sql .= "WHERE idReserva = :idReserva";
+        
+        # Preparar o statement
+        $stmt = $pdo->prepare($sql);
+
+        # Executar o statement 
+        $stmt->execute([":estadoReserva" => "Realizada", ":idReserva" => $idReservaRealizada]);
+
+        # Refrescar a página com a reserva em questão atualizada
+        echo "<script>alert('A reserva foi marcada como realizada!')</script>";
+        echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+
+    }
+
+    # Marcar reserva como "adiada"
+    if (isset($_POST["adiar_reserva"])) {
+        
+        # Acesso ao ID da reserva marcada como "adiada" 
+        $idReservaRealizada = $_POST["idReserva"];
+
+        # Modificar estado da reserva para "adiada" 
+        $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
+        $sql .= "WHERE idReserva = :idReserva";
+        
+        # Preparar o statement
+        $stmt = $pdo->prepare($sql);
+
+        # Executar o statement 
+        $stmt->execute([":estadoReserva" => "Adiada", ":idReserva" => $idReservaRealizada]);
+
+        # Refrescar a página com a reserva em questão atualizada
+        echo "<script>alert('A reserva foi marcada como adiada!')</script>";
+        echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+
+    }
+
+    # Marcar atividade como "cancelada"
+    if (isset($_POST["cancelar_reserva"])) {
+        
+        # Acesso ao ID da atividade a marcar como "cancelada" 
+        $idReservaRealizada = $_POST["idReserva"];
+
+        # Modificar estado da atividade para "cancelada" 
+        $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
+        $sql .= "WHERE idReserva = :idReserva";
+        
+        # Preparar o statement
+        $stmt = $pdo->prepare($sql);
+
+        # Executar o statement 
+        $stmt->execute([":estadoReserva" => "Cancelada", ":idReserva" => $idReservaRealizada]);
+
+        # Refrescar a página com a reserva em questão atualizada
+        echo "<script>alert('A reserva foi marcada como cancelada!')</script>";
+        echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+
+    }
+
+    // Display das atividades reservadas associadas ao admin se estas existirem
+    # Prepared statement que todas as reservas associadas ao admin em questão
+    $admin_reservas_sql = "SELECT idAdmin, idAtividade FROM reservas WHERE idAdmin = :idAdmin";
+    $admin_reservas_stmt = $pdo->prepare($admin_reservas_sql);
+    $admin_reservas_stmt->execute([":idAdmin" => $idAdmin]);
+
+    # Fetch à base de dados de modo a retornar todas as reservas associadas ao admin em questão
+    $admin_reservas = $admin_reservas_stmt->fetchAll();
+    
+    if (!empty($admin_reservas)) {
         
     ?>
                             
-    <!-- Atividades escolhidas pelo utilizador -->
+    <!-- Reservas associadas ao admin -->
     <div id="user_activities">
 
-        <!-- Tabela com todas as atividades escolhidas pelo utilizador --> 
+        <!-- Tabela com todas as reservas associadas ao admin --> 
         <div class="table-responsive">
             <table class="table table-hover table-bordered table-striped">
 

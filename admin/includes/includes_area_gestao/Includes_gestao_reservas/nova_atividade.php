@@ -4,9 +4,7 @@
     if(isset($_POST["submit_insert"])) {
 
         # Obter o id do admin para inserção na base de dados
-        $admin = $_SESSION["admin"];
-        $id_admin = Admin::find_id_by_username($admin);
-        $idAdmin = $id_admin->idAdmin;
+        $idAdmin = 1;
 
         # Aceder aos campos do formulário (campos de texto)
         $nomeAtividade = $_POST["nome_atividade"];

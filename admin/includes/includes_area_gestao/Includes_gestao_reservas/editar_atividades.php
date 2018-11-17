@@ -1,5 +1,17 @@
 <?php
 
+    # Obter o ID do admin que possui sessão iniciada
+    $admin = $_SESSION["admin"];
+    
+    # Prepared statement que retorna o ID do admin em questão
+    $admin_id_sql = "SELECT * FROM admin_users WHERE usernameAdmin = :usernameAdmin LIMIT 1";
+    $admin_id_stmt = $pdo->prepare($admin_id_sql);
+    $admin_id_stmt->execute([":usernameAdmin" => $admin]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $admin_id_result = $admin_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idAdmin = $admin_id_result["idAdmin"];
+
     # Processo de edição de uma determinada atividade
     if (isset($_POST["edit_button"])) {
         
@@ -20,8 +32,8 @@
         $antigaImagem = $_POST["antiga_imagem"]; 
 
         # Aceder ao ficheiro da imagem para upload
-        $novaImagemAtividade = $_FILES['novo_ficheiro_imagem']['name'];
-        $novaImagemAtividadeTemp = $_FILES['novo_ficheiro_imagem']['tmp_name'];
+        $novaImagemAtividade = $_FILES["novo_ficheiro_imagem"]["name"];
+        $novaImagemAtividadeTemp = $_FILES["novo_ficheiro_imagem"]["tmp_name"];
 
         # Eliminar os espaços dos campos do formulário
         $novoNomeatividade = trim($novoNomeatividade);
@@ -79,11 +91,6 @@
 
     # Aceder a todos os dados de todas as atividades
     $activities = Activity::find_all_activities(); 
-
-    # Obter o ID do admin que possui sessão iniciada
-    $admin = $_SESSION["admin"];
-    $id_admin = Admin::find_id_by_username($admin);
-    $idAdmin = $id_admin->idAdmin;
 
     # Display de todas as atividades
     foreach($activities as $activity) {

@@ -10,34 +10,11 @@
         public $username;
         public $email;
         private $password;
-        
-        # Getters 
-        public function getIdUser() {
-            return $this->idUser;
-        }
-
-        public function getUsername() {
-            return $this->username;
-        }
-
-        public function getEmail() {
-            return $this->email;
-        }
-
 
         // Método que retorna todos os utilizadores
         public static function find_all_users()
         {
             return self::find_this_query("SELECT * FROM users");
-        }
-
-        // Método que encontra o ID de um utilizador pelo username
-        public static function find_id_by_username($username)
-        {
-            $the_result_array = self::find_this_query("SELECT * FROM users WHERE username = '$username' LIMIT 1");
-
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
         }
 
         // "Helper method" que retorna qualquer query que passe por ele

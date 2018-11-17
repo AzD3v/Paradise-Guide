@@ -16,5 +16,4 @@
 
         # Mensagem que aparecerá após uma atividade ser eliminada 
         
-
     } 
