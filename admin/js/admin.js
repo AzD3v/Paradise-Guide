@@ -75,23 +75,12 @@ $(document).ready(function () {
 
     });
 
-    // Mudança para a área de edição de reservas
-    $('#edit_reserves_admin_tab').click(function () {
+    // Resultados de pesquisa (admin) 
+    $('#listagem_edicao').hide();
 
-        // Esconder divisões da página após o clique
-        $('#all_activities_admin').hide();
-        $('#edit_activities').hide();
-        $('#all_reserves_admin').hide();
-
-        // Remover a classe "active" dos links
-        $('#all_activities_admin_tab').removeClass('active');
-        $('#edit_activities_admin_tab').removeClass('active');
-        $('#all_reserves_admin_tab').removeClass('active');
-
-        // "Highlight" na aba e mudança para a área escolhida
-        $('#edit_reserves_admin_tab').addClass('active');
-        $('#edit_reserves').fadeIn('slow');
-
+    $('#edit_button_filter').click(function () {
+        $('#resultados_filtro').fadeOut('slow');
+        $('#listagem_edicao').show();
     });
 
 });
