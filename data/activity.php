@@ -15,53 +15,10 @@
         public $precoAtividade;
         public $duracaoAtividade;
         
-        # Setters 
-        public function setNomeAtividade($nomeAtividade) {
-            $this->nomeAtividade = $nomeAtividade;
-        }
-
-        public function setDescricaoAtividade($descricaoAtividade) {
-            $this->descricaoAtividade = $descricaoAtividade;
-        }
-
-        public function setZonaAtividade($zonaAtividade) {
-            $this->zonaAtividade = $zonaAtividade;
-        }
-
-        public function setImagemAtividade($imagemAtividade) {
-            $this->imagemAtividade = $imagemAtividade;
-        }
-
-        public function setPrecoAtividade($precoAtividade) {
-            $this->precoAtividade = $precoAtividade;
-        }
-
-        public function setDuracaoAtividade($duracaoAtividade) {
-            $this->duracaoAtividade = $duracaoAtividade;
-        }
-
         // Método que retorna todas as atividades
         public static function find_all_activities()
         {
             return self::find_this_query("SELECT * FROM atividades");
-        }
-
-        // Método que retorna todas as atividades de um dado admin
-        public static function find_admin_activities($idAdmin)
-        {
-            $the_result_array = self::find_this_query("SELECT * FROM atividades WHERE idAdmin = $idAdmin");
-
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
-        }
-
-        // Método que encontra o ID de uma atividade pelo nome da mesma
-        public static function find_id_by_username($nomeAtividade)
-        {
-            $the_result_array = self::find_this_query("SELECT * FROM atividades WHERE Nomeatividade = '$nomeAtividade' LIMIT 1");
-
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
         }
 
         // "Helper method" que retorna qualquer query que passe por ele

@@ -8,25 +8,11 @@
         <a href="includes/includes_area_gestao/admin_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão<ion-icon class="navbar_logout_icon" name="power"></ion-icon></button></a>
 
         <!-- Título da área -->
-        <h1>Listagem de todas as suas atividades</h1>
+        <h1>Gestão de todas as suas atividades</h1>
 
         <!-- Incluir a listagem de todas as atividades associadas ao admin -->
         <?php include_once("listagem_atividades.php"); ?>
 
-    </div>
-
-    <!-- Criar uma nova atividade -->
-    <div id="new_activity">
-
-        <!-- Opção de logout -->
-        <a href="includes/includes_area_gestao/admin_logout.php"><button class="btn btn-primary logout_button">Encerrar sessão<ion-icon class="navbar_logout_icon" name="power"></ion-icon></button></a>
-
-        <!-- Título da área -->
-        <h1>Área de criação de atividades</h1> 
-
-        <!-- Incluir o formulário de criação de atividades -->
-        <?php include_once("nova_atividade.php"); ?>
-         
     </div>
 
     <!-- Editar atividades -->

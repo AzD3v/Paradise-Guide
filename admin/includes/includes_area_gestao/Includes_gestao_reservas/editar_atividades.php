@@ -1,10 +1,22 @@
 <?php
 
+    # Obter o ID do admin que possui sessão iniciada
+    $admin = $_SESSION["admin"];
+    
+    # Prepared statement que retorna o ID do admin em questão
+    $admin_id_sql = "SELECT * FROM admin_users WHERE usernameAdmin = :usernameAdmin LIMIT 1";
+    $admin_id_stmt = $pdo->prepare($admin_id_sql);
+    $admin_id_stmt->execute([":usernameAdmin" => $admin]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $admin_id_result = $admin_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idAdmin = $admin_id_result["idAdmin"];
+
     # Processo de edição de uma determinada atividade
     if (isset($_POST["edit_button"])) {
         
         # Obter o ID da atividade em questão
-        $idAtividade = $_POST["idAtividade"];
+        $idAtividade = $_POST["idAtividadeEditar"];
 
         # Acesso aos dados do formulário 
         $novoNomeatividade = $_POST["novo_nome_atividade"];
@@ -20,8 +32,8 @@
         $antigaImagem = $_POST["antiga_imagem"]; 
 
         # Aceder ao ficheiro da imagem para upload
-        $novaImagemAtividade = $_FILES['novo_ficheiro_imagem']['name'];
-        $novaImagemAtividadeTemp = $_FILES['novo_ficheiro_imagem']['tmp_name'];
+        $novaImagemAtividade = $_FILES["novo_ficheiro_imagem"]["name"];
+        $novaImagemAtividadeTemp = $_FILES["novo_ficheiro_imagem"]["tmp_name"];
 
         # Eliminar os espaços dos campos do formulário
         $novoNomeatividade = trim($novoNomeatividade);
@@ -80,11 +92,6 @@
     # Aceder a todos os dados de todas as atividades
     $activities = Activity::find_all_activities(); 
 
-    # Obter o ID do admin que possui sessão iniciada
-    $admin = $_SESSION["admin"];
-    $id_admin = Admin::find_id_by_username($admin);
-    $idAdmin = $id_admin->idAdmin;
-
     # Display de todas as atividades
     foreach($activities as $activity) {
 
@@ -97,7 +104,7 @@
         ?>
 
             <!-- Grupo que contém os detalhes de cada atividade -->
-            <div class="list-group" id="<?php echo $activity->idAtividade; ?>">
+            <div class="list-group">
                 
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
 
@@ -134,7 +141,7 @@
                     <p class="mb-2"><span class="subtitulo_listagem">Modifique o preço da atividade:</span> <input type="text" name="novo_custo_atividade" value="<?php echo $activity->precoAtividade; ?>" class="form-control"></p>
 
                     <!-- Input type "hidden" - idAtividade -->
-                    <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+                    <input type="hidden" name="idAtividadeEditar" value="<?php echo $activity->idAtividade; ?>">
 
                     <!-- Botão de confirmação da edição -->
                     <button type="submit" name="edit_button" id="edit_button_confirm" class="btn">Concluir edição da atividade</button>

@@ -19,24 +19,6 @@
             return self::find_this_query("SELECT * FROM reservas");
         }
 
-        // Método que retorna as reservas de um dado admin
-        public static function find_admin_reserves($idAdmin)
-        {
-            $the_result_array = self::find_this_query("SELECT idAdmin, idAtividade FROM reservas WHERE idAdmin = $idAdmin");
-
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
-        }
-
-        // Método que retorna as reservas de um dado utilizador
-        public static function find_user_reserves($idUser)
-        {
-            $the_result_array = self::find_this_query("SELECT idUser, idAtividade FROM reservas WHERE idUser = $idUser");
-
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
-        }
-
         // "Helper method" que retorna qualquer query que passe por ele
         public static function find_this_query($sql)
         {
