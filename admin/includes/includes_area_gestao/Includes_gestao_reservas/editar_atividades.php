@@ -16,7 +16,7 @@
     if (isset($_POST["edit_button"])) {
         
         # Obter o ID da atividade em questão
-        $idAtividade = $_POST["idAtividade"];
+        $idAtividade = $_POST["idAtividadeEditar"];
 
         # Acesso aos dados do formulário 
         $novoNomeatividade = $_POST["novo_nome_atividade"];
@@ -104,7 +104,7 @@
         ?>
 
             <!-- Grupo que contém os detalhes de cada atividade -->
-            <div class="list-group" id="<?php echo $activity->idAtividade; ?>">
+            <div class="list-group">
                 
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
 
@@ -141,7 +141,7 @@
                     <p class="mb-2"><span class="subtitulo_listagem">Modifique o preço da atividade:</span> <input type="text" name="novo_custo_atividade" value="<?php echo $activity->precoAtividade; ?>" class="form-control"></p>
 
                     <!-- Input type "hidden" - idAtividade -->
-                    <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+                    <input type="hidden" name="idAtividadeEditar" value="<?php echo $activity->idAtividade; ?>">
 
                     <!-- Botão de confirmação da edição -->
                     <button type="submit" name="edit_button" id="edit_button_confirm" class="btn">Concluir edição da atividade</button>

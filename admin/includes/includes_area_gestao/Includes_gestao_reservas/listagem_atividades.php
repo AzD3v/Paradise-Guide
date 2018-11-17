@@ -16,7 +16,7 @@
     if (isset($_POST["edit_button_shortcut"])) {
 
         # Obter o ID da atividade em questão
-        $idAtividade = $_POST["idAtividade"];
+        $idAtividade = $_POST["idAtividadeEditarShortcut"];
         
         # Acesso aos dados do formulário 
         $novoNomeatividade = $_POST["novo_nome_atividade"];
@@ -95,7 +95,7 @@
     if (isset($_POST["eliminar_atividade"])) {
 
         # Obter o ID da atividade que se deseja eliminar
-        $idAtividade = $_POST["idAtividade"];
+        $idAtividade = $_POST["idAtividadeEliminar"];
 
          # Proteção contra XSS (Cross Site Scripting)
         $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
@@ -106,9 +106,10 @@
         $stmt->execute([":idAtividade" => $idAtividade]); 
 
         # Refrescar a página com a atividade em questão eliminada
-        echo "<script>alert('A atividade foi eliminada com sucesso!')</script>";
         echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
-        
+        echo "<script>alert('A atividade foi eliminada com sucesso!')</script>";
+        echo "<script>location.reload();</script>";
+            
     }
 
     # Aceder a todos os dados de todas as atividades
@@ -132,7 +133,7 @@
                     ?> 
 
             <!-- Grupo que contém os detalhes de cada atividade -->
-            <div class="list-group" id="<?php echo $activity->idAtividade; ?>">
+            <div class="list-group">
                 
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
 
@@ -152,7 +153,7 @@
                     <input class="new_image" type="file" name="novo_ficheiro_imagem" accept="*/image">
                     <br>
 
-                    <!-- Input type "hidden" - idAtividade -->
+                    <!-- Input type "hidden" - Antiga imagem -->
                     <input type="hidden" name="antiga_imagem" value="<?php echo $activity->imagemAtividade; ?>">
                     
                     <!-- Descrição da atividade --> 
@@ -169,7 +170,7 @@
                     <p class="mb-2"><span class="subtitulo_listagem">Modifique o preço da atividade:</span> <input type="text" name="novo_custo_atividade" value="<?php echo $activity->precoAtividade; ?>" class="form-control"></p>
 
                     <!-- Input type "hidden" - idAtividade -->
-                    <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+                    <input type="hidden" name="idAtividadeEditarShortcut" value="<?php echo $activity->idAtividade; ?>">
 
                     <!-- Botão de confirmação da edição -->
                     <button type="submit" name="edit_button_shortcut" id="edit_button_confirm" class="btn">Concluir edição da atividade</button>
@@ -183,7 +184,7 @@
             <?php } } else { ?>
 
             <!-- Grupo que contém os detalhes de cada atividade -->
-            <div class="list-group" id="<?php echo $activity->idAtividade; ?>">
+            <div class="list-group">
                 
                 <div class="list-group-item list-group-item-action flex-column align-items-start active">
             
@@ -236,10 +237,10 @@
 
                     <!-- Botão e formulário que elimina uma atividade -->
                     <div>
-                        <form action="" method="post" role="form">
+                        <form method="post" role="form">
 
                         <!-- Input type "hidden" - ID da atividade --> 
-                        <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+                        <input type="hidden" name="idAtividadeEliminar" value="<?php echo $activity->idAtividade; ?>">
 
                         <button type="submit" name="eliminar_atividade" id="delete_button" 
                         class="btn">Eliminar atividade</button>

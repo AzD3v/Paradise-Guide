@@ -33,7 +33,7 @@
           <li>
 
             <!-- Opção de criar uma nova atividade -->
-            <a href="" onclick="return false;" class="nav-link" id="new_activity_admin_tab">
+            <a href="nova_atividade.php" class="nav-link" id="new_activity_admin_tab">
             <ion-icon name="add-circle" class="menu_icons"></ion-icon>
               Criar uma nova atividade
             </a>
