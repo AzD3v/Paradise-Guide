@@ -43,12 +43,21 @@
 <body>
 
 <?php 
+
+    # Obter o ID do admin que possui sessão iniciada
+    $admin = $_SESSION["admin"];
+
+    # Prepared statement que retorna o ID do admin em questão
+    $admin_id_sql = "SELECT * FROM admin_users WHERE usernameAdmin = :usernameAdmin LIMIT 1";
+    $admin_id_stmt = $pdo->prepare($admin_id_sql);
+    $admin_id_stmt->execute([":usernameAdmin" => $admin]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $admin_id_result = $admin_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idAdmin = $admin_id_result["idAdmin"];
     
     # Verificação do formulário de inserção de uma nova atividade
     if(isset($_POST["submit_insert"])) {
-
-        // # Obter o id do admin para inserção na base de dados
-        $idAdmin = 1;
 
         # Aceder aos campos do formulário (campos de texto)
         $nomeAtividade = $_POST["nome_atividade"];

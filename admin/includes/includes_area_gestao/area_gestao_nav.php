@@ -19,9 +19,15 @@
         <ul class="nav navbar-nav">
 
           <!-- Filtrar atividades por nome --> 
-          <form action="" method="">
-            <input type="search" placeholder="Filtrar atividades">
+          <form action="lista_filtro.php" autocomplete="off" method="post">
+            <div class="search_form">
+              <ion-icon name="search"></ion-icon>
+              <input type="search" name="nome_atividade" placeholder="Filtrar atividades" class="form-control">
+              <input class="btn_search" type="submit" value="Filtrar!" name="filtrar_atividades">
+            </div>
           </form>
+
+          <hr>
           
           <!-- Opção de vizualizar todas as atividades -->
           <li>

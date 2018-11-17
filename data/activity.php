@@ -21,15 +21,6 @@
             return self::find_this_query("SELECT * FROM atividades");
         }
 
-        // Método que retorna todas as atividades de um dado admin
-        public static function find_admin_activities($idAdmin)
-        {
-            $the_result_array = self::find_this_query("SELECT * FROM atividades WHERE idAdmin = $idAdmin");
-
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
-        }
-
         // "Helper method" que retorna qualquer query que passe por ele
         public static function find_this_query($sql)
         {

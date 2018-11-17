@@ -30,6 +30,13 @@ $(document).ready(function () {
         $('#all_activities_admin').fadeIn('slow');
     });
 
+    $('#new_activity_admin_tab').click(function () {
+
+        // Esconder divisões da página após o clique
+        $('#new_activity_admin_tab').addClass('active');
+        
+    });
+
     // Mudança para a área de edição de atividades
     $('#edit_activities_admin_tab').click(function () {
 

@@ -182,11 +182,7 @@
     </div> 
 
     <?php } else { ?>
-
-        <!-- <div id="user_activities">
-            
-            <h1 class="alert alert-info text-center">Não possui atividades reservadas! Consulte a nossa <a class="check_all_activities" href="" onclick="return false;">vasta lista</a> e escolha uma que lhe agrade ou mais!</h1>
-            
-        </div> -->
+  
+            <h1 class="alert alert-primary no_reserves">Não existem de momento reservas às suas atividades.</h1>
     
     <?php } ?>
