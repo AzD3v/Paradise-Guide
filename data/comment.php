@@ -8,6 +8,7 @@
         # Atributos da classe Comment 
         public $idComentario;
         public $idAtividade;
+        public $idUser;
         public $tituloComentario;
         public $textoComentario;
         public $autorComentario;

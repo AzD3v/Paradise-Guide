@@ -7,6 +7,12 @@
 <!-- Incluir a classe Activity -->
 <?php include_once("data/activity.php"); ?>
 
+<!-- Iniciar a sessão --> 
+<?php session_start(); ?> 
+
+<!-- Restringir a página para apenas um user registado conseguir aceder à mesma -->
+<?php if (isset($_SESSION["client"])) {header("Location:area_cliente.php");} ?>
+
 <?php 
 
     # Filtro de atividades por nome
@@ -122,7 +128,7 @@
         
         ?>
 
-        <h1>Não existem resultados</h1>
+        <h1>Não existem resultados para a sua pesquisa</h1>
 
         <?php } else {
 

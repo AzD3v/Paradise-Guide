@@ -16,9 +16,9 @@
 
 <?php 
 
-    # Se um utilizador se encontra com o login efetuado, é redirecionado para a sua área de cliente 
+    /* Se um utilizador se encontra com o login efetuado, é redirecionado para a sua área de cliente */
     if (isset($_SESSION["client"])) {header("Location:area_cliente.php");}
-
+    
 ?>
 
 <!DOCTYPE html>

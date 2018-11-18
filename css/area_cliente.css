@@ -179,17 +179,17 @@ div#user_activities h1.alert.alert-info {
     border-color: #fff;
     border-width: 1px 0 0 0;
     border-radius: 20px;
-}pesquisa_por_atividades
+}
 
-.pesquisa_por_atividadesore {
- pesquisa_por_atividadesblock;
- pesquisa_por_atividades"";
- pesquisa_por_atividades0px;
- pesquisa_por_atividadesp: -31px;
-    border-style: solid;
-    border-color: #fff;
-    border-width: 0 0 1px 0;
-    border-radius: 20px;
+.hr_style:before {
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
 }
 
 #user_activities {display: none;}
