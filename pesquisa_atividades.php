@@ -8,7 +8,8 @@
 <?php include_once("data/activity.php"); ?>
 
 <?php 
-# Filtro de atividades por nome
+
+    # Filtro de atividades por nome
     if (isset($_POST["pesquisa_atividades"])) {
         
         # Aceder ao select de pesquisa por localização geográfica
@@ -43,6 +44,7 @@
 
         }
 
+        # Obter os resultados da pesquisa
         $resultados_pesquisa = $filtro_stmt->fetchAll();
 
     }
@@ -132,7 +134,7 @@
 
             foreach ($resultados_pesquisa as $resultado_pesquisa) {
                 
-                # Acesso aos campos da base de dados 
+                # Acesso aos campos da base de dados associados à atividade
                 $nomeAtividade = $resultado_pesquisa["nomeAtividade"];
                 $descricaoAtividade = $resultado_pesquisa["descricaoAtividade"];
                 $zonaAtividade = $resultado_pesquisa["zonaAtividade"];
