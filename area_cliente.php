@@ -16,6 +16,9 @@
     # Aceder a todos os dados de cada atividade
     $activities = Activity::find_all_activities(); 
 
+    # Aceder a todos os dados de cada comentário às atividades 
+    $comments = Comment::find_all_comments();
+
     // Funcionalidade que possibilita reservar atividades
     # Obter o ID do utilizador que possui sessão iniciada
     $username = $_SESSION["client"];
@@ -35,8 +38,13 @@
     # Processo de inserção de uma atividade na base de dados
     if (isset($_POST["reserve_btn"])) {
         
-        # Obter o número do cartão de crédito
-        $cartaoCredito = $_POST["credit_card"];
+        # Obter dados dos campos do formulário de reserva 
+        $cartaoCredito = $_POST["cartao_credito"];
+        $expiracaoCartao = $_POST["data_expiracao"];
+        $nomeCartao = $_POST["nome_cartao"];
+
+        # Obter o ID do admin associado à atividade
+        $idAdmin = $_POST["idAdmin"];
 
         # Obter o ID da atividade em questão
         $idAtividade = $_POST["idAtividade"];
@@ -44,14 +52,20 @@
         # Proteção contra XSS (Cross Site Scripting) - ID da atividade
         $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
 
-        if (!empty($cartaoCredito)) {
+        if (!empty($cartaoCredito) && !empty($expiracaoCartao) && !empty($nomeCartao)) {
             
             /* Eliminar todo o "whitespace" em branco do campo que contém o número 
             de cartão de crédito */
             $cartaoCredito = trim(preg_replace('/\s+/', '', $cartaoCredito));
 
-            # Proteção contra XSS (Cross Site Scripting) - Cartão de crédito
+            /* Eliminar o espaço em branco dos campos de expiração do cartão e nome presente no cartão */
+            $expiracaoCartao = trim($expiracaoCartao);
+            $nomeCartao = trim($nomeCartao);
+
+            # Proteção contra XSS (Cross Site Scripting)
             $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
+            $expiracaoCartao = htmlspecialchars($expiracaoCartao, ENT_QUOTES, 'UTF-8');
+            $nomeCartao = htmlspecialchars($nomeCartao, ENT_QUOTES, 'UTF-8');
 
             # Encriptação do cartão de crédito
             $bytes = openssl_random_pseudo_bytes(8, $cstrong);
@@ -107,11 +121,11 @@
                 $success_message = "<div class='alert alert-success text-center' role='alert'>A atividade foi reservada com sucesso! Poderá verificar o estado da mesma na sua <a href='' onclick='return false;' class='check_reserves' id='check_success'>lista de atividades</a>.</div>";
 
                 # Proceder à reserva de uma dada atividade
-                $sql = "INSERT INTO reservas (idAtividade, idUser, idAdmin, cartaoCredito, estadoReserva) ";
-                $sql .= "VALUES(:idAtividade, :idUser, :idAdmin, :cartaoCredito, :estadoReserva)";
+                $sql = "INSERT INTO reservas (idAtividade, idUser, idAdmin, cartaoCredito, expiracaoCartao, nomeCartao, estadoReserva) ";
+                $sql .= "VALUES(:idAtividade, :idUser, :idAdmin, :cartaoCredito, :expiracaoCartao, :nomeCartao, :estadoReserva)";
                 
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":idAdmin" => 1, ":cartaoCredito" => $cipherCartaoCredito, ":estadoReserva" => "Marcada"]);
+                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":idAdmin" => $idAdmin, ":cartaoCredito" => $cipherCartaoCredito, ":expiracaoCartao" => $expiracaoCartao, ":nomeCartao" => $nomeCartao, ":estadoReserva" => "Marcada"]);
                 
             }
             
@@ -194,6 +208,9 @@
 
         # Display de todas as atividades
         foreach($activities as $activity) {
+             
+            # Acesso ao ID da atividade em questão
+            $idAtividade = $activity->idAtividade;
         
         ?>
             
@@ -237,6 +254,41 @@
                 
                 <!-- Separador --> 
                 <hr class="hr_style">
+                
+                <!-- Comentários à atividade - caso esta já se encontre realizada -->
+                <?php if ($activity->estadoAtividade === "1") {
+                
+                ?>
+                
+                <!-- Título da atividade -->
+                <div class="text-center">
+                    <h5 class="mb-3r">Comentários à atividade</h5>
+                </div>
+                
+                <?php
+
+                    foreach ($comments as $comment) {
+
+                        $idAtividadeComentarios = $comment->idAtividade;
+                        $idAtividadeRealizada = $activity->idAtividade;
+
+                        if ($idAtividadeComentarios === $idAtividadeRealizada) {
+
+
+                ?>
+
+                <!-- Descrição da atividade --> 
+                <p class="mb-3"><span class="subtitulo_listagem">Título do comentário:</span> <?php echo $comment->tituloComentario; ?></p>
+
+                <!-- Zona da atividade --> 
+                <p class="mb-2"><span class="subtitulo_listagem">Comentário:</span> <?php echo $comment->textoComentario; ?></p>
+
+                <!-- Duração média da atividade -->
+                <p class="mb-2"><span class="subtitulo_listagem">Autor:</span> <?php echo $comment->autorComentario; ?></p>  
+
+                <br><br><br>
+                    
+                <?php } } } else { ?> 
 
                 <!-- Formulário de reserva - através de cartão de crédito -->
                 <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
@@ -258,19 +310,22 @@
                         <!-- Número do cartão de crédito -->
                         <div class="form-group">
                             <label>Número do cartão de crédito</label>
-                            <input type="text" name="credit_card" class="cn form-control" placeholder="" required>
+                            <input type="text" name="cartao_credito" class="cn form-control" placeholder="" required>
                         </div>
 
                         <!-- Data de expiração do cartão de crédito -->
                         <div class="form-group">
                             <label>Data de expiração</label>
-                            <input type="text" name="expiration_date" id="exp" placeholder="MM / AA" class="form-control" required>
+                            <input type="text" name="data_expiracao" id="exp" placeholder="MM / AA" class="form-control" required>
                         </div>
 
                         <!-- Nome presente no cartão de crédito -->
                         <div class="form-group">
                         <label>Nome presente no cartão</label>
-                        <input type="text" name="card_name" id="card_name" placeholder="Digite aqui o nome presente no cartão" class="form-control" required>
+                        <input type="text" name="nome_cartao" id="card_name" placeholder="Digite aqui o nome presente no cartão" class="form-control" required>
+
+                        <!-- Input type "hidden" - idAdmin-->
+                        <input type="hidden" name="idAdmin" value="<?php echo $activity->idAdmin; ?>">
                         
                         <!-- Input type "hidden" - idAtividade -->
                         <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
@@ -284,6 +339,8 @@
                     </div>
 
                 </form>
+
+                <?php }  ?>
 
             </div>
         
@@ -311,8 +368,24 @@
     <!-- Atividades escolhidas pelo utilizador -->
     <div id="user_activities">
 
-        <h1>Pode consultar aqui todas as suas atividades reservadas</h1>
-        
+        <h1>Pode consultar aqui todas as suas atividades reservadas/realizadas</h1>
+
+        <?php 
+
+            # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
+            $reserves = Reserve::find_all_reserves();
+
+            /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas e atividades do utilizador em questão */
+            foreach ($reserves as $reserve) {
+
+                $idReserva = $reserve->idReserva;
+                $idAtividadeReserva = $reserve->idAtividade;
+                $estadoReserva = $reserve->estadoReserva;
+                $userReserva = $reserve->idUser;
+
+
+        ?>
+
         <!-- Tabela com todas as atividades escolhidas pelo utilizador --> 
         <div class="table-responsive">
             <table class="table table-hover table-bordered table-striped">
@@ -326,24 +399,24 @@
                         <th>Imagem</th>
                         <th>Preço</th>
                         <th>Estado</th>
+
+                        <?php if ($reserve->estadoReserva === "Realizada") {
+                            
+                        ?> 
+                        <th>Comentar atividade</th>
+
+                        <?php } else { ?> 
+                        
                         <th>Desmarcar atividade</th>
+
+                        <?php } ?>
+
                     </tr>
                 </thead>
 
                 <tbody>
                     
                     <?php 
-
-                    # Obter da base de dados todas as reservas efetuadas pelo utilizador --> 
-                    $reserves = Reserve::find_all_reserves();
-
-                    /* Relacionar as tabelas "atividades" e "reservas", de modo a obter as reservas e atividades do utilizador em questão */
-                    foreach ($reserves as $reserve) {
-
-                        $idReserva = $reserve->idReserva;
-                        $idAtividadeReserva = $reserve->idAtividade;
-                        $estadoReserva = $reserve->estadoReserva;
-                        $userReserva = $reserve->idUser;
 
                         if ($userReserva === $idUser) {
 
@@ -360,15 +433,33 @@
                                     echo "<td>{$activity->duracaoAtividade}</td>";
                                     echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
                                     echo "<td>{$activity->precoAtividade}€</td>";
-                                    echo "<td>{$reserve->estadoReserva}</td>";
+                                    echo "<td>{$reserve->estadoReserva}</td>"; 
+                                    
+                                    /* Possibilidade do utilizador fazer um comentário às atividades realizadas */
+                                    if ($reserve->estadoReserva === "Realizada") {
                                     
                                     ?>
 
+                                    <!-- Opção de comentar a atividade já realizada --> 
+                                    <form action="comentario.php" method="post">
+
+                                        <!-- Campo hidden que contém o ID da atividade que se
+                                        deseja comentar -->
+                                        <input type="hidden" name="idAtividade" value="<?php echo $idAtividade; ?>">
+                                    
+                                    <?php 
+
+                                        echo "<td><button type='submit' name='comentar_reserva' class='btn-primary btn-block'>Comentar</button></td>";
+
+                                    } else {
+
+                                    ?> 
+                                    
                                     <!-- Opção de cancelar a reserva --> 
                                     <form method="post">
 
                                         <!-- Campo hidden que contém o ID da atividade que se
-                                        deseja eliminar -->
+                                        deseja cancelar -->
                                         <input type="hidden" name="idReserva" value="<?php echo $idReserva; ?>">
                                     
                                     <?php 
@@ -380,6 +471,9 @@
 
                                     </form>
 
+                                    <?php } ?>
+
+                                    
                                     <?php 
                                     
                                     echo "</tr>";
