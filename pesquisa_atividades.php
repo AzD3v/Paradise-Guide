@@ -122,7 +122,7 @@
         
         ?>
 
-        <h1>Não existem resultados</h1>
+        <h1>Não existem resultados para a sua pesquisa</h1>
 
         <?php } else {
 

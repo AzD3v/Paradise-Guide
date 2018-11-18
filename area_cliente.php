@@ -31,22 +31,20 @@
     # Aceder a todos os dados de cada comentário às atividades 
     $comments = Comment::find_all_comments();
 
+    # Prepared statement que retorna todas as reservas do utilizador em questão
+    $user_reservas_sql = "SELECT idAtividade FROM reservas WHERE idUser = :idUser";
+    $user_reservas_stmt = $pdo->prepare($user_reservas_sql);
+    $user_reservas_stmt->execute([":idUser" => $idUserComSessao]);
+
+    # Fetch à base de dados de modo a retornar todas as reservadas do utilizador
+    $user_reservas = $user_reservas_stmt->fetchAll();
+
+    # Guardar as atividades do utilizador num array
+    foreach ($user_reservas as $user_reserva) {
+        $user_reservas_array = $user_reserva;
+    }
+
     // Funcionalidade que possibilita reservar atividades
-    # Obter o ID do utilizador que possui sessão iniciada
-    $username = $_SESSION["client"];
-
-    # Prepared statement que retorna o ID do utilizador em questão
-    $user_id_sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
-    $user_id_stmt = $pdo->prepare($user_id_sql);
-    $user_id_stmt->execute([":username" => $username]);
-
-    # Fetch à base de dados de modo a retornar o ID do utilizador
-    $user_id_result = $user_id_stmt->fetch(PDO::FETCH_ASSOC);
-    $idUser = $user_id_result["idUser"];
-
-    /* Definição do array que irá guardar os novos dados associados a uma reserva (ID do user e ID da atividade) */
-    $new_reserve = [];
-
     # Processo de inserção de uma atividade na base de dados
     if (isset($_POST["reserve_btn"])) {
         
@@ -93,27 +91,9 @@
 
             # Variável do resultado das validações definida como verdadeira inicialmente 
             $result = true;
-
-            /* Inserindo o ID do user com sessão iniciada e o ID da atividade a ser reserva no
-            array que contém os dados de uma nova reserva */
-            array_push($new_reserve, $idUser);
-            array_push($new_reserve, $idAtividade);
-
-            # Obtenção de todas as reservas
-            $all_reserves = Reserve::find_all_reserves();
-
-            /* Inserir um array específico todas as atividades reservadas pelo utilizador com sessão iniciada */
-            $user_reserves = [];
-            foreach ($all_reserves as $the_reserve) {
-                array_push($user_reserves, $the_reserve->idUser);
-                array_push($user_reserves, $the_reserve->idAtividade);             
-            }
-            
-            # Procura por reservas repetidas
-            $repeated_reserves = !array_diff($new_reserve, $user_reserves);
             
             # Caso exista uma duplicação de reservas, a reserva não é submetida
-            if($repeated_reserves) {
+            if(in_array($idAtividade, $user_reservas_array)) {
                 $repeat_reserve_message = "<div class='alert alert-warning text-center' role='alert'>Já reservou esta atividade! Poderá verificar a reserva <a href='' onclick='return false;' class='check_reserves'>aqui</a>.</div>";
                 $result = false;
             } 
@@ -137,7 +117,7 @@
                 $sql .= "VALUES(:idAtividade, :idUser, :idAdmin, :cartaoCredito, :expiracaoCartao, :nomeCartao, :estadoReserva)";
                 
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":idAdmin" => $idAdmin, ":cartaoCredito" => $cipherCartaoCredito, ":expiracaoCartao" => $expiracaoCartao, ":nomeCartao" => $nomeCartao, ":estadoReserva" => "Marcada"]);
+                $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUserComSessao, ":idAdmin" => $idAdmin, ":cartaoCredito" => $cipherCartaoCredito, ":expiracaoCartao" => $expiracaoCartao, ":nomeCartao" => $nomeCartao, ":estadoReserva" => "Marcada"]);
                 
             }
             
@@ -374,13 +354,7 @@
 
                 </form>
 
-
-                <?php } ?>
-                
-            
-            
-            
-            <?php } } } else { ?> 
+            <?php } } } } else { ?> 
 
                 <!-- Formulário de reserva - através de cartão de crédito -->
                 <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
@@ -448,7 +422,7 @@
         # Prepared statement que retorna todas as reservas do utilizador em questão
         $user_reservas_sql = "SELECT idUser, idAtividade FROM reservas WHERE idUser = :idUser";
         $user_reservas_stmt = $pdo->prepare($user_reservas_sql);
-        $user_reservas_stmt->execute([":idUser" => $idUser]);
+        $user_reservas_stmt->execute([":idUser" => $idUserComSessao]);
 
         # Fetch à base de dados de modo a retornar todas as reservadas do utilizador
         $user_reservas = $user_reservas_stmt->fetchAll();
@@ -486,7 +460,7 @@
                     
                     if ($reserve->estadoReserva === "Realizada") {
                     
-                        if ($userReserva === $idUser) {
+                        if ($userReserva === $idUserComSessao) {
 
                             foreach($activities as $activity) {
                                 
@@ -541,7 +515,7 @@
 
                         } else {
 
-                           if ($userReserva === $idUser) {
+                           if ($userReserva === $idUserComSessao) {
 
                             foreach($activities as $activity) {
                                 
@@ -568,8 +542,6 @@
                                     echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
                                     echo "<td>{$activity->precoAtividade}€</td>";
                                     echo "<td>{$reserve->estadoReserva}</td>";
-
-                                    ?>
 
                                     ?>
 
