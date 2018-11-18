@@ -94,7 +94,7 @@
             <ul class="navbar-nav mr-auto"></ul>
 
                 <!-- Search form -->
-                <form action="pesquisa_atividades.php" autocomplete="off" method="post" class="searchform cf">
+                <form action="" autocomplete="off" method="post" class="searchform cf">
                 <select name="localizacao_geografica" class="form-control">
                     <option value="">Em toda a ilha</option>
                     <option value="Ponta Delgada">Ponta Delgada</option>
@@ -105,7 +105,7 @@
                     <option value="Nordeste">Nordeste</option>
                 </select>
                     <input type="text" name="nome_atividade" placeholder="Pesquise aqui por atividades">
-                    <button type="submit" name="pesquisa_atividades">Pesquisar!</button>
+                    <button type="submit" name="pesquisa_por_atividades">Pesquisar!</button>
                 </form>
                 
             </ul>
@@ -133,6 +133,7 @@
             foreach ($resultados_pesquisa as $resultado_pesquisa) {
                 
                 # Acesso aos campos da base de dados 
+                $idAtividade = $resultado_pesquisa["idAtividade"];
                 $nomeAtividade = $resultado_pesquisa["nomeAtividade"];
                 $descricaoAtividade = $resultado_pesquisa["descricaoAtividade"];
                 $zonaAtividade = $resultado_pesquisa["zonaAtividade"];
@@ -180,9 +181,9 @@
                 <!-- Imagem de destaque da atividade -->
                 <img src=<?php echo "admin/img/imgs_atividades/{$imagemAtividade} class='img-responsive';" ?>>
 
-                    <!-- Botão que oferece opção para login -->
+                    <!-- Botão de submissão --> 
                     <div style="text-align: center">
-                        <a href="index.php"><button type="submit" name="reserve_btn" id="reserve_button"class="btn">Quer reservar? Inicie sessão ou registe-se!</button></a>
+                        <a href="area_cliente.php#<?php echo $idAtividade; ?>"><button name="reservar_atividade">Interessa-lhe? Preencha o formulário de reserva respetivo!</button></a>
                     </div>
 
                 </form>

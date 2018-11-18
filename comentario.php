@@ -144,10 +144,10 @@
             <!-- Input type "hidden" - ID da atividade --> 
             <input type="hidden" name="idAtividadeFormComentario" value="<?php echo $idAtividade; ?>">
 
-        <!-- Botão de submissão do comentário -->
-        <div style="text-align: center">
-            <button type="submit" name="inserir_comentario" id=""class="btn">Inserir comentário à atividade</button></a>
-        </div>
+            <!-- Botão de submissão do comentário -->
+            <div style="text-align: center">
+                <button type="submit" name="inserir_comentario" id=""class="btn">Inserir comentário à atividade</button></a>
+            </div>
 
         </form>
 
