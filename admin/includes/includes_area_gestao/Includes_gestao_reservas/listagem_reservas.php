@@ -20,8 +20,8 @@
         $stmt->execute([":estadoReserva" => "Realizada", ":estadoAtividade" => 1, ":idReserva" => $idReservaRealizada, ":idAtividade" => $idAtividadeRealizada]);
 
         # Refrescar a página com a reserva em questão atualizada
-        // echo "<script>alert('A reserva foi marcada como realizada!')</script>";
-        // echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+        echo "<script>alert('A reserva foi marcada como realizada!')</script>";
+        echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
 
     }
 
@@ -29,17 +29,19 @@
     if (isset($_POST["adiar_reserva"])) {
         
         # Acesso ao ID da reserva marcada como "adiada" 
-        $idReservaRealizada = $_POST["idReserva"];
+        $idReservaAdiada = $_POST["idReserva"];
+        $idAtividadeAdiada = $_POST["idAtividade"];
 
         # Modificar estado da reserva para "adiada" 
-        $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
-        $sql .= "WHERE idReserva = :idReserva";
+        $sql = "UPDATE reservas, atividades SET reservas.estadoReserva = :estadoReserva, ";
+        $sql .= "atividades.estadoAtividade = :estadoAtividade ";
+        $sql .= "WHERE reservas.idReserva = :idReserva AND atividades.idAtividade = :idAtividade";
         
         # Preparar o statement
         $stmt = $pdo->prepare($sql);
 
         # Executar o statement 
-        $stmt->execute([":estadoReserva" => "Adiada", ":idReserva" => $idReservaRealizada]);
+        $stmt->execute([":estadoReserva" => "Adiada", ":estadoAtividade" => 0, ":idReserva" => $idReservaAdiada, ":idAtividade" => $idAtividadeAdiada]);
 
         # Refrescar a página com a reserva em questão atualizada
         echo "<script>alert('A reserva foi marcada como adiada!')</script>";
@@ -51,17 +53,19 @@
     if (isset($_POST["cancelar_reserva"])) {
         
         # Acesso ao ID da atividade a marcar como "cancelada" 
-        $idReservaRealizada = $_POST["idReserva"];
+        $idReservaCancelada = $_POST["idReserva"];
+        $idAtividadeCancelada = $_POST["idAtividade"];
 
-        # Modificar estado da atividade para "cancelada" 
-        $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
-        $sql .= "WHERE idReserva = :idReserva";
+        # Modificar estado da reserva para "adiada" 
+        $sql = "UPDATE reservas, atividades SET reservas.estadoReserva = :estadoReserva, ";
+        $sql .= "atividades.estadoAtividade = :estadoAtividade ";
+        $sql .= "WHERE reservas.idReserva = :idReserva AND atividades.idAtividade = :idAtividade";
         
         # Preparar o statement
         $stmt = $pdo->prepare($sql);
 
         # Executar o statement 
-        $stmt->execute([":estadoReserva" => "Cancelada", ":idReserva" => $idReservaRealizada]);
+        $stmt->execute([":estadoReserva" => "Cancelada", ":estadoAtividade" => 1, ":idReserva" => $idReservaCancelada, ":idAtividade" => $idAtividadeCancelada]);
 
         # Refrescar a página com a reserva em questão atualizada
         echo "<script>alert('A reserva foi marcada como cancelada!')</script>";
@@ -125,19 +129,34 @@
                                     
                                     # Obter o ID da atividade
                                     $idAtividade = $activity->idAtividade;
-                                                                        
+                                    
+                                    # Reduzir tamanho do texto da descrição
+                                    $descricaoAtividade = $activity->descricaoAtividade;
+                                    $descricaoAtividade = truncate($descricaoAtividade, 50);
+                                                                                
                                     if ($idAtividadeReserva === $idAtividade) {
                                         
                                         echo "<tr>";
                                         echo "<td>{$activity->nomeAtividade}</td>";
                                         echo "<td>{$nomeCartao}</td>";
-                                        echo "<td>{$activity->descricaoAtividade}</td>";
+                                        echo "<td>{$descricaoAtividade}</td>";
                                         echo "<td>{$activity->zonaAtividade}</td>";
                                         echo "<td>{$activity->duracaoAtividade}</td>";
                                         echo "<td><img src='img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
+
+                                        /* Mostrar o símbolo do euro apenas caso a atividade possuir um preço */
+                                        if ($activity->precoAtividade !== "Atividade sem custos") {
+
                                         echo "<td>{$activity->precoAtividade}€</td>";
-                                        echo "<td>{$estadoReserva}</td>";
-                                        
+
+                                        } else {
+
+                                        echo "<td>{$activity->precoAtividade}</td>";   
+
+                                        }
+
+                                        echo "<td>{$reserve->estadoReserva}</td>";
+
                                         # Marcar atividade como realizada, adiada ou cancelada
                                         echo "<td>
                                             
@@ -154,6 +173,8 @@
                                             <form action='' method='post' role='form'>
 
                                                 <input type='hidden' name='idReserva' value='$idReserva'>
+
+                                                <input type='hidden' name='idAtividade' value='$idAtividadeReserva'>
                                                 
                                                 <button type='submit' name='adiar_reserva' class='btn-info btn-block'>Adiar</button>
 
@@ -162,6 +183,8 @@
                                             <form action='' method='post' role='form'>
 
                                                 <input type='hidden' name='idReserva' value='$idReserva'>
+
+                                                <input type='hidden' name='idAtividade' value='$idAtividadeReserva'>
                                         
                                                 <button type='submit' name='cancelar_reserva' class='btn-danger btn-block'>Cancelar</button>
                                         

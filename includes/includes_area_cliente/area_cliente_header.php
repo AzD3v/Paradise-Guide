@@ -16,6 +16,9 @@
 <!-- Incluir a classe Comment -->
 <?php include_once("data/comment.php"); ?>
 
+<!-- Incluir ficheiro de funções úteis --> 
+<?php include_once("admin/functions.php"); ?>
+
 <!-- Session start --> 
 <?php session_start(); ?>
 

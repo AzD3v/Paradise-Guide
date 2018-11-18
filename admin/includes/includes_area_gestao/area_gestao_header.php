@@ -16,6 +16,9 @@
 <!-- Incluir a classe Reserve -->
 <?php include_once("../data/reserve.php"); ?>
 
+<!-- Incluir ficheiro de funções úteis --> 
+<?php include_once("functions.php"); ?>
+
 <!-- Session start --> 
 <?php session_start(); ?>
 

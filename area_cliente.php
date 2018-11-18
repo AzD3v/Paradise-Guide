@@ -276,7 +276,7 @@
 
                         if ($idAtividadeComentarios === $idAtividadeRealizada) {
 
-                            if ($idUserComSessao === $userComentario) {
+                            
 
                 ?>
 
@@ -297,70 +297,7 @@
 
                 ?> 
 
-                <!-- Título do comentário --> 
-                <p class="mb-3"><span class="subtitulo_listagem">Título do comentário:</span> <?php echo $comment->tituloComentario; ?></p>
-
-                <!-- Texto do comentário --> 
-                <p class="mb-2"><span class="subtitulo_listagem">Comentário:</span> <?php echo $comment->textoComentario; ?></p>
-
-                <!-- Autor do comentário -->
-                <p class="mb-2"><span class="subtitulo_listagem">Autor:</span> <?php echo $comment->autorComentario; ?></p>  
-
-                <br><br>
-
-                <hr class="hr_style">
-
-                <!-- Formulário de reserva - através de cartão de crédito -->
-                <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
-
-                <form action="" method="post" autocomplete="off" id="reserve_form" role="form">
-
-                        <!-- Transmissão da mensagem de erro consoante a validação 
-                        do cartão de crédito e confirmação do ID da atividade -->
-                        <?php 
-                                    
-                            if (!empty($_POST["idAtividade"])) {
-                                if($_POST["idAtividade"] === $activity->idAtividade) { 
-                                    echo $error_message;
-                                }
-                            }
-                                    
-                        ?>
-
-                        <!-- Número do cartão de crédito -->
-                        <div class="form-group">
-                            <label>Número do cartão de crédito</label>
-                            <input type="text" name="cartao_credito" class="cn form-control" placeholder="####-####-####-####" required>
-                        </div>
-
-                        <!-- Data de expiração do cartão de crédito -->
-                        <div class="form-group">
-                            <label>Data de expiração</label>
-                            <input type="text" name="data_expiracao" id="exp" placeholder="MM / AA" class="form-control" required>
-                        </div>
-
-                        <!-- Nome presente no cartão de crédito -->
-                        <div class="form-group">
-                        <label>Nome presente no cartão</label>
-                        <input type="text" name="nome_cartao" id="card_name" placeholder="Digite aqui o nome presente no cartão" class="form-control" required>
-
-                        <!-- Input type "hidden" - idAdmin-->
-                        <input type="hidden" name="idAdmin" value="<?php echo $activity->idAdmin; ?>">
-                        
-                        <!-- Input type "hidden" - idAtividade -->
-                        <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
-
-                     </div>
-
-                    <!-- Botão de reserva -->
-                    <div style="text-align: center">
-                        <button type="submit" name="reserve_btn" id="reserve_button" 
-                        class="btn">Reservar atividade!</button>
-                    </div>
-
-                </form>
-
-            <?php } } } } else { ?> 
+            <?php } } } else { ?> 
 
                 <!-- Formulário de reserva - através de cartão de crédito -->
                 <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
@@ -472,6 +409,10 @@
                                 
                                 # Obter ID da atividade
                                 $idAtividade = $activity->idAtividade;
+
+                                # Reduzir tamanho do texto da descrição
+                                $descricaoAtividade = $activity->descricaoAtividade;
+                                $descricaoAtividade = truncate($descricaoAtividade, 200);
                                 
                                 if ($idAtividadeReserva === $idAtividade) {
                                     
@@ -487,11 +428,22 @@
                                     
                                     echo "<tr>";
                                     echo "<td>{$activity->nomeAtividade}</td>";
-                                    echo "<td>{$activity->descricaoAtividade}</td>";
+                                    echo "<td>{$descricaoAtividade}</td>";
                                     echo "<td>{$activity->zonaAtividade}</td>";
                                     echo "<td>{$activity->duracaoAtividade}</td>";
                                     echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
-                                    echo "<td>{$activity->precoAtividade}€</td>";
+
+                                    /* Mostrar o símbolo do euro apenas caso a atividade possuir um preço */
+                                    if ($activity->precoAtividade !== "Atividade sem custos") {
+
+                                        echo "<td>{$activity->precoAtividade}€</td>";
+
+                                    } else {
+
+                                        echo "<td>{$activity->precoAtividade}</td>";   
+
+                                    }
+
                                     echo "<td>{$reserve->estadoReserva}</td>";
                                      
                                     ?>
@@ -527,6 +479,10 @@
                                 
                                 # Obter ID da atividade
                                 $idAtividade = $activity->idAtividade;
+
+                                # Reduzir tamanho do texto da descrição
+                                $descricaoAtividade = $activity->descricaoAtividade;
+                                $descricaoAtividade = truncate($descricaoAtividade, 200);
                                 
                                 if ($idAtividadeReserva === $idAtividade) {
                                     
@@ -542,7 +498,7 @@
                                     
                                     echo "<tr>";
                                     echo "<td>{$activity->nomeAtividade}</td>";
-                                    echo "<td>{$activity->descricaoAtividade}</td>";
+                                    echo "<td>{$descricaoAtividade}</td>";
                                     echo "<td>{$activity->zonaAtividade}</td>";
                                     echo "<td>{$activity->duracaoAtividade}</td>";
                                     echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
