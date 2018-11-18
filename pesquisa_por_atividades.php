@@ -8,7 +8,8 @@
 <?php include_once("data/activity.php"); ?>
 
 <?php 
-# Filtro de atividades por nome
+
+    # Filtro de atividades por nome
     if (isset($_POST["pesquisa_atividades"])) {
         
         # Aceder ao campo de pesquisa 
