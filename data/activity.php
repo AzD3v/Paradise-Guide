@@ -8,12 +8,14 @@
         # Atributos da classe Activity 
         public $idAtividade;
         public $idAdmin;
+        public $nomeCartao;
         public $nomeAtividade;
         public $descricaoAtividade;
         public $zonaAtividade;
         public $imagemAtividade;
         public $precoAtividade;
         public $duracaoAtividade;
+        public $estadoAtividade;
         
         // Método que retorna todas as atividades
         public static function find_all_activities()
