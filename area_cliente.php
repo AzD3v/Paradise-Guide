@@ -253,7 +253,7 @@
                 <img src=<?php echo "admin/img/imgs_atividades/{$activity->imagemAtividade} class='img_listagem img-responsive';" ?>>
                 
                 <!-- Separador --> 
-                <hr class="hr_style">
+                <hr class="hr_style" id="<?php echo $idAtividade; ?>">
                 
                 <!-- Comentários à atividade - caso esta já se encontre realizada -->
                 <?php if ($activity->estadoAtividade === "1") {

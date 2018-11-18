@@ -8,6 +8,8 @@
 
 body {overflow: auto;}
 
+button {cursor: pointer;}
+
 /* Navbar */
 .logo_area_cliente {
     height: 80px;
@@ -115,12 +117,21 @@ input[name="nome_atividade"] {
     border: 0;
 }
 
+#search_page_not_log {
+    background: #00DC73;
+}
+
 #all_activities #search_modal button[name="pesquisa_atividades"]:hover {
     background: #666c6e;
 }
 
 button.text-center {
     cursor: pointer !important;
+}
+
+/* Página de reserva */ 
+#reserva_page {
+    background: #007BFF;
 }
 
 #all_activities h1 {
@@ -139,26 +150,6 @@ button.text-center {
     width: 650px;
     height: 450px;
     margin: -110px 0 0 45.3%;
-}
-
-#user_activities #comment_modal {margin-top: 10%;}
-#user_activities .modal-header {background: #8395a7;}
-#user_activities .modal-header h3 {margin-left: 1% !important;}
-
-#user_activities #comment_modal button[name="pesquisa_por_atividades"] {
-    background: #8395a7;
-    color: #fff;
-    padding: 15px;
-    font-size: 20px;
-    text-transform: uppercase;
-    margin: 10px 36% 10px 0 !important;
-    font-weight: bold;
-    transition: all 300ms ease-in-out;
-    border: 0;
-}
-
-#user_activities #comment_modal button[name="pesquisa_atividades"]:hover {
-    background: #666c6e;
 }
 
 div#user_activities h1.alert.alert-info {
