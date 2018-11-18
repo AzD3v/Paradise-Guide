@@ -93,6 +93,7 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
     margin: 20px;
     text-align: center;
 }
+
 #all_activities .list-group {padding: 20px 30px;}
 .d-flex h5 {font-size: 28px; font-weight: bold;}
 .list-group p {font-size: 21px; margin: 20px 0}

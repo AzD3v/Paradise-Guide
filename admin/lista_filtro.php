@@ -219,7 +219,7 @@
                 <h5 class="mb-3 text-center"><?php echo $nomeAtividade; ?></h5>
 
                 <!-- Imagem de destaque da atividade -->
-                <img src=<?php echo "img/imgs_atividades/{$imagemAtividade} class='img-responsive edit_img';" ?>>
+                <img src=<?php echo "img/imgs_atividades/{$imagemAtividade} class='img-responsive search_image';" ?>>
                 
                 <!-- Descrição da atividade --> 
                 <p class="mb-3"><?php echo $descricaoAtividade;?></p>
