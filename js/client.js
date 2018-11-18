@@ -7,11 +7,13 @@ $(document).ready(function() {
     $('#minhas_atividades_tab').click(function () {
         $('#user_activities').fadeIn('slow');
         $('#all_activities').hide();
+        $('#pesquisa_personalizada_tab').fadeOut();
     });
 
     $('#todas_atividades_tab').click(function () {
         $('#all_activities').fadeIn('slow');
         $('#user_activities').hide();
+        $('#pesquisa_personalizada_tab').fadeIn();
     });    
 
     // Formulário de reserva - "Ajuda" no que toca a inserir número do cartão de crédito
