@@ -1,5 +1,5 @@
 <!-- Header do índex     -->
-<?php include_once("includes/index_header.php"); ?>
+<?php include_once("includes/includes_index/index_header.php"); ?>
 
 <body>
 
@@ -7,16 +7,16 @@
     <div class="homepage-bg">
 
         <!-- Navbar do índex -->
-        <?php include_once("includes/index_navbar.php"); ?>
+        <?php include_once("includes/includes_index/index_navbar.php"); ?>
 
         <!-- Login/register forms do índex -->
-        <?php include_once("includes/index_forms.php"); ?>
+        <?php include_once("includes/includes_index/index_forms.php"); ?>
     
     </div>        
 
 </body>
 
     <!-- Footer do índex -->
-    <?php include_once("includes/index_footer.php"); ?>
+    <?php include_once("includes/includes_index/index_footer.php"); ?>
 
 </html>

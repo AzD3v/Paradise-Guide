@@ -6,49 +6,245 @@
     --secondaryGreen: #27AE60;
 }
 
-body {
-    overflow: auto;
-}
+body {overflow: auto;}
+
+button {cursor: pointer;}
 
 /* Navbar */
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {background: #27ae60!important;font-size: 20px;height: 80px;}
-a.nav-link {transition: all 100ms ease-in-out; font-size: 18px; text-transform: uppercase;}
+.logo_area_cliente {
+    height: 80px;
+    margin-right: 30px;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {
+    height: 100px;
+    background: #27ae60 !important;
+    font-size: 25px;
+}
+
+a.nav-link {
+    transition: all 100ms ease-in-out;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-right: -10px;
+}
+
+a.nav-link:hover {cursor: pointer;}
 a {outline: 0;}
 
-.btn:focus,
-.btn:active,
-.btn:visited,
-.btn:active,
-.btn::after {
-    background: var(--primary-color-hover) !important;
+button:focus,
+button:active,
+button:visited,
+button:active,
+button::after {
     outline: none !important;
     border: 0 !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button {background: var(--primaryBlue);font-size: 18px;text-transform: uppercase; font-weight: bold;  border: 0;transition: all 300ms ease-in-out;}
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button:hover {background: var(--secondaryBlue);}
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button {
+    background: var(--primaryBlue);
+    font-size: 18px;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 0;
+    transition: all 300ms ease-in-out;
+    margin-left: 15px;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button:hover {
+    background: var(--secondaryBlue);
+    cursor: pointer;
+}
+
 input.form-control.mr-sm-2.pesquisa_area_cliente {width: 300px;}
 input[name="pesquisa_area_cliente"] {font-size: 18px;}
-.logout_button {
-    margin: 0 20px 0 40px !important;
-    background: #eb4d4b !important;
+.logout_button {margin: 0 20px 0 40px !important; background: #eb4d4b !important;}
+.logout_button:hover {background: #c0392b !important;}
+.navbar_logout_icon.hydrated {
+    color: #fff;
+    font-size: 25px;
+    position: relative;
+    top: 5px;
+    right: -4px;
 }
-.logout_button:hover {
-    background: #c0392b !important;
-    
+
+#pesquisa_personalizada_tab_button {
+    background: #8395a7;
+    transition: 300ms all ease-in-out;
 }
+
+#pesquisa_personalizada_tab_button:hover {
+    background: #666c6e;
+}
+
+/* Mensagens de erro e sucesso */ 
+#check_success {color: #27AE60;}
+#check_success:hover {color: rgb(1, 148, 62);}
+.check_reserves {
+    color: var(--secondaryBlue);
+    transition: all 300ms ease-in-out;
+}
+.check_reserves:hover {color: var(--primaryBlue);}
+.check_all_activities {
+    color: var(--secondaryBlue);
+    transition: all 300ms ease-in-out;
+}
+.check_all_activities {color: var(--primaryBlue);}
 
 /* Atividades */
 .body_area_cliente {background: #2ecc71;}
 
-#all_activities {display: none;}
-#all_activities h1 {font-size: 26px;color: #fff;text-transform: uppercase;margin: 20px;text-align: center;}
-#all_activities .list-group {padding: 20px 30px;}
+#all_activities #search_modal {margin-top: 10%;}
+#all_activities .modal-header {background: #8395a7;}
+#all_activities .modal-header h3 {margin-left: 1% !important;}
 
-.d-flex h5 {font-size: 23px; font-weight: bold;}
-.list-group p {font-size: 20px;}
+input[name="nome_atividade"] {
+    font-size: 20px;
+}
+
+#all_activities #search_modal button[name="pesquisa_por_atividades"] {
+    background: #8395a7;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 10px 36% 10px 0 !important;
+    font-weight: bold;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
+
+#search_page_not_log {
+    background: #00DC73;
+}
+
+#all_activities #search_modal button[name="pesquisa_atividades"]:hover {
+    background: #666c6e;
+}
+
+button.text-center {
+    cursor: pointer !important;
+}
+
+/* Página de reserva */ 
+#reserva_page {
+    background: #007BFF;
+}
+
+#all_activities h1 {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 20px;
+    text-align: center;
+}
+
+#all_activities .list-group {padding: 20px 30px;}
+.d-flex h5 {font-size: 28px; font-weight: bold;}
+.list-group p {font-size: 21px; margin: 20px 0}
 .list-group .subtitulo_listagem {font-weight: bold;}
-.list-group button {background: var(--primaryGreen);color: #fff;float: right;font-size: 20px;text-transform: uppercase;transition: all 300ms ease-in-out;border: 0;}
+.list-group .img_listagem {
+    width: 650px;
+    height: 450px;
+    margin: -110px 0 0 45.3%;
+}
+
+div#user_activities h1.alert.alert-info {
+    color: var(--secondaryGreen);
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.list-group button {
+    background: var(--primaryGreen);
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 10px 0 20px 0;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
+
 .list-group button:hover {background: var(--secondaryGreen);}
+
+.hr_style {
+    margin: 30px 0 5px 0;
+    height: 30px;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+.hr_style:before {
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
+
+#user_activities {display: none;}
+
+/* Formulário de reserva */
+.list-group-item .form-group {display: flex; flex-direction: column;}
+.list-group-item h5 {font-size: 30px; font-weight: bold; margin-bottom: 20px;}
+.list-group-item h3 {font-size: 24px; font-weight: bold; margin-bottom: 20px;}
+.list-group-item p {font-size: 23px;}
+.list-group label {font-size: 18px !important; font-weight: bold;}
+.cn {width: 170px;}
+#exp {width: 80px;}
+#card_name {width: 285px;}
+
+/* Listagem de reservas (cliente) */ 
+#user_activities h1 {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 20px;
+    text-align: center;
+}
+
+thead {
+    border: 3px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    background: var(--secondaryGreen);
+    text-align: center;
+}
+
+tbody {color: #fff;font-size: 18px;background: var(--primaryGreen);}
+.table-bordered th {border: 3px solid #fff;}
+.table-bordered td {border: 2px solid #fff;}
+.table-bordered button {
+    text-transform: uppercase;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 20px;
+    transition: all 300ms ease-in-out;
+    outline: 0;
+    border: 0;
+}
+
+.table-bordered button:hover {cursor: pointer;}
+.img_reservas_cliente {width: 100px;}
+
+/* Página de comentários */ 
+#comentario_page {
+    overflow-x: hidden;
+    background: #007BFF;
+}
+
+#comentario_page button {
+    cursor: pointer;
+}

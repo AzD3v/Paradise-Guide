@@ -14,6 +14,7 @@
         $pdo = new PDO($dsn, DB_USER, DB_PASS);
     } catch (PDOException $e){
         die("A conexão à base de dados falhou! " . $e);
+        print_r( $e );
     }
 
 ?>

@@ -3,24 +3,20 @@
 
 <?php 
 
-    class Activity {
+    class Comment {
 
-        # Atributos da classe Activity 
+        # Atributos da classe Comment 
+        public $idComentario;
         public $idAtividade;
-        public $idAdmin;
-        public $nomeCartao;
-        public $nomeAtividade;
-        public $descricaoAtividade;
-        public $zonaAtividade;
-        public $imagemAtividade;
-        public $precoAtividade;
-        public $duracaoAtividade;
-        public $estadoAtividade;
+        public $idUser;
+        public $tituloComentario;
+        public $textoComentario;
+        public $autorComentario;
         
-        // Método que retorna todas as atividades
-        public static function find_all_activities()
+        // Método que retorna todas os comentários
+        public static function find_all_comments()
         {
-            return self::find_this_query("SELECT * FROM atividades");
+            return self::find_this_query("SELECT * FROM comentarios");
         }
 
         // "Helper method" que retorna qualquer query que passe por ele

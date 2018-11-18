@@ -2,26 +2,13 @@
 <?php include_once("db_config.php"); ?>
 
 <?php 
+    
+    class Admin {
 
-    class Activity {
-
-        # Atributos da classe Activity 
-        public $idAtividade;
+        # Atributos da classe Admin
         public $idAdmin;
-        public $nomeCartao;
-        public $nomeAtividade;
-        public $descricaoAtividade;
-        public $zonaAtividade;
-        public $imagemAtividade;
-        public $precoAtividade;
-        public $duracaoAtividade;
-        public $estadoAtividade;
-        
-        // Método que retorna todas as atividades
-        public static function find_all_activities()
-        {
-            return self::find_this_query("SELECT * FROM atividades");
-        }
+        public $usernameAdmin;
+        public $passwordAdmin;
 
         // "Helper method" que retorna qualquer query que passe por ele
         public static function find_this_query($sql)
@@ -44,11 +31,11 @@
 
         }
 
-        // "Helper method" que instancia a classe Activity automaticamente
+        // "Helper method" que instancia a classe User automaticamente
         public static function auto_instantiate($the_record)
         {
 
-            // Instanciar a classe Activity
+            // Instanciar a classe User
             $the_object = new self;
 
             // Iterar sobre os dados obtidos e atribuição de propriedades dinâmica

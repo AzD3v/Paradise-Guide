@@ -1,28 +1,33 @@
+<!-- Incluir a configuração da base de dados -->
+<?php include_once("../data/db_config.php"); ?>
+
 <!-- Incluir a classe Database -->
 <?php include_once("../data/database.php"); ?>
 
-<!-- Definir as messagens de erro de login como vazia inicialmente -->
-<?php $error_message_login = ""; ?>
+<!-- Incluir a classe Admin -->
+<?php include_once("../data/admin.php"); ?>
+
+<!-- Incluir a classe User -->
+<?php include_once("../data/user.php"); ?>
+
+<!-- Incluir a classe Activity -->
+<?php include_once("../data/activity.php"); ?>
+
+<!-- Incluir a classe Reserve -->
+<?php include_once("../data/reserve.php"); ?>
 
 <!-- Session start --> 
 <?php session_start(); ?>
 
-<?php 
-
-    /* Um cliente não poderá ter acesso à área admnistrativa (é redirecionado para a 
-    área de cliente) */
-    if (isset($_SESSION["client"])) {header("Location:../area_cliente.php");}
-
-    /* Um administrador com sessão iniciada é reencaminhado para a área de gestão */
-    if (isset($_SESSION["admin"])) {header("Location:area_gestao.php");}
-
-?>
+<!-- Restringir a página para que apenas um admin com sessão iniciada consiga aceder à mesma --> 
+<?php if (!isset($_SESSION["admin"])) {header("Location:index.php");} ?>
+<?php if (isset($_SESSION["client"])) {header("Location:../index.php");} ?>
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 
-    <!-- MetaTags -->
+    <!-- MetaTags --> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,6 +38,7 @@
     <!-- Custom CSS stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/area_gestao.css">    
 
     <!-- Ionic icons -->
     <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
@@ -40,15 +46,7 @@
     <!-- Source Sans Pro Font Family -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
-    <!-- Page title -->
-    <title>Paradise Guide | Área de Gestão</title>
+    <!-- Título da página -->
+    <title>Paradise Guide | Área Administrativa</title>
     
 </head>
-
-<body>
-
-    <!-- Login administrativo -->
-    <?php include_once("admin_login.php"); ?>
-
-</body>
-</html>
