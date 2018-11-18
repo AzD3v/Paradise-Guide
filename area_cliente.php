@@ -147,6 +147,38 @@
     <!-- Listagem de todas as atividades disponíveis --> 
     <div id="all_activities">
 
+        <!-- Modal de pesquisa -->
+        <div class="modal fade" id="search_modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Efetue aqui a sua pesquisa</h3>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Pesquisa por atividades -->
+                        <form action="pesquisa_por_atividades.php" autocomplete="off" method="post">
+                            <div class="form-group">    
+                                <input type="text" name="nome_atividade" class="form-control" placeholder="Pesquise aqui por atividades">
+                                <select name="localizacao_geografica" class="form-control">
+                                    <option value="">Em toda a ilha</option>      
+                                    <option value="Ponta Delgada">Ponta Delgada</option>
+                                    <option value="Lagoa">Lagoa</option>
+                                    <option value="Ribeira Grande">Ribeira Grande</option>
+                                    <option value="Vila Franca do Campo">Vila Franca do Campo</option>
+                                    <option value="Lagoa">Lagoa</option>
+                                    <option value="Nordeste">Nordeste</option>
+                                </select>
+                            </div>  
+                    </div>
+                    <div class="modal-footer">
+                        <button class="text-center" type="submit" name="pesquisa_por_atividades">Pesquisar!</button>   
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <h1>Aqui se encontram todas as atividades disponíveis</h1>
 
         <!-- Display da mensagem de sucesso após uma reserva ser efetuada --> 

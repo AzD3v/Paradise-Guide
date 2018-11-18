@@ -10,19 +10,39 @@
 <?php 
 
     # Filtro de atividades por nome
-    if (isset($_POST["pesquisa_atividades"])) {
+    if (isset($_POST["pesquisa_por_atividades"])) {
         
+        # Aceder ao select de pesquisa por localização geográfica
+        $zonaAtividade = $_POST["localizacao_geografica"];
+
         # Aceder ao campo de pesquisa 
         $termoPesquisa = $_POST["nome_atividade"];
 
-        # Query de pesquisa 
-        $filtro_sql = "SELECT * FROM atividades WHERE nomeAtividade LIKE :nomeAtividade";
-        
-        # Definir o prepared statement
-        $filtro_stmt = $pdo->prepare($filtro_sql);
+        # Escolha da query consoante o modo de pesquisa do utilizador
+        if (empty($zonaAtividade)) {
 
-        # Executar o prepared statement
-        $filtro_stmt->execute([":nomeAtividade" => "%".$termoPesquisa."%"]);
+            # Query de pesquisa 
+            $filtro_sql = "SELECT * FROM atividades WHERE nomeAtividade LIKE :nomeAtividade"; 
+            
+            # Definir o prepared statement
+            $filtro_stmt = $pdo->prepare($filtro_sql);
+
+            # Executar o prepared statement
+            $filtro_stmt->execute([":nomeAtividade" => "%".$termoPesquisa."%"]); 
+
+        } else {
+
+            # Query de pesquisa
+            $filtro_sql = "SELECT * FROM atividades WHERE nomeAtividade LIKE :nomeAtividade ";
+            $filtro_sql .= "AND zonaAtividade LIKE :zonaAtividade";  
+            
+            # Definir o prepared statement
+            $filtro_stmt = $pdo->prepare($filtro_sql);
+
+            # Executar o prepared statement
+            $filtro_stmt->execute([":nomeAtividade" => "%".$termoPesquisa."%", ":zonaAtividade" => $zonaAtividade]); 
+
+        }
 
         $resultados_pesquisa = $filtro_stmt->fetchAll();
 
@@ -75,6 +95,15 @@
 
                 <!-- Search form -->
                 <form action="pesquisa_atividades.php" autocomplete="off" method="post" class="searchform cf">
+                <select name="localizacao_geografica" class="form-control">
+                    <option value="">Em toda a ilha</option>
+                    <option value="Ponta Delgada">Ponta Delgada</option>
+                    <option value="Lagoa">Lagoa</option>
+                    <option value="Ribeira Grnade">Ribeira Grande</option>
+                    <option value="Vila Franca do Campo">Vila Franca do Campo</option>
+                    <option value="Lagoa">Lagoa</option>
+                    <option value="Nordeste">Nordeste</option>
+                </select>
                     <input type="text" name="nome_atividade" placeholder="Pesquise aqui por atividades">
                     <button type="submit" name="pesquisa_atividades">Pesquisar!</button>
                 </form>
@@ -86,6 +115,16 @@
     <!-- Navbar end -->
 
     <div id="not_log_search">
+
+         <?php  if (empty($resultados_pesquisa)) {
+        
+        ?>
+
+        <h1>Não existem resultados</h1>
+
+        <?php } else {
+
+        ?>
 
         <h1>Resultados da sua pesquisa</h1>
 
@@ -152,7 +191,7 @@
         
         </div>
 
-        <?php  } ?>
+        <?php } } ?>
 
     </div>
                     
