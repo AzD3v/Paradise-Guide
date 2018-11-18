@@ -10,7 +10,7 @@
 <?php 
 
     # Filtro de atividades por nome
-    if (isset($_POST["pesquisa_atividades"])) {
+    if (isset($_POST["pesquisa_por_atividades"])) {
         
         # Aceder ao campo de pesquisa 
         $termoPesquisa = $_POST["nome_atividade"];

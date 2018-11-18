@@ -44,7 +44,7 @@ button::after {
 nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button {
     background: var(--primaryBlue);
     font-size: 18px;
-    padding: 15px 8px;
+    padding: 15px 20px;
     text-transform: uppercase;
     font-weight: bold;
     border: 0;
@@ -57,7 +57,9 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button:hover {
     cursor: pointer;
 }
 
-.logout_button {margin: 0 20px 0 5% !important; background: #eb4d4b !important;}
+input.form-control.mr-sm-2.pesquisa_area_cliente {width: 300px;}
+input[name="pesquisa_area_cliente"] {font-size: 18px;}
+.logout_button {margin: 0 20px 0 40px !important; background: #eb4d4b !important;}
 .logout_button:hover {background: #c0392b !important;}
 .navbar_logout_icon.hydrated {
     color: #fff;
@@ -67,13 +69,37 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary button:hover {
     right: -4px;
 }
 
-ul.navbar-nav.mr-auto {
-    margin-right: -5% !important;
+#pesquisa_personalizada_tab_button {
+    background: #8395a7;
+    transition: 300ms all ease-in-out;
 }
 
-/* Pesquisa da navbar */ 
-.searchform.cf.log_search {
-   width: 5%;
+#pesquisa_personalizada_tab_button:hover {
+    background: #666c6e;
+}
+
+#all_activities #search_modal {margin-top: 15%;}
+#all_activities .modal-header {background: #8395a7;}
+#all_activities .modal-header h3 {margin-left: 1% !important;}
+input[name="nome_atividade"] {
+    font-size: 20px;
+}
+
+#all_activities #search_modal button[name="pesquisa_por_atividades"] {
+    background: #8395a7;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 10px 36% 10px 0 !important;
+    font-weight: bold;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
+
+#all_activities #search_modal button[name="pesquisa_atividades"]:hover {
+    cursor: pointer;
+    background: #666c6e;
 }
 
 /* Mensagens de erro e sucesso */ 
