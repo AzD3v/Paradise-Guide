@@ -161,9 +161,10 @@
                             <div class="form-group">    
                                 <input type="text" name="nome_atividade" class="form-control" placeholder="Pesquise aqui por atividades">
                                 <select name="localizacao_geografica" class="form-control">
+                                    <option value="">Em toda a ilha</option>      
                                     <option value="Ponta Delgada">Ponta Delgada</option>
                                     <option value="Lagoa">Lagoa</option>
-                                    <option value="Ribeira Grnade">Ribeira Grande</option>
+                                    <option value="Ribeira Grande">Ribeira Grande</option>
                                     <option value="Vila Franca do Campo">Vila Franca do Campo</option>
                                     <option value="Lagoa">Lagoa</option>
                                     <option value="Nordeste">Nordeste</option>

@@ -97,10 +97,8 @@ input[name="nome_atividade"] {
     border: 0;
 }
 
-#all_activities #search_modal button[name="pesquisa_atividades"]:hover {
-    cursor: pointer;
-    background: #666c6e;
-}
+#all_activities #search_modal button[name="pesquisa_atividades"]:hover {background: #666c6e;}
+button.text-center {cursor: pointer !important;}
 
 /* Mensagens de erro e sucesso */ 
 #check_success {color: #27AE60;}
