@@ -78,28 +78,6 @@ input[name="pesquisa_area_cliente"] {font-size: 18px;}
     background: #666c6e;
 }
 
-#all_activities #search_modal {margin-top: 15%;}
-#all_activities .modal-header {background: #8395a7;}
-#all_activities .modal-header h3 {margin-left: 1% !important;}
-input[name="nome_atividade"] {
-    font-size: 20px;
-}
-
-#all_activities #search_modal button[name="pesquisa_por_atividades"] {
-    background: #8395a7;
-    color: #fff;
-    padding: 15px;
-    font-size: 20px;
-    text-transform: uppercase;
-    margin: 10px 36% 10px 0 !important;
-    font-weight: bold;
-    transition: all 300ms ease-in-out;
-    border: 0;
-}
-
-#all_activities #search_modal button[name="pesquisa_atividades"]:hover {background: #666c6e;}
-button.text-center {cursor: pointer !important;}
-
 /* Mensagens de erro e sucesso */ 
 #check_success {color: #27AE60;}
 #check_success:hover {color: rgb(1, 148, 62);}
@@ -117,6 +95,34 @@ button.text-center {cursor: pointer !important;}
 /* Atividades */
 .body_area_cliente {background: #2ecc71;}
 
+#all_activities #search_modal {margin-top: 10%;}
+#all_activities .modal-header {background: #8395a7;}
+#all_activities .modal-header h3 {margin-left: 1% !important;}
+
+input[name="nome_atividade"] {
+    font-size: 20px;
+}
+
+#all_activities #search_modal button[name="pesquisa_por_atividades"] {
+    background: #8395a7;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 10px 36% 10px 0 !important;
+    font-weight: bold;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
+
+#all_activities #search_modal button[name="pesquisa_atividades"]:hover {
+    background: #666c6e;
+}
+
+button.text-center {
+    cursor: pointer !important;
+}
+
 #all_activities h1 {
     font-size: 26px;
     color: #fff;
@@ -133,6 +139,26 @@ button.text-center {cursor: pointer !important;}
     width: 650px;
     height: 450px;
     margin: -110px 0 0 45.3%;
+}
+
+#user_activities #comment_modal {margin-top: 10%;}
+#user_activities .modal-header {background: #8395a7;}
+#user_activities .modal-header h3 {margin-left: 1% !important;}
+
+#user_activities #comment_modal button[name="pesquisa_por_atividades"] {
+    background: #8395a7;
+    color: #fff;
+    padding: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 10px 36% 10px 0 !important;
+    font-weight: bold;
+    transition: all 300ms ease-in-out;
+    border: 0;
+}
+
+#user_activities #comment_modal button[name="pesquisa_atividades"]:hover {
+    background: #666c6e;
 }
 
 div#user_activities h1.alert.alert-info {
@@ -162,13 +188,13 @@ div#user_activities h1.alert.alert-info {
     border-color: #fff;
     border-width: 1px 0 0 0;
     border-radius: 20px;
-}
+}pesquisa_por_atividades
 
-.hr_style:before {
-    display: block;
-    content: "";
-    height: 30px;
-    margin-top: -31px;
+.pesquisa_por_atividadesore {
+ pesquisa_por_atividadesblock;
+ pesquisa_por_atividades"";
+ pesquisa_por_atividades0px;
+ pesquisa_por_atividadesp: -31px;
     border-style: solid;
     border-color: #fff;
     border-width: 0 0 1px 0;
@@ -221,3 +247,13 @@ tbody {color: #fff;font-size: 18px;background: var(--primaryGreen);}
 
 .table-bordered button:hover {cursor: pointer;}
 .img_reservas_cliente {width: 100px;}
+
+/* Página de comentários */ 
+#comentario_page {
+    overflow-x: hidden;
+    background: #007BFF;
+}
+
+#comentario_page button {
+    cursor: pointer;
+}

@@ -3,21 +3,19 @@
 
 <?php 
 
-    class Reserve {
+    class Comment {
 
-        # Atributos da classe Reserve
-        public $idReserva;
+        # Atributos da classe Comment 
+        public $idComentario;
         public $idAtividade;
-        public $idUser;
-        public $idAdmin;
-        private $cartaoCredito;
-        public $nomeCartao;
-        public $estadoReserva;
-       
-        // Método que retorna todas as reservas
-        public static function find_all_reserves()
+        public $tituloComentario;
+        public $textoComentario;
+        public $autorComentario;
+        
+        // Método que retorna todas os comentários
+        public static function find_all_comments()
         {
-            return self::find_this_query("SELECT * FROM reservas");
+            return self::find_this_query("SELECT * FROM comentarios");
         }
 
         // "Helper method" que retorna qualquer query que passe por ele
@@ -41,11 +39,11 @@
 
         }
 
-        // "Helper method" que instancia a classe Reserve automaticamente
+        // "Helper method" que instancia a classe Activity automaticamente
         public static function auto_instantiate($the_record)
         {
 
-            // Instanciar a classe Reserve
+            // Instanciar a classe Activity
             $the_object = new self;
 
             // Iterar sobre os dados obtidos e atribuição de propriedades dinâmica

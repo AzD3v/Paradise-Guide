@@ -13,6 +13,9 @@
 <!-- Incluir a classe Reserve -->
 <?php include_once("data/reserve.php"); ?>
 
+<!-- Incluir a classe Comment -->
+<?php include_once("data/comment.php"); ?>
+
 <!-- Session start --> 
 <?php session_start(); ?>
 

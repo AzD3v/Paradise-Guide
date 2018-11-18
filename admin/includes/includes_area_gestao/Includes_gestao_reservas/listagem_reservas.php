@@ -6,20 +6,22 @@
         
         # Acesso ao ID da reserva marcada como "realizada" 
         $idReservaRealizada = $_POST["idReserva"];
+        $idAtividadeRealizada = $_POST["idAtividade"];
 
         # Modificar estado da reserva para "realizada" 
-        $sql = "UPDATE reservas SET estadoReserva = :estadoReserva ";
-        $sql .= "WHERE idReserva = :idReserva";
+        $sql = "UPDATE reservas, atividades SET reservas.estadoReserva = :estadoReserva, ";
+        $sql .= "atividades.estadoAtividade = :estadoAtividade ";
+        $sql .= "WHERE reservas.idReserva = :idReserva AND atividades.idAtividade = :idAtividade";
         
         # Preparar o statement
         $stmt = $pdo->prepare($sql);
 
         # Executar o statement 
-        $stmt->execute([":estadoReserva" => "Realizada", ":idReserva" => $idReservaRealizada]);
+        $stmt->execute([":estadoReserva" => "Realizada", ":estadoAtividade" => 1, ":idReserva" => $idReservaRealizada, ":idAtividade" => $idAtividadeRealizada]);
 
         # Refrescar a página com a reserva em questão atualizada
-        echo "<script>alert('A reserva foi marcada como realizada!')</script>";
-        echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
+        // echo "<script>alert('A reserva foi marcada como realizada!')</script>";
+        // echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
 
     }
 
@@ -90,6 +92,7 @@
                 <thead>
                     <tr>
                         <th>Nome da atividade</th>
+                        <th>Nome do cliente</th>
                         <th>Descrição da atividade</th>
                         <th>Zona</th>
                         <th>Duração média</th>
@@ -114,30 +117,35 @@
                             $idAtividadeReserva = $reserve->idAtividade;
                             $estadoReserva = $reserve->estadoReserva;
                             $adminReserva = $reserve->idAdmin;
+                            $nomeCartao = $reserve->nomeCartao;
 
                             if ($adminReserva === $idAdmin) {
 
                                 foreach($activities as $activity) {
                                     
+                                    # Obter o ID da atividade
                                     $idAtividade = $activity->idAtividade;
-                                    
+                                                                        
                                     if ($idAtividadeReserva === $idAtividade) {
                                         
                                         echo "<tr>";
                                         echo "<td>{$activity->nomeAtividade}</td>";
+                                        echo "<td>{$nomeCartao}</td>";
                                         echo "<td>{$activity->descricaoAtividade}</td>";
                                         echo "<td>{$activity->zonaAtividade}</td>";
                                         echo "<td>{$activity->duracaoAtividade}</td>";
                                         echo "<td><img src='img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
                                         echo "<td>{$activity->precoAtividade}€</td>";
-                                        echo "<td>{$reserve->estadoReserva}</td>";
+                                        echo "<td>{$estadoReserva}</td>";
                                         
                                         # Marcar atividade como realizada, adiada ou cancelada
                                         echo "<td>
                                             
                                             <form action='' method='post' role='form'>
-                                                
+
                                                 <input type='hidden' name='idReserva' value='$idReserva'>
+
+                                                <input type='hidden' name='idAtividade' value='$idAtividadeReserva'>
 
                                                 <button type='submit' name='marcar_reserva_realizada' class='btn-success btn-block'>Realizada</button>
 
