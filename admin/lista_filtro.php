@@ -9,6 +9,7 @@
 
 <!-- Iniciar a sessão -->
 <?php session_start(); ?>
+
 <?php 
 
     /* Um cliente não poderá ter acesso à área admnistrativa (é redirecionado para a 

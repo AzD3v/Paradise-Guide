@@ -39,6 +39,9 @@
     # Fetch à base de dados de modo a retornar todas as reservadas do utilizador
     $user_reservas = $user_reservas_stmt->fetchAll();
 
+    # Definir array que irá guardar as reservas do utilizador 
+    $user_reservas_array = [];
+
     # Guardar as atividades do utilizador num array
     foreach ($user_reservas as $user_reserva) {
         $user_reservas_array = $user_reserva;
@@ -118,6 +121,9 @@
                 
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([":idAtividade" => $idAtividade, ":idUser" => $idUserComSessao, ":idAdmin" => $idAdmin, ":cartaoCredito" => $cipherCartaoCredito, ":expiracaoCartao" => $expiracaoCartao, ":nomeCartao" => $nomeCartao, ":estadoReserva" => "Marcada"]);
+
+                # Refrescar a página
+                echo "<script> if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); } </script>";
                 
             }
             
@@ -224,7 +230,7 @@
             <!-- Duração média da atividade -->
             <p class="mb-2"><span class="subtitulo_listagem">Duração média:</span> <?php echo $activity->duracaoAtividade; ?></p>  
 
-             <?php 
+            <?php 
 
                 # Mostrar o símbolo do euro apenas caso a atividade possuir um preço
                 if ($activity->precoAtividade !== "Atividade sem custos") {
@@ -324,7 +330,7 @@
                         <!-- Número do cartão de crédito -->
                         <div class="form-group">
                             <label>Número do cartão de crédito</label>
-                            <input type="text" name="cartao_credito" class="cn form-control" placeholder="" required>
+                            <input type="text" name="cartao_credito" class="cn form-control" placeholder="####-####-####-####" required>
                         </div>
 
                         <!-- Data de expiração do cartão de crédito -->
@@ -540,7 +546,19 @@
                                     echo "<td>{$activity->zonaAtividade}</td>";
                                     echo "<td>{$activity->duracaoAtividade}</td>";
                                     echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
-                                    echo "<td>{$activity->precoAtividade}€</td>";
+
+
+                                    /* Mostrar o símbolo do euro apenas caso a atividade possuir um preço */
+                                    if ($activity->precoAtividade !== "Atividade sem custos") {
+
+                                        echo "<td>{$activity->precoAtividade}€</td>";
+
+                                    } else {
+
+                                        echo "<td>{$activity->precoAtividade}</td>";   
+
+                                    }
+
                                     echo "<td>{$reserve->estadoReserva}</td>";
 
                                     ?>
