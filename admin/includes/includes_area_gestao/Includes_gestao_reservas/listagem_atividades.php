@@ -1,6 +1,6 @@
 <?php 
 
-    # Obter o ID do admin que possui sessão iniciada
+    # Obter o username do admin que possui sessão iniciada
     $admin = $_SESSION["admin"];
 
     # Prepared statement que retorna o ID do admin em questão

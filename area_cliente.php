@@ -13,6 +13,18 @@
 
 <?php 
 
+    # Obter ID do cliente em questão 
+    $client = $_SESSION["client"];
+
+     # Prepared statement que retorna o ID do admin em questão
+    $client_id_sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+    $client_id_stmt = $pdo->prepare($client_id_sql);
+    $client_id_stmt->execute([":username" => $client]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $client_id_result = $client_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idUserComSessao = $client_id_result["idUser"];
+
     # Aceder a todos os dados de cada atividade
     $activities = Activity::find_all_activities(); 
 
@@ -255,6 +267,9 @@
                 <!-- Separador --> 
                 <hr class="hr_style" id="<?php echo $idAtividade; ?>">
                 
+                <!-- Display dos comentários de acordo com o utilizador --> 
+                <?php foreach ($comments as $comment) {$userComentario = $comment->idUser;}?>
+                
                 <!-- Comentários à atividade - caso esta já se encontre realizada -->
                 <?php if ($activity->estadoAtividade === "1") {
                 
@@ -271,24 +286,101 @@
 
                         $idAtividadeComentarios = $comment->idAtividade;
                         $idAtividadeRealizada = $activity->idAtividade;
+                        $userComentario = $comment->idUser;
 
                         if ($idAtividadeComentarios === $idAtividadeRealizada) {
 
+                            if ($idUserComSessao === $userComentario) {
 
                 ?>
 
-                <!-- Descrição da atividade --> 
+                <!-- Título do comentário --> 
                 <p class="mb-3"><span class="subtitulo_listagem">Título do comentário:</span> <?php echo $comment->tituloComentario; ?></p>
 
-                <!-- Zona da atividade --> 
+                <!-- Texto do comentário --> 
                 <p class="mb-2"><span class="subtitulo_listagem">Comentário:</span> <?php echo $comment->textoComentario; ?></p>
 
-                <!-- Duração média da atividade -->
+                <!-- Autor do comentário -->
                 <p class="mb-2"><span class="subtitulo_listagem">Autor:</span> <?php echo $comment->autorComentario; ?></p>  
 
-                <br><br><br>
-                    
-                <?php } } } else { ?> 
+                <br>
+                
+                <hr class="hr_style">
+
+                <?php } else {
+
+                ?> 
+
+                <!-- Título do comentário --> 
+                <p class="mb-3"><span class="subtitulo_listagem">Título do comentário:</span> <?php echo $comment->tituloComentario; ?></p>
+
+                <!-- Texto do comentário --> 
+                <p class="mb-2"><span class="subtitulo_listagem">Comentário:</span> <?php echo $comment->textoComentario; ?></p>
+
+                <!-- Autor do comentário -->
+                <p class="mb-2"><span class="subtitulo_listagem">Autor:</span> <?php echo $comment->autorComentario; ?></p>  
+
+                <br><br>
+
+                <hr class="hr_style">
+
+                <!-- Formulário de reserva - através de cartão de crédito -->
+                <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
+
+                <form action="" method="post" autocomplete="off" id="reserve_form" role="form">
+
+                        <!-- Transmissão da mensagem de erro consoante a validação 
+                        do cartão de crédito e confirmação do ID da atividade -->
+                        <?php 
+                                    
+                            if (!empty($_POST["idAtividade"])) {
+                                if($_POST["idAtividade"] === $activity->idAtividade) { 
+                                    echo $error_message;
+                                }
+                            }
+                                    
+                        ?>
+
+                        <!-- Número do cartão de crédito -->
+                        <div class="form-group">
+                            <label>Número do cartão de crédito</label>
+                            <input type="text" name="cartao_credito" class="cn form-control" placeholder="" required>
+                        </div>
+
+                        <!-- Data de expiração do cartão de crédito -->
+                        <div class="form-group">
+                            <label>Data de expiração</label>
+                            <input type="text" name="data_expiracao" id="exp" placeholder="MM / AA" class="form-control" required>
+                        </div>
+
+                        <!-- Nome presente no cartão de crédito -->
+                        <div class="form-group">
+                        <label>Nome presente no cartão</label>
+                        <input type="text" name="nome_cartao" id="card_name" placeholder="Digite aqui o nome presente no cartão" class="form-control" required>
+
+                        <!-- Input type "hidden" - idAdmin-->
+                        <input type="hidden" name="idAdmin" value="<?php echo $activity->idAdmin; ?>">
+                        
+                        <!-- Input type "hidden" - idAtividade -->
+                        <input type="hidden" name="idAtividade" value="<?php echo $activity->idAtividade; ?>">
+
+                     </div>
+
+                    <!-- Botão de reserva -->
+                    <div style="text-align: center">
+                        <button type="submit" name="reserve_btn" id="reserve_button" 
+                        class="btn">Reservar atividade!</button>
+                    </div>
+
+                </form>
+
+
+                <?php } ?>
+                
+            
+            
+            
+            <?php } } } else { ?> 
 
                 <!-- Formulário de reserva - através de cartão de crédito -->
                 <h3 class="call_to_reserve">Deseja reservar esta atividade? Proceda ao preenchimento do formulário abaixo!</h3>
@@ -390,41 +482,28 @@
         <div class="table-responsive">
             <table class="table table-hover table-bordered table-striped">
 
-                <thead>
-                    <tr>
-                        <th>Nome da atividade</th>
-                        <th>Descrição da atividade</th>
-                        <th>Zona</th>
-                        <th>Duração média</th>
-                        <th>Imagem</th>
-                        <th>Preço</th>
-                        <th>Estado</th>
-
-                        <?php if ($reserve->estadoReserva === "Realizada") {
-                            
-                        ?> 
-                        <th>Comentar atividade</th>
-
-                        <?php } else { ?> 
-                        
-                        <th>Desmarcar atividade</th>
-
-                        <?php } ?>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                    
                     <?php 
-
+                    
+                    if ($reserve->estadoReserva === "Realizada") {
+                    
                         if ($userReserva === $idUser) {
 
                             foreach($activities as $activity) {
                                 
+                                # Obter ID da atividade
                                 $idAtividade = $activity->idAtividade;
                                 
                                 if ($idAtividadeReserva === $idAtividade) {
+                                    
+                                    echo "<thead>";
+                                    echo "<th>Nome da atividade</th>";
+                                    echo "<th>Descrição da atividade</th>";
+                                    echo "<th>Zona</th>";
+                                    echo "<th>Duração média</th>";
+                                    echo "<th>Imagem</th>";
+                                    echo "<th>Preço</th>";
+                                    echo "<th>Estado</th>";
+                                    echo "<th>Comentar atividade</th>";
                                     
                                     echo "<tr>";
                                     echo "<td>{$activity->nomeAtividade}</td>";
@@ -433,11 +512,8 @@
                                     echo "<td>{$activity->duracaoAtividade}</td>";
                                     echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
                                     echo "<td>{$activity->precoAtividade}€</td>";
-                                    echo "<td>{$reserve->estadoReserva}</td>"; 
-                                    
-                                    /* Possibilidade do utilizador fazer um comentário às atividades realizadas */
-                                    if ($reserve->estadoReserva === "Realizada") {
-                                    
+                                    echo "<td>{$reserve->estadoReserva}</td>";
+                                     
                                     ?>
 
                                     <!-- Opção de comentar a atividade já realizada --> 
@@ -451,10 +527,52 @@
 
                                         echo "<td><button type='submit' name='comentar_reserva' class='btn-primary btn-block'>Comentar</button></td>";
 
-                                    } else {
-
                                     ?> 
+
+                                    </form>
                                     
+                                    <?php 
+                                    
+                                } 
+        
+                            }
+
+                        }
+
+                        } else {
+
+                           if ($userReserva === $idUser) {
+
+                            foreach($activities as $activity) {
+                                
+                                # Obter ID da atividade
+                                $idAtividade = $activity->idAtividade;
+                                
+                                if ($idAtividadeReserva === $idAtividade) {
+                                    
+                                    echo "<thead>";
+                                    echo "<th>Nome da atividade</th>";
+                                    echo "<th>Descrição da atividade</th>";
+                                    echo "<th>Zona</th>";
+                                    echo "<th>Duração média</th>";
+                                    echo "<th>Imagem</th>";
+                                    echo "<th>Preço</th>";
+                                    echo "<th>Estado</th>";
+                                    echo "<th>Desmarcar atividade</th>";
+                                    
+                                    echo "<tr>";
+                                    echo "<td>{$activity->nomeAtividade}</td>";
+                                    echo "<td>{$activity->descricaoAtividade}</td>";
+                                    echo "<td>{$activity->zonaAtividade}</td>";
+                                    echo "<td>{$activity->duracaoAtividade}</td>";
+                                    echo "<td><img src='admin/img/imgs_atividades/{$activity->imagemAtividade}' class='img_reservas_cliente'></td>";
+                                    echo "<td>{$activity->precoAtividade}€</td>";
+                                    echo "<td>{$reserve->estadoReserva}</td>";
+
+                                    ?>
+
+                                    ?>
+
                                     <!-- Opção de cancelar a reserva --> 
                                     <form method="post">
 
@@ -471,16 +589,12 @@
 
                                     </form>
 
-                                    <?php } ?>
-
-                                    
-                                    <?php 
-                                    
-                                    echo "</tr>";
+                                    <?php
 
                                 }
-
                             }
+                        }
+
 
                         }
 

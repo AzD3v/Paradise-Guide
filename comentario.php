@@ -4,6 +4,25 @@
 <!-- Incluir a classe Database -->
 <?php include_once("data/database.php"); ?>
 
+<!-- Iniciar a sessão -->
+<?php session_start(); ?>
+
+<?php 
+
+    # Obter ID do cliente em questão 
+    $client = $_SESSION["client"];
+
+     # Prepared statement que retorna o ID do admin em questão
+    $client_id_sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+    $client_id_stmt = $pdo->prepare($client_id_sql);
+    $client_id_stmt->execute([":username" => $client]);
+
+    # Fetch à base de dados de modo a retornar o ID do utilizador
+    $client_id_result = $client_id_stmt->fetch(PDO::FETCH_ASSOC);
+    $idUser = $client_id_result["idUser"];
+    
+?>
+
 <?php 
 
     # Obter dados da atividade que se deseja comentar
@@ -28,37 +47,40 @@
 
     # Inserir comentário 
     if (isset($_POST["inserir_comentario"])) {
-
+        
         # Obter o ID da atividade em questão 
         $idAtividade = $_POST["idAtividadeFormComentario"];
 
-            if (!empty($tituloComentario) && !empty($textoComentario) && !empty($autorComentario)) {
-            
             # Acesso aos campos do formulário
             echo $tituloComentario = $_POST["titulo_comentario"];
             echo $textoComentario = $_POST["texto_comentario"];
             echo $autorComentario = $_POST["nome_comentario"];
+            
+            echo $idUser;
+            echo $idAtividade;
 
             # Proteção contra XSS (Cross Site Scripting)
-            $cartaoCredito = htmlspecialchars($cartaoCredito, ENT_QUOTES, 'UTF-8');
-            $expiracaoCartao = htmlspecialchars($expiracaoCartao, ENT_QUOTES, 'UTF-8');
-            $nomeCartao = htmlspecialchars($nomeCartao, ENT_QUOTES, 'UTF-8');
+            $idAtividade = htmlspecialchars($idAtividade, ENT_QUOTES, 'UTF-8');
+            $idUser = htmlspecialchars($idUser, ENT_QUOTES, 'UTF-8');
+            $tituloComentario = htmlspecialchars($tituloComentario, ENT_QUOTES, 'UTF-8');
+            $textoComentario = htmlspecialchars($textoComentario, ENT_QUOTES, 'UTF-8');
+            $autorComentario = htmlspecialchars($autorComentario, ENT_QUOTES, 'UTF-8');
 
             # Query à base de dados 
-            $sql_inserir_comentario = "INSERT INTO comentarios (idAtividade, tituloComentario, textoComentario, autorComentario) ";
-            $sql_inserir_comentario .= "VALUES(:idAtividade, :tituloComentario, :textoComentario, :autorComentario)";
+            $sql_inserir_comentario = "INSERT INTO comentarios (idAtividade, idUser, tituloComentario, textoComentario, autorComentario) ";
+            $sql_inserir_comentario .= "VALUES(:idAtividade, :idUser, :tituloComentario, :textoComentario, :autorComentario)";
 
             # Preparar o statement
             $stmt_inserir_comentario = $pdo->prepare($sql_inserir_comentario);
         
             # Executar o statement
-            $stmt_inserir_comentario->execute([":idAtividade" => $idAtividade, ":tituloComentario" => $tituloComentario, ":textoComentario" => $textoComentario, ":autorComentario" => $autorComentario]); 
+            $stmt_inserir_comentario->execute([":idAtividade" => $idAtividade, ":idUser" => $idUser, ":tituloComentario" => $tituloComentario, ":textoComentario" => $textoComentario, ":autorComentario" => $autorComentario]); 
 
             # Reencaminhar o cliente para a sua área
             header("Location:area_cliente.php");
+
         }
 
-     }
 
 ?>
 
