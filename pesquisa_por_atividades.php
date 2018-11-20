@@ -12,7 +12,7 @@
 
 <!-- Restringir a página para apenas um user registado conseguir aceder à mesma -->
 <?php if (!isset($_SESSION["client"])) {header("Location:area_cliente.php");} ?>
-<?php if (isset($_SESSION["admin"])) {header("Location:area_cliente.php");} ?>
+<?php if (isset($_SESSION["admin"])) {header("Location:admin");} ?>
 
 <?php 
 
