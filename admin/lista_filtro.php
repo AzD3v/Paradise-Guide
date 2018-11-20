@@ -16,9 +16,6 @@
     área de cliente) */
     if (isset($_SESSION["client"])) {header("Location:../area_cliente.php");}
 
-    /* Um administrador com sessão iniciada é reencaminhado para a área de gestão */
-    if (isset($_SESSION["admin"])) {header("Location:area_gestao.php");}
-
 ?>
 
 <?php 
