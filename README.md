@@ -1,6 +1,8 @@
 # Paradise-Guide
 
-A simple tourism activities academic project (focused on web security). Allows users to register and login, search and reserve any kind of touristic activities and interact with them by leaving comment. The back-end allows administrators to accept or decline such reserves.
+A simple tourism activities academic project (focused on web security). Allows users to register and login, search by name and location and reserve any kind of touristic activities and interact with them by leaving comment. 
+
+The back-end allows admin to accept or decline such reserves. Each admin has his own separate working area, where he can filter out the activities offer by name and location, like at the client search.
 
 # What I Learned
 
