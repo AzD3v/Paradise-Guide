@@ -6,6 +6,6 @@ The back-end allows admin to accept or decline such reserves. Each admin has his
 
 # What I Learned
 
-* Some more front-end knowledge by trying to make this tourism app appealing
-* Using JavaScript to enable some animations, like hiding and displaying content, as well as switching paradigms
-* Get a more in-depth knowledge of PHP databases and OOP PHP
+* Some more front-end knowledge by trying to make this tourism app appealing;
+* Using JavaScript to enable some animations, like hiding and displaying content, as well as switching paradigms;
+* Get a more in-depth knowledge of PHP databases and OOP PHP.
